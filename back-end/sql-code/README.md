@@ -6,3 +6,6 @@
 - If possible, copy and paste code in phpMyAdmin to execute the code
 
 ## TO RUN:
+
+On Linux/MacOS:
+Run the generate.sh file in helper folder
