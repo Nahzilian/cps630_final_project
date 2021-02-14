@@ -1,7 +1,7 @@
 #!/bin/bash
 export PATH=${PATH}:/usr/local/mysql/bin
 
-mysql -u user -p'pasword' <<EOFMYSQL
+mysql -u  -p  <<EOFMYSQL
 source ~/Documents/github/CPS630_FINAL_PROJECT/back-end/sql-code/create_db.sql;
 
 source ~/Documents/github/CPS630_FINAL_PROJECT/back-end/sql-code/main.sql;
