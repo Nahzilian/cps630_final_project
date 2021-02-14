@@ -2,7 +2,8 @@ html, body, main {
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  scroll-behavior: smooth; }
 
 .driver img {
   width: 100%;
@@ -19,3 +20,16 @@ html, body, main {
   margin: auto 10px;
   padding: 20px;
   border: 1px solid gray; }
+
+.about {
+  display: none; }
+  .about .profile img {
+    border-radius: 50%; }
+  .about .profile .up {
+    margin-top: 50px; }
+
+.contact {
+  display: none;
+  width: 80%;
+  margin: auto 2px;
+  padding: 10px; }
