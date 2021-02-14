@@ -205,10 +205,64 @@ insert into CUSTOMER_ORDER (DATE_DONE, TOTAL_PRICE, PAYMENT_CODE, CUSTOMER_ID, T
 insert into CUSTOMER_ORDER (DATE_DONE, TOTAL_PRICE, PAYMENT_CODE, CUSTOMER_ID, TRIP_ID, FLOWER_ID) values ('2021-01-19', 63.38, '30595297352349', 3, 36, 12);
 insert into CUSTOMER_ORDER (DATE_DONE, TOTAL_PRICE, PAYMENT_CODE, CUSTOMER_ID, TRIP_ID, FLOWER_ID) values ('2020-08-23', 13.93, '67636340443428454', 10, 4, 4);
 
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Cloned reciprocal solution', 4.1, 21);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Seamless bandwidth-monitored hardware', 2.7, 26);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Re-engineered exuding internet solution', 0.4, 29);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Customizable secondary artificial intelligence', 4.6, 18);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Distributed high-level support', 5.0, 24);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Multi-lateral composite task-force', 3.8, 15);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Team-oriented stable help-desk', 1.5, 17);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Exclusive homogeneous collaboration', 1.4, 12);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Optimized systemic orchestration', 2.8, 7);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Profound neutral system engine', 0.5, 1);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Robust systemic collaboration', 4.7, 17);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Triple-buffered bottom-line throughput', 0.4, 2);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('User-centric coherent capacity', 1.9, 6);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Organized 6th generation capability', 3.9, 14);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Balanced zero tolerance local area network', 1.2, 10);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Function-based contextually-based product', 4.6, 30);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Total composite flexibility', 2.8, 14);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Organic interactive functionalities', 1.9, 24);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Managed well-modulated open system', 0.2, 26);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Secured actuating Graphic Interface', 4.2, 26);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Expanded encompassing function', 0.0, 11);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Assimilated 6th generation hub', 2.5, 18);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Distributed 5th generation encoding', 0.6, 13);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Ergonomic homogeneous structure', 3.0, 3);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Sharable disintermediate adapter', 4.2, 28);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Operative uniform internet solution', 0.0, 27);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Advanced secondary benchmark', 4.6, 26);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Mandatory value-added focus group', 0.7, 17);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Universal value-added capability', 3.7, 29);
+insert into DRIVER_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, FLOWER_ID) values ('Centralized even-keeled frame', 1.2, 8);
 
--- UPDATE CUSTOMER_ORDER, (SELECT co.ORDER_ID, t.PRICE as tprice, f.PRICE as fprice, ROUND(t.PRICE + f.PRICE , 2) as total_price
--- FROM ((CUSTOMER_ORDER co
--- INNER JOIN (TRIP t ON co.TRIP_ID = t.TRIP_ID)
--- INNER JOIN FLOWER f ON co.FLOWER_ID = f.FLOWER_ID)) ORDER BY ORDER_ID) t
--- Set TOTAL_PRICE = t.total_price
--- WHERE t.ORDER_ID = CUSTOMER_ORDER.CUSTOMER_ID;
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Versatile well-modulated forecast', 2.4, 11);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Configurable systematic initiative', 3.2, 9);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('User-friendly intangible database', 4.2, 2);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Extended encompassing hub', 4.1, 7);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Implemented 24/7 standardization', 2.4, 11);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Networked static pricing structure', 2.0, 8);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Decentralized explicit portal', 1.4, 7);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Implemented optimizing knowledge base', 1.5, 13);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Phased national open system', 4.5, 11);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Distributed even-keeled pricing structure', 2.3, 6);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('User-centric object-oriented throughput', 3.1, 5);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Self-enabling directional forecast', 1.0, 7);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Persevering context-sensitive knowledge user', 3.0, 14);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Multi-layered zero tolerance function', 4.7, 13);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Grass-roots global analyzer', 1.6, 7);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Profound composite emulation', 2.9, 5);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('User-friendly system-worthy model', 3.9, 3);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Future-proofed modular projection', 3.4, 10);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Organized responsive software', 1.9, 5);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Digitized dedicated pricing structure', 1.1, 10);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Multi-channelled reciprocal policy', 2.5, 1);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Programmable didactic knowledge base', 2.5, 7);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Compatible zero defect methodology', 1.8, 13);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('User-centric systematic Graphical User Interface', 2.2, 12);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Progressive interactive orchestration', 1.7, 15);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Cross-platform discrete flexibility', 2.1, 10);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Multi-tiered zero administration open system', 1.3, 5);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Total local forecast', 3.3, 5);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Re-engineered encompassing internet solution', 4.2, 1);
+insert into PRODUCT_REVIEW (REVIEW_CONTEXT, REVIEW_SCORE, CAR_ID) values ('Face to face fault-tolerant capacity', 0.9, 1);
