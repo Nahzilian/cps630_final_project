@@ -33,3 +33,16 @@ html, body, main {
   width: 80%;
   margin: auto 2px;
   padding: 10px; }
+
+footer {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: gold;
+  margin-top: 100px; }
+  footer .pink {
+    position: absolute;
+    color: lavender;
+    bottom: 0;
+    width: 100%;
+    height: 50px; }
