@@ -1,2 +1,50 @@
-body{
+html, body, main {
+  height: 100%; width: 100%; margin: 0; padding: 0;
+  scroll-behavior: smooth;
+}
+
+.driver{
+  img{
+    width: 100%;
+    height: auto;
+    overflow:hidden;
+    margin: {
+      top:5vw;
+      right: 0;
+    }
+  }
+}
+
+.vertical{
+  border: {
+    right:1px solid gray;
+  }
+}
+
+.destination_source{
+  width: 80%;
+  margin: auto 10px;
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.about{
+  display: none;
+  .profile{
+    img{
+      border-radius: 50%;
+    }
+    .up{
+      margin: {
+        top:50px;
+      }
+    }
+  }
+}
+
+.contact{
+  display: none;
+  width: 80%;
+  margin: auto 2px;
+  padding: 10px;
 }
