@@ -19,7 +19,7 @@
   });
   </script>
   </body>
-  <footer class="z-depth-5">
+  <footer class="z-depth-5 pink accent-5">
     <div class="pink accent-2">
       <div class="copyright" align="center">
         <script>
