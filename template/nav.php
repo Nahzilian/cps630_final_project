@@ -4,8 +4,8 @@
     <li class="divider"></li>
     <li><a href="#!">Stores</a></li>
   </ul>
-    <div class="nav-wrapper pink accent-2">
-      <a href="#!" class="brand-logo">Logo</a>
+    <div class="nav-wrapper pink accent-3">
+      <a href="#!" class="brand-logo"> <img src="./res/img/logo.png" alt=""> </a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/">Home <i class="fas fa-home"></i></a></li>

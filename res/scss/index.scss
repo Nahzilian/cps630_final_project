@@ -3,6 +3,19 @@ html, body, main {
   scroll-behavior: smooth;
 }
 
+
+nav{
+  $size: 64px;
+  min-height:$size;
+  .brand-logo{
+    img{
+      width:$size;
+      height:$size;
+    }
+  }
+
+}
+
 .driver{
   img{
     width: 100%;

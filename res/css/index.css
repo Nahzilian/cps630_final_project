@@ -5,6 +5,12 @@ html, body, main {
   padding: 0;
   scroll-behavior: smooth; }
 
+nav {
+  min-height: 64px; }
+  nav .brand-logo img {
+    width: 64px;
+    height: 64px; }
+
 .driver img {
   width: 100%;
   height: auto;
