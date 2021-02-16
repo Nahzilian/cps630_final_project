@@ -46,6 +46,28 @@ nav {
   .signup img {
     width: 100%; }
 
+.review {
+  padding: 50px; }
+  .review .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    font-size: 3rem; }
+  .review label {
+    cursor: pointer;
+    font-size: 3rem; }
+  .review-logo img {
+    width: 400px;
+    height: 400px;
+    margin: auto 10px; }
+
+.star-on, .review input:not(:checked) ~ label:hover,
+.review input:not(:checked) ~ label:hover ~ label {
+  color: gold; }
+
+.star-off {
+  color: #444; }
+
 footer {
   position: relative;
   bottom: 0;

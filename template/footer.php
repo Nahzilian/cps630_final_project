@@ -17,6 +17,9 @@
   $("#contactus").on('click', ()=>{
     $(".contact").fadeIn();
   });
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
   </script>
   </body>
   <footer class="z-depth-5 pink accent-5">
