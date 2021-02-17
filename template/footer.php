@@ -20,6 +20,9 @@
   $(document).ready(function(){
     $('select').formSelect();
   });
+  $(document).ready(function(){
+   $('.materialboxed').materialbox();
+ });
   </script>
   </body>
   <footer class="z-depth-5 pink accent-5">

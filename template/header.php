@@ -8,6 +8,10 @@
       // Notice how this gets configured before we load Font Awesome
       window.FontAwesomeConfig = { autoReplaceSvg: false }
     </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=&v=weekly"
+      async defer
+    ></script>
     <link rel="stylesheet" href="./res/css/index.css">
     <link rel="stylesheet" href="./res/css/fontawsome/css/all.min.css">
     <link rel="stylesheet" href="./res/css/materialize/css/materialize.min.css">

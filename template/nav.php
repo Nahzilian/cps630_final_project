@@ -1,8 +1,8 @@
 <nav>
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">Drivers</a></li>
+    <li><a href="/service.php?type=driver">Drivers</a></li>
     <li class="divider"></li>
-    <li><a href="#!">Stores</a></li>
+    <li><a href="service.php?type=store">Stores</a></li>
   </ul>
     <div class="nav-wrapper pink accent-3">
       <a href="/" class="brand-logo"> <img src="./res/img/logo.png" alt=""> </a>
@@ -28,6 +28,6 @@
     <li><a href="#"><i class="fas fa-shopping-cart"></i> </a></li>
     <li>Services</li>
     <li class="divider"></li>
-    <li><a href="#!">Stores</a></li>
-    <li><a href="#!">Drivers</a></li>
+    <li><a href="/service.php?type=driver">Drivers</a></li>
+    <li><a href="service.php?type=store">Stores</a></li>
   </ul>
