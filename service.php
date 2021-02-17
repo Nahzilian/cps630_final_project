@@ -23,7 +23,9 @@
       <!-- FOR LOOP HERE -->
       <col width="150">
       <tr>
-        <td class="first"><img class="materialboxed" width="25" height="25" src="./res/img/car/car1.jpeg" alt="car-1">Sample</td>
+        <td class="first"> <article ondrag="onDrag(event)" draggable="true" class="fas fa-bars">
+            smaple
+        </article> <img class="materialboxed" width="100" height="100" src="./res/img/car/car1.jpeg" alt="car-1">Sample</td>
         <td>
           <div class="input-field col s12  m8 l8">
             <input type="text" id="source" name="source" value="">
@@ -53,11 +55,44 @@
 <?php include './template/footer.php' ?>
 <script type="text/javascript">
 
+function onDrag(event){
+  // console.log(event.dat);
+
+}
+
+function drop(event){
+  event.preventDefault();
+  var data = event.dataTransfer.getData("Text");
+  event.target.appendChild(document.getElementById(data))
+}
+
+
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
     zoom: 8
   });
+
+  function autocomplete(input){
+    auto  = new google.maps.places.Autocomplete((document.getElementById(input)), {
+      types: ['geocode'],
+    });
+
+    google.maps.event.addListener(auto, 'place_changed', ()=>{
+      var place = auto.getPlace() != undefined? auto.getPlace():'not_found';
+      if (!place.geometry || !place.geometry.location) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        console.log("No details available for input: '" + place.name + "'");
+        return;
+      }
+
+    })
+
+
+  }
+  autocomplete('source');
+  autocomplete('destin');
 
 }
 

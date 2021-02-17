@@ -71,6 +71,19 @@ nav {
 .service {
   width: 80%;
   margin: auto 10px; }
+  .service .first article {
+    cursor: grab;
+    position: absolute;
+    background-color: teal;
+    width: 25px;
+    height: 150px;
+    margin-left: -25px; }
+    .service .first article:active {
+      cursor: grabbing; }
+
+#map {
+  width: 300px;
+  height: 300px; }
 
 footer {
   position: relative;

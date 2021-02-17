@@ -9,7 +9,7 @@
       window.FontAwesomeConfig = { autoReplaceSvg: false }
     </script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=places&v=weekly"
       async defer
     ></script>
     <link rel="stylesheet" href="./res/css/index.css">
