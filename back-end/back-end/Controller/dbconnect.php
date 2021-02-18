@@ -4,7 +4,7 @@ class dbconnect{
         $host = '127.0.0.1';
         $user = 'root';
         $pass = '';
-        $db = 'p2s_web_app';
+        $db = 'P2S_WEB_APP';
         $connection = mysqli_connect($host,$user,$pass,$db); 
         return $connection;
      }
