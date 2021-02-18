@@ -127,6 +127,19 @@ nav{
   }
 
 }
+
+.cart-box{
+  position: absolute;
+  background-color: white;
+  width: 200px;
+  height:300px;
+  margin: {
+    left: -100px;
+  }
+  border: 1px solid pink;
+  display: none;
+}
+
 #map{
   width: 300px;
   height: 300px;

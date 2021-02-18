@@ -24,7 +24,6 @@
       <col width="150">
       <tr>
         <td class="first"> <article ondrag="onDrag(event)" draggable="true" class="fas fa-bars">
-            smaple
         </article> <img class="materialboxed" width="100" height="100" src="./res/img/car/car1.jpeg" alt="car-1">Sample</td>
         <td>
           <div class="input-field col s12  m8 l8">
@@ -46,9 +45,9 @@
     </tfoot>
   </table>
 </div>
-<div class="" id="map">
+<!-- <div class="" id="map"> -->
 
-</div>
+<!-- </div> -->
 
 
 <?php include './template/contact_about.php' ?>
@@ -66,34 +65,5 @@ function drop(event){
   event.target.appendChild(document.getElementById(data))
 }
 
-
-function initMap(){
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
-
-  function autocomplete(input){
-    auto  = new google.maps.places.Autocomplete((document.getElementById(input)), {
-      types: ['geocode'],
-    });
-
-    google.maps.event.addListener(auto, 'place_changed', ()=>{
-      var place = auto.getPlace() != undefined? auto.getPlace():'not_found';
-      if (!place.geometry || !place.geometry.location) {
-        // User entered the name of a Place that was not suggested and
-        // pressed the Enter key, or the Place Details request failed.
-        console.log("No details available for input: '" + place.name + "'");
-        return;
-      }
-
-    })
-
-
-  }
-  autocomplete('source');
-  autocomplete('destin');
-
-}
 
 </script>

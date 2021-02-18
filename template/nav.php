@@ -13,7 +13,9 @@
         <li><a href="#contact" id="contactus">Contact US <i class="fas fa-phone"></i> </a></li>
         <li><a href="/signup.php">Sign Up <i class="fas fa-user"></i> </a></li>
         <li><a href="/review.php">Reviews <i class="fas fa-star"></i> </a></li>
-        <li><a href="#"><i class="fas fa-shopping-cart"></i> </a></li>
+        <li><a href="#"><i class="fas fa-shopping-cart"></i>
+          <div class="cart-box"></div>
+        </a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Servicess <i class="fas fa-arrow-down"></i></a></li>
       </ul>
     </div>
@@ -25,7 +27,9 @@
     <li><a href="#contact">Contact US <i class="fas fa-phone"></i> </a></li>
     <li><a href="/signup.php">Sign Up <i class="fas fa-user"></i></a></li>
     <li><a href="/review.php">Reviews <i class="fas fa-star"></i> </a></li>
-    <li><a href="#"><i class="fas fa-shopping-cart"></i> </a></li>
+    <li><a href="#"><i class="fas fa-shopping-cart"></i>
+
+    </a></li>
     <li>Services</li>
     <li class="divider"></li>
     <li><a href="/service.php?type=driver">Drivers</a></li>
