@@ -1,7 +1,6 @@
 <?php
 Class CustomerOrder
 {
-    public $string;
     private $conn;
     public function __construct($dbconn)
     {   

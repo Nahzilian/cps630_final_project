@@ -1,5 +1,5 @@
 <?php
-Class Customer
+Class Flower
 {
     private $conn;
     public function __construct($dbconn)
@@ -8,7 +8,7 @@ Class Customer
     }
 
     public function getAll(){
-        $sql = "SELECT * FROM CUSTOMER;";
+        $sql = "SELECT * FROM FLOWER;";
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
