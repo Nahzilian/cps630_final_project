@@ -1,5 +1,25 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
+<?php
+include './back-end/back-end/Model/Car.php';
+include './back-end/back-end/Model/Flower.php';
+include './back-end/back-end/Controller/dbconnect.php';
+$dbcon = new dbconnect();
+$carConn = new Car($dbcon);
+$cars = $carConn->getAll();
+$allCar = array();
+while ($car = $cars->fetch_assoc()) {
+  $allCar[] = $car;
+}
+
+$flowerConn = new Flower($dbcon);
+$flowers = $flowerConn->getAll();
+$allFlower = array();
+while ($flower = $flowers->fetch_assoc()) {
+  $allFlower[] = $flower;
+}
+?>
+
 
 <div class="container">
   <div class="row review">
@@ -9,13 +29,13 @@
         <div class="row">
           <p class="col">
             <label>
-              <input name="radio-selection" type="radio" value="product" onchange="radioOnCheck(this)" checked/>
+              <input name="radio-selection" type="radio" value="product" onchange="radioOnCheck(this)" checked />
               <span>Product review</span>
             </label>
           </p>
           <p class="col">
             <label>
-              <input name="radio-selection" type="radio" value="driver" onchange="radioOnCheck(this)"/>
+              <input name="radio-selection" type="radio" value="driver" onchange="radioOnCheck(this)" />
               <span>Driver review</span>
             </label>
           </p>
@@ -23,17 +43,17 @@
         <div class="row">
           <div class="input-field col s12 m6 l6" id="product-list">
             <select class="" name="">
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Product</option>
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Product</option>
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Product</option>
+            <?php foreach($allFlower as $flower): ?>
+              <option value=<?php echo "'" . $flower['FLOWER_ID'] ."'" ?> data-icon=<?php echo "./res/store/flower". strval(intval($flower['FLOWER_ID']) % 15+ 1). ".jpeg" ?>><?php echo $flower['STORE_CODE']?></option>
+            <?php endforeach; ?>
             </select>
           </div>
 
           <div class="input-field col s12 m6 l6" id="driver-list">
             <select class="" name="">
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Car</option>
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Car</option>
-              <option value="sample Driver" data-icon="./res/img/car/car1.jpeg">Sample Car</option>
+            <?php foreach($allCar as $car): ?>
+              <option value=<?php echo "'" . $car['CAR_ID'] ."'" ?> data-icon=<?php echo "./res/img/car/car". strval(intval($car['CAR_ID']) % 6 + 1). ".jpeg" ?>><?php echo $car['CAR_MODEL'] . '-' . $car['CAR_CODE']?></option>
+            <?php endforeach; ?>
             </select>
           </div>
 
@@ -77,11 +97,11 @@
   function radioOnCheck(rad) {
     var prod = document.getElementById('product-list');
     var driv = document.getElementById('driver-list');
-    if(rad.value.toString() === 'product'){
+    if (rad.value.toString() === 'product') {
       prod.style.display = 'block';
-      driv.style.display = 'none'; 
+      driv.style.display = 'none';
     }
-    if(rad.value.toString() === 'driver'){
+    if (rad.value.toString() === 'driver') {
       driv.style.display = 'block';
       prod.style.display = 'none';
     }
