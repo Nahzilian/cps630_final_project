@@ -1,6 +1,17 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
-
+<?php 
+  include './back-end/back-end/Model/Car.php';
+  include './back-end/back-end/Controller/dbconnect.php';
+  $dbcon = new dbconnect();
+  $carConn = new Car($dbcon);
+  $cars = $carConn->getAll();
+  $allCar = array();
+    while ($car = $cars->fetch_assoc())
+    {
+        $allCar[] = $car;
+    }
+?>
 
 
 <?php if (isset($_GET['type']) && $_GET['type'] == 'driver'): ?>
@@ -21,10 +32,12 @@
     </thead>
     <tbody>
       <!-- FOR LOOP HERE -->
-      <col width="150">
+
+      
+      <?php foreach($allCar as $car): ?>
       <tr>
         <td class="first"> <article ondrag="onDrag(event)" draggable="true" class="fas fa-bars">
-        </article> <img class="materialboxed" width="100" height="100" src="./res/img/car/car1.jpeg" alt="car-1">Sample</td>
+        </article> <img class="materialboxed" width="100" height="100" src="./res/img/car/car1.jpeg" alt="car-1"><?php echo $car['CAR_MODEL']?></td>
         <td>
           <div class="input-field col s12  m8 l8">
             <input type="text" id="source" name="source" value="">
@@ -37,8 +50,11 @@
           <button class="btn-large col s12 m6 l6" type="button" name="show">Show Map</button>
         </td>
         <td>12$</td>
-        <td>true</td>
+        <td><?php echo $car['AVAILABILITY_CODE']?></td>
       </tr>
+      <?php endforeach; ?>
+
+
     </tbody>
     <tfoot>
 
