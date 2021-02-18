@@ -1,19 +1,15 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
 <?php
-include './back-end/back-end/Model/Car.php';
-include './back-end/back-end/Model/Flower.php';
-include './back-end/back-end/Controller/dbconnect.php';
-$dbcon = new dbconnect();
-$carConn = new Car($dbcon);
-$cars = $carConn->getAll();
+include './back-end/back-end/Controller/MainController.php';
+
+$mainConn = new MainController();
+$cars = $mainConn->getCarInfo();
 $allCar = array();
 while ($car = $cars->fetch_assoc()) {
   $allCar[] = $car;
 }
-
-$flowerConn = new Flower($dbcon);
-$flowers = $flowerConn->getAll();
+$flowers = $mainConn->getFlowerInfo();
 $allFlower = array();
 while ($flower = $flowers->fetch_assoc()) {
   $allFlower[] = $flower;
@@ -42,7 +38,7 @@ while ($flower = $flowers->fetch_assoc()) {
         </div>
         <div class="row">
           <div class="input-field col s12 m6 l6" id="product-list">
-            <select class="" name="">
+            <select class="" name="flower">
             <?php foreach($allFlower as $flower): ?>
               <option value=<?php echo "'" . $flower['FLOWER_ID'] ."'" ?> data-icon=<?php echo "./res/store/flower". strval(intval($flower['FLOWER_ID']) % 15+ 1). ".jpeg" ?>><?php echo $flower['STORE_CODE']?></option>
             <?php endforeach; ?>
@@ -50,7 +46,7 @@ while ($flower = $flowers->fetch_assoc()) {
           </div>
 
           <div class="input-field col s12 m6 l6" id="driver-list">
-            <select class="" name="">
+            <select class="" name="driver">
             <?php foreach($allCar as $car): ?>
               <option value=<?php echo "'" . $car['CAR_ID'] ."'" ?> data-icon=<?php echo "./res/img/car/car". strval(intval($car['CAR_ID']) % 6 + 1). ".jpeg" ?>><?php echo $car['CAR_MODEL'] . '-' . $car['CAR_CODE']?></option>
             <?php endforeach; ?>
@@ -58,15 +54,15 @@ while ($flower = $flowers->fetch_assoc()) {
           </div>
 
           <div class="col s12 m6 l6 stars center-align">
-            <input type="radio" name="star-4">
+            <input type="radio" name="star-4" value="0">
             <label for="star-4" class="fas fa-star star-off" id="star-cr-4"></label>
-            <input type="radio" name="star-3">
+            <input type="radio" name="star-3" value="0">
             <label for="star-3" class="fas fa-star star-off" id="star-cr-3"></label>
-            <input type="radio" name="star-2">
+            <input type="radio" name="star-2" value="0">
             <label for="star-2" class="fas fa-star star-off" id="star-cr-2"></label>
-            <input type="radio" name="star-1">
+            <input type="radio" name="star-1" value="0">
             <label for="star-1" class="fas fa-star star-off" id="star-cr-1"></label>
-            <input type="radio" name="star-0">
+            <input type="radio" name="star-0" value="0">
             <label for="star-0" class="fas fa-star star-off" id="star-cr-0"></label>
           </div>
         </div>
@@ -105,6 +101,11 @@ while ($flower = $flowers->fetch_assoc()) {
       driv.style.display = 'block';
       prod.style.display = 'none';
     }
+  }
+
+  function onselectStar(star) {
+
+    star.value = "1";
   }
 
   // $(document).on('click', (event) => {

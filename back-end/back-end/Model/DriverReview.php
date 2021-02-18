@@ -12,5 +12,11 @@ Class DriverReview
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
+
+    public function writeReview($id, $context, $score){
+        $sql = "INSERT INTO DRIVER_REVIEW (R_CONTEXT, R_SCORE, CAR_ID) VALUES ('$context', $score , $id);";
+        $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>
