@@ -16,7 +16,8 @@
         <button class="pink accent-3 waves-effect waves-light btn btn-large" type="button" name="sign Up">Sign Up</button>
       </div>
     </div>
-    <div class="col s12 m12 l6 driver content-blk"></div>
+    <div class="col s12 m12 l6 driver content-blk">
+    </div>
   </div>
 
   <br /><br />

@@ -11,21 +11,22 @@ nav {
     width: 64px;
     height: 64px; }
 
-.driver img {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  margin-top: 5vw;
-  margin-right: 0; }
+.driver {
+  position: relative;
+  height: 450px;
+  background-image: url("../img/florist_wedding.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 .vertical {
   border-right: 1px solid gray; }
 
 .destination_source {
-  width: 80%;
-  margin: auto 10px;
-  padding: 20px;
-  border: 1px solid gray; }
+  padding: 30px;
+  -webkit-box-shadow: 0px 3px 9px 1px #8f8f8f;
+  -moz-box-shadow: 0px 3px 9px 1px #8f8f8f;
+  box-shadow: 0px 3px 9px 1px #8f8f8f; }
 
 .about {
   display: none; }
@@ -36,9 +37,11 @@ nav {
 
 .contact {
   display: none;
-  width: 80%;
-  margin: auto 2px;
-  padding: 10px; }
+  margin: auto 10px;
+  padding: 30px;
+  -webkit-box-shadow: 0px 3px 9px 1px #8f8f8f;
+  -moz-box-shadow: 0px 3px 9px 1px #8f8f8f;
+  box-shadow: 0px 3px 9px 1px #8f8f8f; }
 
 .signup {
   width: 90%;
