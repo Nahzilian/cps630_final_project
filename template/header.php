@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -26,6 +28,7 @@
       ></script>
 
     <?php endif; ?>
+    <link rel="shortcut icon" href="/res/img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./res/css/index.css">
     <link rel="stylesheet" href="./res/css/fontawsome/css/all.min.css">
     <link rel="stylesheet" href="./res/css/materialize/css/materialize.min.css">
