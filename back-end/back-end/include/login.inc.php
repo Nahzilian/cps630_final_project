@@ -21,8 +21,7 @@ class Login
         list($user_err, $pass_err) = $this->validate($username, $user_err, $password, $pass_err);
       }
     }
-    echo $user_err;
-    echo $pass_err;
+    $this->displayErrors($user_err, $pass_err);
   }
 
   private function clean(){
@@ -60,6 +59,13 @@ class Login
     }
 
     return array($user_err, $pass_err);
+  }
+
+  private function displayErrors($user, $pass){
+    if ($user !== '') {
+      echo "<div class='center-align materialert error'><i class='fas fa-exclamation-circle'></i>  ".$user."</div>";
+    }elseif($pass !== '')
+      echo "<div class='center-align materialert error'><i class='fas fa-exclamation-circle'></i>  ".$pass."</div>";
   }
 
 }

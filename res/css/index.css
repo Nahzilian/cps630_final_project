@@ -11,26 +11,21 @@ nav {
     width: 64px;
     height: 64px; }
 
-.driver {
-  position: relative;
-  height: 450px;
-  background-image: url('../img/florist_wedding.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}  
-
+.driver img {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 5vw;
+  margin-right: 0; }
 
 .vertical {
   border-right: 1px solid gray; }
 
 .destination_source {
+  width: 80%;
   margin: auto 10px;
-  padding: 30px;
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-  -moz-box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-  box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-}
+  padding: 20px;
+  border: 1px solid gray; }
 
 .about {
   display: none; }
@@ -41,12 +36,9 @@ nav {
 
 .contact {
   display: none;
-  margin: auto 10px;
-  padding: 30px; 
-  -webkit-box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-  -moz-box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-  box-shadow: 0px 3px 9px 1px rgba(143,143,143,1);
-}
+  width: 80%;
+  margin: auto 2px;
+  padding: 10px; }
 
 .signup {
   width: 90%;
@@ -102,28 +94,73 @@ nav {
   width: 300px;
   height: 300px; }
 
+.materialert {
+  position: relative;
+  min-width: 150px;
+  width: 50vw;
+  padding: 15px;
+  margin: auto 50px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.materialert .material-icons {
+  margin-right: 10px; }
+
+.materialert .close-alert {
+  -webkit-appearance: none;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  background: 0 0;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  filter: alpha(opacity=40);
+  margin-bottom: -5px;
+  position: absolute;
+  top: 16px;
+  right: 5px; }
+
+.materialert.info {
+  background-color: #039be5;
+  color: #fff; }
+
+.materialert.success {
+  background-color: #43a047;
+  color: #fff; }
+
+.materialert.error {
+  background-color: #c62828;
+  color: #fff; }
+
+.materialert.danger {
+  background-color: #c62828;
+  color: #fff; }
+
+.materialert.warning {
+  background-color: #fbc02d;
+  color: #fff; }
+
 footer {
   position: relative;
+  bottom: 0;
   width: 100%;
-  height: 60px; }
+  height: 60px;
+  margin-top: 100px; }
   footer .pink {
     position: absolute;
     color: lavender;
     bottom: 0;
     width: 100%;
     height: 50px; }
-.submit-btn{
-  text-align: center;
-}
-
-.content-blk{
-  padding:20px !important;
-}
-
-#product-list{
-  display: block;
-}
-
-#driver-list{
-  display: none;
-}
