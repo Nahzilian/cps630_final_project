@@ -1,5 +1,5 @@
 # cps630_final_project
-
+![alt text](./res/img/logo.png "Company Logo")
 ## OVERVIEW
 ___
 Over the past few years, the living conditions of everyone have been affected heavily by the carbon emissions caused by industrial waste or transportation. Several solutions have been developed in order to tackle this problem, and they all show promising results.
