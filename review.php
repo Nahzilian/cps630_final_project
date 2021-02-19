@@ -16,6 +16,32 @@ while ($flower = $flowers->fetch_assoc()) {
 }
 ?>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $flower = $_POST['flower'];
+  $driver = $_POST['driver'];
+  $message = $_POST['message'];
+  $selectedType = $_POST['radio-selection'];
+  $score = 0;
+  if ($_POST['star-4'] == "1") $score =5;
+  else if ($_POST['star-3'] == "1") $score =4;
+  else if ($_POST['star-2'] == "1") $score =3;
+  else if ($_POST['star-1'] == "1") $score =2;
+  else if ($_POST['star-0'] == "1") $score =1; 
+  else $score = 0;
+
+  echo var_dump($_POST);
+  if (empty($selectedType)) {
+    echo "Try selecting a different type";
+  }else{
+    if (empty($flower) || empty($driver) ) {
+      echo "You have not selected review type";
+    } else {
+      $mainConn->writeReview($flower, $driver, $message, $score, $selectedType);  
+    }  
+  }
+}
+?>
 
 <div class="container">
   <div class="row review">
@@ -36,6 +62,7 @@ while ($flower = $flowers->fetch_assoc()) {
             </label>
           </p>
         </div>
+
         <div class="row">
           <div class="input-field col s12 m6 l6" id="product-list">
             <select class="" name="flower">
@@ -52,18 +79,17 @@ while ($flower = $flowers->fetch_assoc()) {
             <?php endforeach; ?>
             </select>
           </div>
-
           <div class="col s12 m6 l6 stars center-align">
-            <input type="radio" name="star-4" value="0">
-            <label for="star-4" class="fas fa-star star-off" id="star-cr-4"></label>
-            <input type="radio" name="star-3" value="0">
-            <label for="star-3" class="fas fa-star star-off" id="star-cr-3"></label>
-            <input type="radio" name="star-2" value="0">
-            <label for="star-2" class="fas fa-star star-off" id="star-cr-2"></label>
-            <input type="radio" name="star-1" value="0">
-            <label for="star-1" class="fas fa-star star-off" id="star-cr-1"></label>
-            <input type="radio" name="star-0" value="0">
-            <label for="star-0" class="fas fa-star star-off" id="star-cr-0"></label>
+            <input type="radio" name="star-4" value = "0" id="s4" checked>
+            <label for="star-4" class="fas fa-star star-off" id="star-cr-4" onclick="onselectStar(this)"></label>
+            <input type="radio" name="star-3" value = "0" id="s3" checked>
+            <label for="star-3" class="fas fa-star star-off" id="star-cr-3" onclick="onselectStar(this)"></label>
+            <input type="radio" name="star-2" value = "0" id="s2" checked>
+            <label for="star-2" class="fas fa-star star-off" id="star-cr-2" onclick="onselectStar(this)"></label>
+            <input type="radio" name="star-1" value = "0" id="s1" checked>
+            <label for="star-1" class="fas fa-star star-off" id="star-cr-1" onclick="onselectStar(this)"></label>
+            <input type="radio" name="star-0" value = "0" id="s0" checked>
+            <label for="star-0" class="fas fa-star star-off" id="star-cr-0" onclick="onselectStar(this)"></label>
           </div>
         </div>
 
@@ -104,31 +130,36 @@ while ($flower = $flowers->fetch_assoc()) {
   }
 
   function onselectStar(star) {
-
-    star.value = "1";
+    document.getElementById("s4").value="0";
+    document.getElementById("s3").value="0";
+    document.getElementById("s2").value="0";
+    document.getElementById("s1").value="0";
+    document.getElementById("s0").value="0";
+    var index = star.id.toString().slice(-1);;
+    document.getElementById(`s${index}`).value = "1";
   }
 
-  // $(document).on('click', (event) => {
-  //   function turn(star) {
-  //     let ev = $(event.target).attr('id');
-  //     if (ev != undefined) {
-  //       if (ev.slice(0, 4) === 'star') {
-  //         if ($(event.target).hasClass('star-off')) {
-  //           for (var i = 0; i < parseInt(ev.slice(8, 9)) + 1; i++) {
-  //             $(star.concat(i)).removeClass('star-off');
-  //             $(star.concat(i)).addClass('star-on');
-  //           }
-  //         } else if ($(event.target).hasClass('star-on')) {
-  //           for (var i = parseInt(ev.slice(8, 9)) + 1; i < 5; i++) {
-  //             $(star.concat(i)).removeClass('star-on');
-  //             $(star.concat(i)).addClass('star-off');
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   turn("#".concat($(event.target).attr('id').slice(0, 8)));
-  // })
+  $(document).on('click', (event) => {
+    function turn(star) {
+      let ev = $(event.target).attr('id');
+      if (ev != undefined) {
+        if (ev.slice(0, 4) === 'star') {
+          if ($(event.target).hasClass('star-off')) {
+            for (var i = 0; i < parseInt(ev.slice(8, 9)) + 1; i++) {
+              $(star.concat(i)).removeClass('star-off');
+              $(star.concat(i)).addClass('star-on');
+            }
+          } else if ($(event.target).hasClass('star-on')) {
+            for (var i = parseInt(ev.slice(8, 9)) + 1; i < 5; i++) {
+              $(star.concat(i)).removeClass('star-on');
+              $(star.concat(i)).addClass('star-off');
+            }
+          }
+        }
+      }
+    }
+    turn("#".concat($(event.target).attr('id').slice(0, 8)));
+  })
 </script>
 
 <?php include './template/contact_about.php' ?>
