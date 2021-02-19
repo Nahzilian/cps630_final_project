@@ -17,6 +17,9 @@ while ($flower = $flowers->fetch_assoc()) {
 
 
 <?php if (isset($_GET['type']) && $_GET['type'] == 'driver') : ?>
+  
+  <div class = "mycart" ondrop="drop(event)" ondragover="allowDrop(event)"><i class="fas fa-shopping-cart"></i></div>
+
   <h1>Driver</h1>
   <div class="row service">
     <table class="striped">
@@ -28,12 +31,13 @@ while ($flower = $flowers->fetch_assoc()) {
           <th>Availability</th>
         </tr>
       </thead>
+      <div id="div1"></div>
       <tbody>
         <!-- FOR LOOP HERE -->
         <?php foreach ($allCar as $car) : ?>
           <tr>
             <td class="first">
-              <article ondrag="onDrag(event)" draggable="true" class="fas fa-bars">
+              <article id=<?php echo "drag". $car['CAR_ID'] ?> draggable="true" ondragstart="drag(event)" class="fas fa-bars">
               </article> <img class="materialboxed" width="100" height="100" src=<?php echo "./res/img/car/car" . strval(intval($car['CAR_ID']) % 6 + 1) . ".jpeg" ?> alt="car-image"><?php echo $car['CAR_MODEL'] ?>
             </td>
             <td>
@@ -105,14 +109,28 @@ while ($flower = $flowers->fetch_assoc()) {
 <?php include './template/contact_about.php' ?>
 <?php include './template/footer.php' ?>
 <script type="text/javascript">
-  function onDrag(event) {
-    // console.log(event.dat);
+  // function onDrag(event) {
+  //   // console.log(event.dat);
 
+  // }
+
+  // function drop(event) {
+  //   event.preventDefault();
+  //   var data = event.dataTransfer.getData("Text");
+  //   event.target.appendChild(document.getElementById(data))
+  // }
+  function allowDrop(ev) {
+    ev.preventDefault();
   }
 
-  function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data))
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
   }
+
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  }
+  
 </script>
