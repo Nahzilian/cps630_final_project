@@ -1,16 +1,6 @@
 <!-- FOOTER -->
 
   <script type="text/javascript">
-    $(document).ready(function() {
-    $('.collapsible').collapsible();
-    })
-    $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
-  $(document).ready(function(){
-    $(".dropdown-trigger").dropdown();
-  });
-
   $("#aboutus").on('click', ()=>{
     $(".about").fadeIn();
   });
@@ -18,10 +8,13 @@
     $(".contact").fadeIn();
   });
   $(document).ready(function(){
-    $('select').formSelect();
-  });
-  $(document).ready(function(){
    $('.materialboxed').materialbox();
+   $('select').formSelect();
+   $(".dropdown-trigger").dropdown();
+   $('.sidenav').sidenav();
+   $('.collapsible').collapsible();
+
+   $('.materialert').fadeOut(3000);
  });
 
  $("i.fa-shopping-cart").on('click', ()=>{

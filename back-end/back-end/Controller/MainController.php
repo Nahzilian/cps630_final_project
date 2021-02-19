@@ -1,80 +1,58 @@
 <?php
-include '../Model/Car.php';
-include '../Model/Customer.php';
-include '../Model/CustomerOrder.php';
-include '../Controller/dbconnect.php';
-include '../Model/Trip.php';
-include '../Model/Flower.php';
+include './back-end/back-end/Model/Car.php';
+include './back-end/back-end/Model/Customer.php';
+include './back-end/back-end/Model/CustomerOrder.php';
+include './back-end/back-end/Controller/dbconnect.php';
+include './back-end/back-end/Model/Trip.php';
+include './back-end/back-end/Model/Flower.php';
+include './back-end/back-end/Model/ProductReview.php';
+include './back-end/back-end/Model/DriverReview.php';
+include './back-end/back-end/include/login.inc.php';
 
-$dbcon = new dbconnect();
-$customer = new Customer($dbcon);
-$customerOrder = new CustomerOrder($dbcon);
-$car = new Car($dbcon);
-$trip = new Trip($dbcon);
-$flower = new Flower($dbcon);
+Class MainController {
+    public $customer;
+    public $customerOrder;
+    public $car;
+    public $trip;
+    public $flower;
+    public $pReview;
+    public $dReview;
 
-if(isset($_GET['customer'])){
-    $allCustomer = $customer->getAll() or die('error from here');
-    if ($allCustomer->num_rows > 0) {
-        echo "<table>";
-        while ($row = $allCustomer->fetch_assoc()) {
-            echo "<tr><td>" . $row["CUSTOMER_ID"] . "</td><td>" . $row["CUSTOMER_NAME"] . "</td><td>" . $row["CUSTOMER_TEL"] . "</td><td>" . $row["CUSTOMER_EMAIL"] . "</td>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+
+    private $login;
+    public function __construct()
+    {
+        $dbcon = new dbconnect();
+        $this->customer = new Customer($dbcon);
+        $this->customerOrder = new CustomerOrder($dbcon);
+        $this->car = new Car($dbcon);
+        $this->trip = new Trip($dbcon);
+        $this->flower = new Flower($dbcon);
+        $this->pReview = new ProductReview($dbcon);
+        $this->dReview = new DriverReview($dbcon);
+
+        $this->login = new Login($this->customer);
     }
-}
 
-if(isset($_GET['customer_order'])){
-    $allCustomerOrder = $customerOrder->getUserOrderHistory(1) or die('error from here');
-    if ($allCustomerOrder->num_rows > 0) {
-        echo "<table>";
-        while ($row = $allCustomerOrder->fetch_assoc()) {
-            echo "<tr><td>" . $row["ORDER_ID"] . "</td><td>" . $row["DATE_ISSUED"] . "</td><td>" . $row["DATE_DONE"] . "</td><td>" . $row["TOTAL_PRICE"] . "</td>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+    function getCarInfo() {
+        return $this->car->getAll();
     }
-}
 
-if(isset($_GET['car'])){
-    $allCar = $car->getAll() or die('error from here');
-    if ($allCar->num_rows > 0) {
-        echo "<table>";
-        while ($row = $allCar->fetch_assoc()) {
-            echo "<tr><td>" . $row["CAR_ID"] . "</td><td>" . $row["CAR_MODEL"] . "</td><td>" . $row["CAR_CODE"] . "</td><td>" . $row["AVAILABILITY_CODE"] . "</td>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+    function getFlowerInfo() {
+        return $this->flower->getAll();
     }
-}
 
-if(isset($_GET['trip'])){
-    $allTrip = $trip->getAll() or die('error from here');
-    if ($allTrip->num_rows > 0) {
-        echo "<table>";
-        while ($row = $allTrip->fetch_assoc()) {
-            echo "<tr><td>" . $row["TRIP_ID"] . "</td><td>" . $row["DESTINATION_CODE"] . "</td><td>" . $row["SOURCE_CODE"] . "</td><td>" . $row["DISTANCE"] . "</td>";
+    function writeReview($flowerId, $driverId, $message, $score, $selected) {
+        if($selected == 'product') {
+            $this->pReview->writeReview($flowerId,$message,$score);
+        }else {
+            $this->dReview->writeReview($driverId,$message,$score);
         }
-        echo "</table>";
-    } else {
-        echo "0 results";
     }
-}
 
-if(isset($_GET['flower'])){
-    $allFlower = $flower->getAll() or die('error from here');
-    if ($allFlower->num_rows > 0) {
-        echo "<table>";
-        while ($row = $allFlower->fetch_assoc()) {
-            echo "<tr><td>" . $row["FLOWER_ID"] . "</td><td>" . $row["STORE_CODE"] . "</td><td>" . $row["PRICE"] . "</td>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+    public function login(){
+      $this->login->process();
     }
+
 }
 ?>
