@@ -1,8 +1,8 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
 <?php include './back-end/back-end/Controller/MainController.php';
-  $sign  = new Login(new Customer(new dbconnect()));
-  $sign->process();
+  $mainConn = new MainController();
+  $mainConn->login();
 ?>
 
 <div class="row signup">

@@ -18,6 +18,8 @@ Class MainController {
     public $pReview;
     public $dReview;
 
+
+    private $login;
     public function __construct()
     {
         $dbcon = new dbconnect();
@@ -28,6 +30,8 @@ Class MainController {
         $this->flower = new Flower($dbcon);
         $this->pReview = new ProductReview($dbcon);
         $this->dReview = new DriverReview($dbcon);
+
+        $this->login = new Login($this->customer);
     }
 
     function getCarInfo() {
@@ -44,6 +48,10 @@ Class MainController {
         }else {
             $this->dReview->writeReview($driverId,$message,$score);
         }
+    }
+
+    public function login(){
+      $this->login->process();
     }
 
 }
