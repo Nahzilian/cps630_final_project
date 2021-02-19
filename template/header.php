@@ -5,13 +5,27 @@
     <title>Devil May Air</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
-      // Notice how this gets configured before we load Font Awesome
       window.FontAwesomeConfig = { autoReplaceSvg: false }
-    </script>
-    <script
+      </script>
+      <?php
+      if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+      $url = "https://";
+      else
+      $url = "http://";
+      // Append the host(domain name, ip) to the URL.
+      $url.= $_SERVER['HTTP_HOST'];
+
+      // Append the requested resource location to the URL
+      $url.= $_SERVER['REQUEST_URI'];
+
+      ?>
+    <?php if (strpos($url, "service.php") !== false): ?>
+      <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=places&v=weekly"
-      async defer
-    ></script>
+      async
+      ></script>
+
+    <?php endif; ?>
     <link rel="stylesheet" href="./res/css/index.css">
     <link rel="stylesheet" href="./res/css/fontawsome/css/all.min.css">
     <link rel="stylesheet" href="./res/css/materialize/css/materialize.min.css">
