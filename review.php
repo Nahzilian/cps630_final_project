@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   else if ($_POST['star-0'] == "1") $score =1; 
   else $score = 0;
 
-  echo var_dump($_POST);
   if (empty($selectedType)) {
     echo "Try selecting a different type";
   }else{
