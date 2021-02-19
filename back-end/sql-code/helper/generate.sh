@@ -1,7 +1,7 @@
 #!/bin/bash
 export PATH=${PATH}:/usr/local/mysql/bin
 
-mysql -u root -p'Nahz3112.com' <<EOFMYSQL
+mysql -u root -p '[PASSWORD]' <<EOFMYSQL
 source ~/Documents/github/CPS630_FINAL_PROJECT/back-end/sql-code/drop_table.sql;
 
 source ~/Documents/github/CPS630_FINAL_PROJECT/back-end/sql-code/create_db.sql;

@@ -1,19 +1,22 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
-
+<?php include './back-end/back-end/Controller/MainController.php';
+  $sign  = new Login(new Customer(new dbconnect()));
+  $sign->process();
+?>
 
 <div class="row signup">
-    <form class="col s12 m6 l6 login">
+    <form class="col s12 m6 l6 login" method="post">
       <h2>Login</h2>
       <div class="row">
         <div class="col input-field s5">
-          <input id="username" type="text" class="validate" required>
+          <input name="username" id="username" type="text" class="validate" required>
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="col input-field s7">
-          <input id="password" type="password" class="validate" required>
+          <input name="password" id="password" type="password" class="validate" required>
           <label for="password">Password</label>
         </div>
       </div>

@@ -7,6 +7,7 @@ include './back-end/back-end/Model/Trip.php';
 include './back-end/back-end/Model/Flower.php';
 include './back-end/back-end/Model/ProductReview.php';
 include './back-end/back-end/Model/DriverReview.php';
+include './back-end/back-end/include/login.inc.php';
 
 Class MainController {
     public $customer;
@@ -18,7 +19,7 @@ Class MainController {
     public $dReview;
 
     public function __construct()
-    {   
+    {
         $dbcon = new dbconnect();
         $this->customer = new Customer($dbcon);
         $this->customerOrder = new CustomerOrder($dbcon);
