@@ -1,7 +1,12 @@
 <?php include './template/header.php' ?>
 <?php include './template/nav.php' ?>
 
-
+<?php
+  if (isset($_GET['sign']) && $_GET['sign'] === 'out') {
+    session_destroy();
+    header("Location: /");
+  }
+ ?>
 <div class="container">
   <br /><br />
   <div class="row">

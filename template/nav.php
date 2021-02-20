@@ -4,6 +4,14 @@
     <li class="divider"></li>
     <li><a href="service.php?type=store">Stores</a></li>
   </ul>
+  <?php if (isset($_SESSION['username'])): ?>
+
+  <ul id="dropdown2" class="dropdown-content">
+    <li><a href="/?sign=out">Sign out</a></li>
+    <li class="divider"></li>
+    <li><a href="#">profile</a></li>
+  </ul>
+<?php endif; ?>
     <div class="nav-wrapper pink accent-3">
       <a href="/" class="brand-logo"> <img src="./res/img/logo.png" alt=""> </a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
@@ -19,8 +27,8 @@
         <?php if (!isset($_SESSION['username'])): ?>
           <li><a href="/signup.php">Sign Up <i class="fas fa-users"></i> </a></li>
           <?php else: ?>
-            <li><a href="/">Welcome, <?php echo $_SESSION['username']; ?> <i class="fas fa-user"></i> </a></li>
-        <?php endif; ?>
+            <li><a class="dropdown-trigger" data-target="dropdown2" href="/">Welcome, <?php echo $_SESSION['username']; ?> <i class="fas fa-user"></i> </a></li>
+          <?php endif; ?>
       </ul>
     </div>
   </nav>
