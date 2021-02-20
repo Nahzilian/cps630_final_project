@@ -1,8 +1,8 @@
 <?php
 class dbconnect{
     public function connect(){
-        $host = 'localhost';
-        $user = 'suren';
+        $host = '127.0.0.1';
+        $user = 'root';
         $pass = 'root';
         $db = 'P2S_WEB_APP';
         $connection = mysqli_connect($host,$user,$pass,$db);
