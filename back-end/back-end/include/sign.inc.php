@@ -12,11 +12,9 @@ class Sign
     // Check if data submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['send'] === 'sign up') {
       $fields = $this->clean();
-      list($username, $password, $fname, $lname, $address, $city, $phone, $email, $confirm_password) = $fields['form_content'];
-      list($user_err, $pass_err, $confirm_err) = $fields['form_err_main'];
-      list($fname_err, $lname_err, $address_err, $city_err, $phone_err, $email_err) = $fields['form_err_secondary'];
+      $fields = $this->validate($fields);
 
-      
+      $this->display_err($fields);
     }
   }
 
@@ -91,6 +89,49 @@ class Sign
 
     return array('form_content'=>array($username, $password, $fname, $lname, $address, $city, $phone, $email, $confirm_password),
      'form_err_main'=>array($user_err, $pass_err, $confirm_err), 'form_err_secondary'=>array($fname_err, $lname_err, $address_err, $city_err, $phone_err, $email_err));
+  }
+
+  private function validate($fields){
+    list($username, $password, $fname, $lname, $address, $city, $phone, $email, $confirm_password) = $fields['form_content'];
+    list($user_err, $pass_err, $confirm_err) = $fields['form_err_main'];
+    list($fname_err, $lname_err, $address_err, $city_err, $phone_err, $email_err) = $fields['form_err_secondary'];
+
+    $valid = true;
+    foreach ($fields['form_err_secondary'] as $err) {
+      if($err === ''){
+        $valid=true;
+      }
+    }
+    $valid = $pass_err === '';
+    $valid = $confirm_err === '';
+    $valid = $user_err === '';
+
+    if($valid){
+      // confirm_password
+      if ($password == $confirm_password) {
+        $this->customer->insert($fields);
+        echo "<div class='center-align materialert success'><i class='fas fa-check'></i>  Operation Was A Success  </div>";
+
+      }else{
+        $confirm_err = "Your password do not match";
+      }
+    }
+    return array('form_content'=>array($username, $password, $fname, $lname, $address, $city, $phone, $email, $confirm_password),
+     'form_err_main'=>array($user_err, $pass_err, $confirm_err), 'form_err_secondary'=>array($fname_err, $lname_err, $address_err, $city_err, $phone_err, $email_err));
+
+  }
+
+  private function display_err($fields){
+    foreach ($fields['form_err_main'] as $f) {
+      if ($f !== '') {
+        echo "<div class='center-align materialert error'><i class='fas fa-exclamation-circle'></i>  ".$f."</div>";
+      }
+    }
+    foreach ($fields['form_err_secondary'] as $f) {
+      if ($f !== '') {
+        echo "<div class='center-align materialert error'><i class='fas fa-exclamation-circle'></i>  ".$f."</div>";
+      }
+    }
   }
 }
 
