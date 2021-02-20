@@ -50,7 +50,7 @@ class Login
     if (empty($confirm_user['CUSTOMER_USERNAME'])) {
       $user_err = "Username does not exist";
     }else{
-      if ($password === $confirm_user['CUSTOMER_PASSWORD']) {
+      if (password_verify($password ,$confirm_user['CUSTOMER_PASSWORD'])) {
         header("location:index.php?login=success");
         $_SESSION['username'] = $username;
       }else{
