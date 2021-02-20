@@ -13,7 +13,7 @@ class Login
     $user_err = $pass_err = "";
 
     // Check if data submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['send'] === 'login') {
       list($username, $password, $user_err, $pass_err)  = $this->clean();
 
       // Validate

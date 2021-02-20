@@ -8,6 +8,7 @@ include './back-end/back-end/Model/Flower.php';
 include './back-end/back-end/Model/ProductReview.php';
 include './back-end/back-end/Model/DriverReview.php';
 include './back-end/back-end/include/login.inc.php';
+include './back-end/back-end/include/sign.inc.php';
 
 Class MainController {
     public $customer;
@@ -20,6 +21,7 @@ Class MainController {
 
 
     private $login;
+    private $sign;
     public function __construct()
     {
         $dbcon = new dbconnect();
@@ -32,6 +34,7 @@ Class MainController {
         $this->dReview = new DriverReview($dbcon);
 
         $this->login = new Login($this->customer);
+        $this->sign = new Sign($this->customer);
     }
 
     function getCarInfo() {
@@ -52,6 +55,7 @@ Class MainController {
 
     public function login(){
       $this->login->process();
+      $this->sign->process();
     }
 
 }
