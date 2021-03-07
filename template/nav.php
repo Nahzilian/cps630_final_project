@@ -29,6 +29,7 @@
           <?php else: ?>
             <li><a class="dropdown-trigger" data-target="dropdown2" href="/">Welcome, <?php echo $_SESSION['username']; ?> <i class="fas fa-user"></i> </a></li>
           <?php endif; ?>
+          <li><a href="#" onclick="$('.search').fadeIn();"><i class="fas fa-search"></i>
       </ul>
     </div>
   </nav>
@@ -50,21 +51,33 @@
 
 
 <?php if ($_SESSION['username']): ?>
-<nav>
-  <div class="nav-wrapper pink accent-3">
-    <form method="get">
-      <div class="input-field">
-        <input id="search" name="search" type="search" required>
-        <label class="label-icon" for="search"><i class="fas fa-search"></i></label>
+<!-- <nav> -->
+  <!-- <div class="nav-wrapper pink accent-3"> -->
+  <div class="search" style="display:none">
+
+    <form class="right" method="get">
+      <div class="white row">
+        <div class="input-field col col-s2">
+          <input id="search-1" name="user_id" type="number" required>
+          <label for="search-1"> UserID</label>
+        </div>
+        <div class="input-field col col-s2">
+          <input id="search-2" name="order_id" type="number" required>
+          <label for="search-2">OrderID</label>
+        </div>
+        <div class="input-field col col-s2">
+          <input class="btn-small"id="search-2" name="search" value="search" type="submit" required>
+        </div>
       </div>
     </form>
-
   </div>
-</nav>
+
+  <!-- </div> -->
+<!-- </nav> -->
 <?php endif; ?>
 
 <?php
   if (isset($_GET['search'])){
-    header("location: http://localhost:3000/search.php?s=".$_GET['search']);
+    header("location: http://localhost:3000#searchu?=".$_GET['user_id']."&o=".$_GET['order_id']);
   }
 ?>

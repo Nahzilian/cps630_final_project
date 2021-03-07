@@ -78,6 +78,7 @@ $orders;
 </div>
 
 <script type="text/javascript">
+  let total_price = <?= $price ?>;
   function proceed(){
 
   }
