@@ -51,8 +51,8 @@ class Login
       $user_err = "Username does not exist";
     }else{
       if (password_verify($password ,$confirm_user['CUSTOMER_PASSWORD'])) {
-        header("location:index.php?login=success");
         $_SESSION['username'] = $username;
+        header("Location:index.php?login=success", true, 301);
       }else{
         $pass_err = "Wrong password";
       }

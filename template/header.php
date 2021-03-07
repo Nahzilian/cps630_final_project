@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
