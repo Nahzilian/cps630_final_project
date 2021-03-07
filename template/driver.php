@@ -27,7 +27,7 @@
             </div>
             <div class="input-field col s12  m8 l8">
               <input type="text" id=<?php echo "destin-". $car['CAR_ID'] ?> name="destin" value="">
-              <label for="destin">Destination</label>
+              <label for="destin">Destzination</label>
             </div>
             <button onclick=<?php echo "showMap(".$car['CAR_ID'].");" ?> class="btn-large col s12 m6 l6" type="button" name="show">Show Map</button>
           </td>
