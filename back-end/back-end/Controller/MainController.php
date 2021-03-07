@@ -9,6 +9,7 @@ include './back-end/back-end/Model/ProductReview.php';
 include './back-end/back-end/Model/DriverReview.php';
 include './back-end/back-end/include/login.inc.php';
 include './back-end/back-end/include/sign.inc.php';
+include './back-end/back-end/include/order.inc.php';
 
 Class MainController {
     public $customer;
@@ -22,6 +23,7 @@ Class MainController {
 
     private $login;
     private $sign;
+    private $order;
     public function __construct()
     {
         $dbcon = new dbconnect();
@@ -35,6 +37,7 @@ Class MainController {
 
         $this->login = new Login($this->customer);
         $this->sign = new Sign($this->customer);
+        $this->order = new Order($dbcon);
     }
 
     function getCarInfo() {
@@ -51,7 +54,7 @@ Class MainController {
 
     function getFlowerInfoUsingIds($arrOfIds) {
         return $this->flower->getSpecificFlower($arrOfIds);
-        
+
     }
 
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
@@ -65,6 +68,14 @@ Class MainController {
     public function login(){
       $this->login->process();
       $this->sign->process();
+    }
+
+    public function search($id, $s){
+      return $this->order->search($s, $id);
+    }
+
+    public function getUser($user){
+      return $this->customer->getUser($user);
     }
 
 }

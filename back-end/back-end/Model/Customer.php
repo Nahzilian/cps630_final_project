@@ -13,6 +13,12 @@ Class Customer
         return $query;
     }
 
+    public function getUser($user){
+      $sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=$user;";
+      $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+      return $query;
+    }
+
     public function check_user($username){
       $user = $this->conn->real_escape_string($username);
       $sql = sprintf("SELECT CUSTOMER_ID, CUSTOMER_USERNAME, CUSTOMER_PASSWORD FROM CUSTOMER WHERE CUSTOMER_USERNAME = '%s'", $user);
