@@ -7,6 +7,12 @@ Class DriverReview
         $this->conn = $dbconn->connect();
     }
 
+    public function getAll(){
+        $sql = "SELECT * FROM DRIVER_REVIEW;";
+        $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        return $query;
+    }
+
     public function getReviewOn($id){
         $sql = "SELECT * FROM DRIVER_REVIEW WHERE CAR_ID = '$id';";
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));

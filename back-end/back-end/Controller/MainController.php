@@ -48,8 +48,30 @@ Class MainController {
         return $this->flower->getAll();
     }
 
+    function getCustomerInfo() {
+        return $this->customer->getAll();
+    }
+
+    function getCustomerOrderInfo() {
+        return $this->customerOrder->getAll();
+    }
+
+    function getTripInfo() {
+        return $this->trip->getAll();
+    }
+
+    function getDriverReviewInfo() {
+        return $this->dReview->getAll();
+    }
+
+    function getProductReviewInfo() {
+        return $this->pReview->getAll();
+    }
+
+
+
     function getCarInfoUsingIds($arrOfIds) {
-            return $this->car->getSpecificCar($arrOfIds);
+        return $this->car->getSpecificCar($arrOfIds);
     }
 
     function getFlowerInfoUsingIds($arrOfIds) {
@@ -78,5 +100,8 @@ Class MainController {
       return $this->customer->getUser($user);
     }
 
+    public function checkout($id, $date, $total, $payment, $trip_id, $flower_id) {
+        $this->customerOrder->addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id);
+    }
 }
 ?>

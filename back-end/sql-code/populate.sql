@@ -31,6 +31,7 @@ insert into CAR (CAR_MODEL, CAR_CODE, AVAILABILITY_CODE) values ('Santa Fe', 'SC
 insert into CAR (CAR_MODEL, CAR_CODE, AVAILABILITY_CODE) values ('Lucerne', '2G61T5S33F9499605', 'true');
 insert into CAR (CAR_MODEL, CAR_CODE, AVAILABILITY_CODE) values ('Expo', 'WAUDF78E16A386470', 'true');
 
+insert into FLOWER (STORE_CODE, PRICE) values ('aaaaa-aaa', 0);
 insert into FLOWER (STORE_CODE, PRICE) values ('52755-200', 53.21);
 insert into FLOWER (STORE_CODE, PRICE) values ('59115-046', 61.51);
 insert into FLOWER (STORE_CODE, PRICE) values ('51514-0251', 58.14);

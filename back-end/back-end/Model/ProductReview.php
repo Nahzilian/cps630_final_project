@@ -7,6 +7,12 @@ Class ProductReview
         $this->conn = $dbconn->connect();
     }
 
+    public function getAll(){
+        $sql = "SELECT * FROM PRODUCT_REVIEW;";
+        $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        return $query;
+    }
+
     public function getReviewOn($id){
         $sql = "SELECT * FROM PRODUCT_REVIEW WHERE FLOWER_ID = '$id';";
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
@@ -15,7 +21,6 @@ Class ProductReview
 
     public function writeReview($id, $context, $score){
         $sql = "INSERT INTO PRODUCT_REVIEW (R_CONTEXT, R_SCORE, FLOWER_ID) VALUES ('$context', " . intval($score) ." , $id);";
-        echo $sql;
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
