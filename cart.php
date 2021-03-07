@@ -6,13 +6,10 @@ $mainConn = new MainController();
 $orders;
 ?>
 
-<div>
+<div class="cart-summary" style="margin:10em">
     <h2>
-        Your cart:
+        Your Cart
     </h2>
-    <div>
-        Order summary:
-    </div>
     <?php
     // Remember to set session var for the order, destination + source
         $id_list;
@@ -33,18 +30,42 @@ $orders;
             echo 'Your cart is empty';
         }
     ?>
+    <table>
+      <caption>
+        Order Summary
+      </caption>
+      <thead>
+        <tr>
+          <?php if ($_GET['type'] == 'flower'):?>
+            <th>Store Code</th>
+            <th>Price</th>
+          <?php else:?>
+            <th>Car Model</th>
+            <th>Car Code</th>
+            <th>Price Per K/m</th>
+          <?php endif;?>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($orders as $order): ?>
+          <tr>
+          <?php if ($_GET['type'] == 'flower'):?>
+            <td><?= $order['STORE_CODE']?></td>
+            <td><?= $order['PRICE']?></td>
+          <?php else:?>
+            <td><?= $order['CAR_MODEL']?></td>
+            <td><?= $order['CAR_CODE']?></td>
+            <td>12$/km</td>
+          <?php endif;?>
+        </tr>
+        <?php endforeach; ?>
 
-    <?php foreach ($orders as $order): ?>
-        <?php if ($_GET['type'] == 'flower'):?>
-            <div><?= $order['STORE_CODE']?></div>
-            <div><?= $order['PRICE']?></div>
-        <?php else:?>
-            <div><?= $order['CAR_MODEL']?></div>
-            <div><?= $order['CAR_CODE']?></div>
-            <div>12$/km</div>
-        <?php endif;?>
-    <?php endforeach; ?>
-    <a href="#">Checkout</a>
+      </tbody>
+    </table>
+    <div class="center" style="margin: 5em">
+      <button class="btn btn-large gray accent-3">Proceed To Checkout</button>
+    </div>
 </div>
 
 <?php include './template/footer.php' ?>
