@@ -14,7 +14,7 @@ Class Customer
     }
 
     public function getUser($user){
-      $sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=$user;";
+      $sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_USERNAME='$user';";
       $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
       return $query;
     }
