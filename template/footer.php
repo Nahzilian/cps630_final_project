@@ -21,7 +21,7 @@
    console.log('asd');
  })
 
- function initMap(){
+ window.initMap = function(){
    // map = new google.maps.Map(document.getElementById('map'), {
      // center: {lat: -34.397, lng: 150.644},
      // zoom: 8
@@ -51,6 +51,10 @@
  }
 
   </script>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=places&v=weekly"
+      async="false"
+      ></script>
   </body>
   <footer class="z-depth-5 pink accent-5">
     <div class="pink accent-2">

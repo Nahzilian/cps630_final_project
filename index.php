@@ -33,12 +33,12 @@
           <h4>Pick your ride now!</h4>
         </div>
         <div class="input-field col s12">
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input"><i class="fas fa-map-marker-alt"></i> Source</label>
+          <input type="text" id="source" class="autocomplete">
+          <label for="source"><i class="fas fa-map-marker-alt"></i> Source</label>
         </div>
         <div class="input-field col s12">
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input"><i class="fas fa-map-marker-alt"></i> Destination</label>
+          <input type="text" id="destin" class="autocomplete">
+          <label for="destin"><i class="fas fa-map-marker-alt"></i> Destination</label>
         </div>
         <div class="col s12">
           <label>
@@ -67,7 +67,6 @@
     }
   }
 </script>
-
 <?php include './template/contact_about.php' ?>
 
 
