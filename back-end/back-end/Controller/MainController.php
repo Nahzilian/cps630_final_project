@@ -68,6 +68,9 @@ Class MainController {
         return $this->pReview->getAll();
     }
 
+    function getAvailableCars() {
+        return $this->car->getAvailableCar();
+    }
 
 
     function getCarInfoUsingIds($arrOfIds) {
@@ -76,8 +79,41 @@ Class MainController {
 
     function getFlowerInfoUsingIds($arrOfIds) {
         return $this->flower->getSpecificFlower($arrOfIds);
-
     }
+    
+    function deleteCustomerOrder ($id) {
+        $this->customerOrder->deleteCustomerOrder($id);
+    }
+
+    function updateGeneral($fields, $value, $table, $id) {
+        //$sql="UPDATE SET "
+    }
+
+    function deleteCar ($id) {
+        // Fix to delete cascade
+        $this->car->deleteCar($id);
+    }
+
+    // function deleteFlower ($id) {
+
+    // }
+
+    // function deleteCustomer ($id) {
+        
+    // }
+
+
+    // function deleteTrip ($id) {
+
+    // }
+
+    // function deleteProductComment ($id) {
+        
+    // }
+
+    // function deleteDriverComment ($id) {
+        
+    // }
 
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
         if($selected == 'product') {

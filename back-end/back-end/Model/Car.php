@@ -19,6 +19,17 @@ Class Car
         return $query;
     }
 
+    public function getAvailableCar() {
+        $sql = "SELECT * FROM CAR WHERE AVAILABILITY_CODE = 'true'";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
+    public function deleteCar($id) {
+        $sql = "DELETE FROM CAR WHERE CAR_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 
 }
 ?>

@@ -36,16 +36,15 @@ $orders;
 
     <?php foreach ($orders as $order): ?>
         <?php if ($_GET['type'] == 'flower'):?>
-            <div><?= $order['FLOWER_ID']?></div>
             <div><?= $order['STORE_CODE']?></div>
             <div><?= $order['PRICE']?></div>
         <?php else:?>
-            <div><?= $order['CAR_ID']?></div>
             <div><?= $order['CAR_MODEL']?></div>
             <div><?= $order['CAR_CODE']?></div>
             <div>12$/km</div>
         <?php endif;?>
     <?php endforeach; ?>
+    <a href="#">Checkout</a>
 </div>
 
 <?php include './template/footer.php' ?>

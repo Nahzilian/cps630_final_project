@@ -25,5 +25,17 @@ Class CustomerOrder
         if ($query) echo 'You have successfully placed an order';
         else echo 'Order failed, try again!';
     }
+
+    public function deleteTripWithTripID($id) {
+        $sql = "DELETE FROM TRIP WHERE CAR_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
+    public function deleteCustomerOrder($id) {
+        $sql = "DELETE FROM TRIP WHERE ORDER_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>
