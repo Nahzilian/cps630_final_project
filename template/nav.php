@@ -47,3 +47,18 @@
     <li><a href="/service.php?type=driver">Drivers</a></li>
     <li><a href="service.php?type=store">Stores</a></li>
   </ul>
+
+
+<?php if ($_SESSION['username']): ?>
+<nav>
+  <div class="nav-wrapper pink accent-3">
+    <form>
+      <div class="input-field">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="fas fa-search"></i></label>
+      </div>
+    </form>
+
+  </div>
+</nav>
+<?php endif; ?>
