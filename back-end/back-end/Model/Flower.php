@@ -12,5 +12,12 @@ Class Flower
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
+
+    public function getSpecificFlower($id){
+        $sql = "SELECT * FROM FLOWER WHERE FLOWER_ID in ($id)";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
 }
 ?>

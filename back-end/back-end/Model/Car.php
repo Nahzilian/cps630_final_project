@@ -14,7 +14,7 @@ Class Car
     }
 
     public function getSpecificCar($id){
-        $sql = "SELECT * FROM CAR WHERE CAR_ID = '$id'";
+        $sql = "SELECT * FROM CAR WHERE CAR_ID in ($id)";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

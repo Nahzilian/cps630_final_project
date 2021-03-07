@@ -100,13 +100,11 @@ while ($flower = $flowers->fetch_assoc()) {
 
 <?php include './template/contact_about.php' ?>
 <script type="text/javascript">
-  const url = ''
   var countItem = 0;
   var listOfOrder = [];
   $(document).ready(function() {
     $('.draggable').on('dragstart', function(e){
       var source_id = $(this).attr('id');
-      console.log(source_id);
       e.originalEvent.dataTransfer.setData("source_id", source_id); 
     });
     
@@ -122,10 +120,7 @@ while ($flower = $flowers->fetch_assoc()) {
     $("#mycart").on('drop', function (e){
       e.preventDefault();
       var product_code = e.originalEvent.dataTransfer.getData('source_id');
-      console.log(product_code);
-      console.log('dropped');
       listOfOrder.push(product_code);
-      console.log(listOfOrder);
       countItem++;
       $("#mycart").html(`<div class = "mycart" id = "mycart"><i class="fas fa-shopping-cart"></i> ${countItem}</div>` );
     });
@@ -135,15 +130,24 @@ while ($flower = $flowers->fetch_assoc()) {
   
   function toShoppingCart () {
     var orderList = '';
+    var type = ''
+
     listOfOrder.forEach((order) => {
       var temp;
-      if(order.includes('drag-car-')) temp = order.replace('drag-car-', '');
-      else if (order.includes('drag-flower-')) temp = order.replace('drag-flower-','')
+      if(order.includes('drag-car-')) {
+        if (type === '') type = 'driver';
+        temp = order.replace('drag-car-', '');
+      }
+      else if (order.includes('drag-flower-')){
+        if (type === '') type = 'flower';
+        temp = order.replace('drag-flower-','')
+      } 
       orderList+=temp + ',';
     })
+    console.log('tyuififj '+type)
     const destVal = document.getElementById('destin').value;
     const sourceVal = document.getElementById('source').value;
-    window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}`);
+    window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}&type=${type}`);
   }
   
   function showMap () {

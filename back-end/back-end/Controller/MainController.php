@@ -45,6 +45,15 @@ Class MainController {
         return $this->flower->getAll();
     }
 
+    function getCarInfoUsingIds($arrOfIds) {
+            return $this->car->getSpecificCar($arrOfIds);
+    }
+
+    function getFlowerInfoUsingIds($arrOfIds) {
+        return $this->flower->getSpecificFlower($arrOfIds);
+        
+    }
+
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
         if($selected == 'product') {
             $this->pReview->writeReview($flowerId,$message,$score);
