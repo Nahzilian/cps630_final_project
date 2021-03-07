@@ -65,6 +65,6 @@
 
 <?php
   if (isset($_GET['search'])){
-    header("location: http://localhost:3000/search.php?search=".$_GET['search']);
+    header("location: http://localhost:3000/search.php?s=".$_GET['search']);
   }
 ?>
