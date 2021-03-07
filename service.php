@@ -105,18 +105,18 @@ while ($flower = $flowers->fetch_assoc()) {
   $(document).ready(function() {
     $('.draggable').on('dragstart', function(e){
       var source_id = $(this).attr('id');
-      e.originalEvent.dataTransfer.setData("source_id", source_id); 
+      e.originalEvent.dataTransfer.setData("source_id", source_id);
     });
-    
+
     $("#mycart").on('dragenter', function (e){
       e.preventDefault();
       $(this).css('background', '#BBD5B8');
     });
-    
+
     $("#mycart").on('dragover', function (e){
       e.preventDefault();
     });
-    
+
     $("#mycart").on('drop', function (e){
       e.preventDefault();
       var product_code = e.originalEvent.dataTransfer.getData('source_id');
@@ -124,10 +124,10 @@ while ($flower = $flowers->fetch_assoc()) {
       countItem++;
       $("#mycart").html(`<div class = "mycart" id = "mycart"><i class="fas fa-shopping-cart"></i> ${countItem}</div>` );
     });
-    
-    
+
+
   });
-  
+
   function toShoppingCart () {
     var orderList = '';
     var type = ''
@@ -141,7 +141,7 @@ while ($flower = $flowers->fetch_assoc()) {
       else if (order.includes('drag-flower-')){
         if (type === '') type = 'flower';
         temp = order.replace('drag-flower-','')
-      } 
+      }
       orderList+=temp + ',';
     })
     console.log('tyuififj '+type)
@@ -149,14 +149,14 @@ while ($flower = $flowers->fetch_assoc()) {
     const sourceVal = document.getElementById('source').value;
     window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}&type=${type}`);
   }
-  
+
   function showMap () {
     const destVal = document.getElementById('destin').value;
     const sourceVal = document.getElementById('source').value;
     const mapOpt = {
       zoom: 10
     }
-    
+
     var mapObj = new google.maps.Map(document.getElementById("map"), mapOpt);
     var direction = new google.maps.DirectionsService();
     var directionRequest = {
@@ -168,7 +168,7 @@ while ($flower = $flowers->fetch_assoc()) {
     direction.route(
       directionRequest,
       (res, status) => {
-        if(status === google.maps.DirectionsStatus.OK) 
+        if(status === google.maps.DirectionsStatus.OK)
         {
           new google.maps.DirectionsRenderer({
             map: mapObj,
@@ -179,5 +179,21 @@ while ($flower = $flowers->fetch_assoc()) {
       }
     )
   }
+
+var rad = function(x) {
+return x * Math.PI / 180;
+};
+
+var getDistance = function(p1, p2) {
+  var R = 6378137; // Earth’s mean radius in meter
+  var dLat = rad(p2.lat() - p1.lat());
+  var dLong = rad(p2.lng() - p1.lng());
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d; // returns the distance in meter
+};
 </script>
 <?php include './template/footer.php' ?>
