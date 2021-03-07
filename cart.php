@@ -49,18 +49,26 @@ $orders;
         </tr>
       </thead>
       <tbody>
+        <?php $price = 0; ?>
         <?php foreach ($orders as $order): ?>
           <tr>
           <?php if ($_GET['type'] == 'flower'):?>
             <td><?= $order['STORE_CODE']?></td>
-            <td><?= $order['PRICE']?></td>
+            <td>$<?= $order['PRICE']?></td>
+            <?php $price += $order['PRICE'] ?>
           <?php else:?>
             <td><?= $order['CAR_MODEL']?></td>
             <td><?= $order['CAR_CODE']?></td>
             <td>12$/km</td>
           <?php endif;?>
+
+
         </tr>
         <?php endforeach; ?>
+        <tr>
+          <td></td>
+          <td>$<?= $price?></td>
+        </tr>
 
       </tbody>
     </table>
