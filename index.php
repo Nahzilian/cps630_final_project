@@ -7,6 +7,7 @@
     header("Location: /");
   }
  ?>
+
 <div class="container">
   <br /><br />
   <div class="row">
@@ -67,8 +68,8 @@
   $allSearch = array();
   if (isset($_SESSION['username'])) {
     // code...
-    $user = $main->getUser($_SESSION['username'])->fetch_assoc();
-    $searchs  = $main->search($user['CUSTOMER_ID'], $_GET['s']);
+    // $user = $main->getUser($_SESSION['username'])->fetch_assoc();
+    $searchs  = $main->search($_GET['u'], $_GET['o']);
     while ($search = $searchs->fetch_assoc()) {
       $allSearch[] = $search;
     }
@@ -96,5 +97,17 @@
 
 <?php include './template/contact_about.php' ?>
 
+
+<div class="right" id="search">
+    <?php if (count($allSearch) >= 1): ?>
+      <h4>
+        Order Through!
+    </h4>
+    <?php else: ?>
+      <h4>
+        Order Does Not Exist!
+    </h4>
+  <?php endif; ?>
+</div>
 
 <?php include './template/footer.php' ?>

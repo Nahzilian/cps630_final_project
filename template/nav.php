@@ -78,6 +78,6 @@
 
 <?php
   if (isset($_GET['search'])){
-    header("location: http://localhost:3000#searchu?=".$_GET['user_id']."&o=".$_GET['order_id']);
+    header("location: http://localhost:3000?u=".$_GET['user_id']."&o=".$_GET['order_id']."#search");
   }
 ?>

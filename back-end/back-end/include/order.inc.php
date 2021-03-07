@@ -14,7 +14,7 @@
     }
 
     public function search($search, $id){
-      $sql = "SELECT * FROM CUSTOMER_ORDER INNER JOIN FLOWER on CUSTOMER_ORDER.FLOWER_ID = FLOWER.FLOWER_ID WHERE CUSTOMER_ID=$id AND FLOWER.STORE_CODE LIKE '$search%';";
+      $sql = "SELECT * FROM CUSTOMER_ORDER INNER JOIN FLOWER on CUSTOMER_ORDER.FLOWER_ID = FLOWER.FLOWER_ID WHERE CUSTOMER_ID=$id AND ORDER_ID=$search;";
       $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
       return $query;
     }
