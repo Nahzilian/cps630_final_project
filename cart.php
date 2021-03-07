@@ -3,6 +3,7 @@
 <?php
 include './back-end/back-end/Controller/MainController.php';
 $mainConn = new MainController();
+$allOrders = $mainConn->getOrders();
 $orders;
 ?>
 
@@ -64,8 +65,14 @@ $orders;
       </tbody>
     </table>
     <div class="center" style="margin: 5em">
-      <button class="btn btn-large gray accent-3">Proceed To Checkout</button>
+      <button class="btn btn-large gray accent-3" onclick="proceed()">Proceed To Checkout</button>
     </div>
 </div>
+
+<script type="text/javascript">
+  function proceed(){
+
+  }
+</script>
 
 <?php include './template/footer.php' ?>

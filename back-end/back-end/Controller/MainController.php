@@ -80,7 +80,7 @@ Class MainController {
     function getFlowerInfoUsingIds($arrOfIds) {
         return $this->flower->getSpecificFlower($arrOfIds);
     }
-    
+
     function deleteCustomerOrder ($id) {
         $this->customerOrder->deleteCustomerOrder($id);
     }
@@ -99,7 +99,7 @@ Class MainController {
     // }
 
     // function deleteCustomer ($id) {
-        
+
     // }
 
 
@@ -108,11 +108,11 @@ Class MainController {
     // }
 
     // function deleteProductComment ($id) {
-        
+
     // }
 
     // function deleteDriverComment ($id) {
-        
+
     // }
 
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
@@ -138,6 +138,10 @@ Class MainController {
 
     public function checkout($id, $date, $total, $payment, $trip_id, $flower_id) {
         $this->customerOrder->addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id);
+    }
+
+    public function getOrders(){
+      return $this->$customerOrder;
     }
 }
 ?>
