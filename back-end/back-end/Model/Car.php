@@ -31,5 +31,10 @@ Class Car
         return $query;
     }
 
+    public function insertCar($model, $code) {
+        $sql = "INSERT INTO CAR (CAR_MODEL, CAR_CODE, AVAILABILITY_CODE) values ('$model', '$code', 'true');";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>

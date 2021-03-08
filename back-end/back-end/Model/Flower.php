@@ -24,5 +24,11 @@ Class Flower
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function insertFlower($code, $price) {
+        $sql = "INSERT INTO FLOWER (STORE_CODE, PRICE) values ('$code', '$price');";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>
