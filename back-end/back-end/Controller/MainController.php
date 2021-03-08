@@ -122,6 +122,36 @@ Class MainController {
             $this->dReview->writeReview($driverId,$message,$score);
         }
     }
+    // INSERT
+
+    function insertCar ($model, $code) {
+        $this->car->insertCar($model, $code);
+    }
+
+    function insertFlower($code, $price){
+        $this->flower->insertFlower($code, $price);
+    }
+
+    function insertCustomer($username, $password, $fname, $address, $city, $phone, $email) {
+        $fields = array('form_content'=>array($username, $password, $fname,'', $address, $city, $phone, $email, $password));
+        $this->customer->insert($fields);
+    }
+
+    function insertCustomerOrder($customer_id, $date, $total, $payment, $trip_id, $flower_id) {
+        $this->customerOrder->addNewOrder($customer_id, $date, $total, $payment, $trip_id, $flower_id);
+    }
+
+    function insertDriverReview($driver_id, $context, $score) {
+        $this->dReview->writeReview($driver_id, $context, $score);
+    }
+
+    function insertProductReview($flower_id, $context, $score) {
+        $this->pReview->writeReview($flower_id, $context, $score);
+    }
+
+    function insertTrip($destin, $source, $distamce, $car_id,$price) {
+        $this->trip->insertTrip($destin, $source, $distamce, $car_id,$price);
+    }
 
     public function login(){
       $this->login->process();

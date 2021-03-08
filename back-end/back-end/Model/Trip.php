@@ -30,5 +30,12 @@ Class Trip
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function insertTrip($destin, $source, $distamce, $car_id,$price) {
+        $sql = "INSERT INTO TRIP (DESTINATION_CODE, SOURCE_CODE, DISTANCE, CAR_ID, PRICE) values ('$destin', '$source', '$distamce', '$car_id','$price');";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
 }
 ?>
