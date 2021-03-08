@@ -46,7 +46,7 @@ Class Trip
     public function updateById($id, $destin, $source, $price, $car_id, $distance) {
         $sql = "UPDATE TRIP
         SET DESTINATION_CODE='$destin', SOURCE_CODE='$source', DISTANCE='$distance', CAR_ID='$car_id', PRICE='$price'
-        WHERE REVIEW_ID = '$id';";
+        WHERE TRIP_ID = '$id';";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

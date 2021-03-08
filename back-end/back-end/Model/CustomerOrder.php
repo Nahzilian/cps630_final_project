@@ -59,8 +59,9 @@ Class CustomerOrder
 
     public function updateById($id, $date_d, $total_price, $code, $customer_id, $trip_id, $flower_id) {
         $sql = "UPDATE CUSTOMER_ORDER
-        SET DATE_DONE='$date_d', TOTAL_PRICE='$total_price', PAYMENT_CODE='$code', CUSTOMER_ID='$customer_id', TRIP_ID='$trip_id', FLOWER_ID='$flower_id'
-        WHERE CUSTOMER_ID = '$id';";
+        SET DATE_DONE= date('$date_d'), TOTAL_PRICE='$total_price', PAYMENT_CODE='$code', CUSTOMER_ID='$customer_id', TRIP_ID='$trip_id', FLOWER_ID='$flower_id'
+        WHERE ORDER_ID = '$id';";
+        echo $sql;
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

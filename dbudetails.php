@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $date_done = $_POST['date-done'];
   $total_price = $_POST['total-price'];
   $payment_code = $_POST['payment-code'];
-  $customer_id = $_POST['customer_id'];
+  $customer_id = $_POST['customer-id'];
   $trip_id = $_POST['trip-id'];
   $flower_id = $_POST['flower-id'];
   $car_id = $_POST['car-id'];
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <?php elseif ($table == 'customer_order' ):?>
         <label for="date-done">DATE DONE</label>
-        <input name="date-issued" type="date" value=<?= "'".$result['DATE_DONE']."'"?> required/>
+        <input name="date-done" type="date" value=<?= "'".$result['DATE_DONE']."'"?> required/>
         <label for="total-price">TOTAL PRICE</label>
         <input name="total-price" value=<?= "'".$result['TOTAL_PRICE']."'"?> type="text" required/>
         <label for="payment-code">PAYMENT CODE</label>
@@ -147,19 +147,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="customer-id">CUSTOMER ID</label>
         <select name="customer-id">
           <?php foreach ($allCustomers as $customer): ?>
-            <option selected = <?php if($result['CUSTOMER_ID']==$customer['CUSTOMER_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$customer['CUSTOMER_ID']."'"?>><span><?= $customer['CUSTOMER_ID']?>. <?= $customer['CUSTOMER_NAME']?></span></option>
+            <option selected = <?php if($result['CUSTOMER_ID']==$customer['CUSTOMER_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$customer['CUSTOMER_ID']."'"?>><?= $customer['CUSTOMER_ID']?></option>
           <?php endforeach; ?>
         </select><br/>
         <label for="trip-id">TRIP ID</label>
         <select name="trip-id">
           <?php foreach ($allTrips as $trip): ?>
-            <option selected = <?php if($result['TRIP_ID']==$trip['TRIP_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$trip['TRIP_ID']."'"?>><span><?= $trip['TRIP_ID']?>. <?= $trip['DESTINATION_CODE']?> - <?= $trip['SOURCE_CODE']?></span></option>
+            <option selected = <?php if($result['TRIP_ID']==$trip['TRIP_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$trip['TRIP_ID']."'"?>><?= $trip['TRIP_ID']?></option>
           <?php endforeach; ?>
         </select><br/>
         <label name="flower-id">FLOWER ID</label>
         <select name="flower-id">
           <?php foreach ($allFlower as $flower): ?>
-            <option selected = <?php if($result['FLOWER_ID']==$customer['FLOWER_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$flower['FLOWER_ID']."'"?>><span><?= $flower['FLOWER_ID']?>. <?= $flower['STORE_CODE']?> - <?= $flower['PRICE']?>$</span></option>
+            <option selected = <?php if($result['FLOWER_ID']==$customer['FLOWER_ID']) {echo "selected";} else {echo "";}?> value=<?= "'".$flower['FLOWER_ID']."'"?>><?= $flower['FLOWER_ID']?></option>
           <?php endforeach; ?>
         </select><br/>
     <?php elseif ($table == 'driver_review' ):?>
@@ -175,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select><br/>
     <?php elseif ($table == 'flower' ):?>
         <label for="store-code">STORE CODE</label>
-        <input name="store-code" value=<?= "'".$result['STORE-CODE']."'"?> type="text" required/>
+        <input name="store-code" value=<?= "'".$result['STORE_CODE']."'"?> type="text" required/>
         <label for="price">PRICE</label>
         <input name="price" value=<?= "'".$result['PRICE']."'"?> type="text" required/>
     <?php elseif ($table == 'product_review' ):?>
