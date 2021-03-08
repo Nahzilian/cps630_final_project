@@ -41,6 +41,7 @@ Class Car
         $sql = "UPDATE CAR
         SET CAR_MODEL = '$model', CAR_CODE= '$code', AVAILABILITY_CODE='$avail'
         WHERE CAR_ID = '$id';";
+        echo $sql;
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

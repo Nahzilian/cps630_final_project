@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $source = $_POST['source'];
   $destin = $_POST['destin'];
   $distance = $_POST['distance'];
-  if ($table == 'car') $results = $mainControl->updateCarById($selectedId,$car_model, $car_code, $available);
+  if ($table == 'car') $results = $mainControl->updateCarById($selectedID,$car_model, $car_code, $available);
   else if ($table == 'customer' ) $results = $mainControl->updateCustomerById($selectedID,$username, $fullname, $address, $city, $phone, $email, $balance, $is_admin);
   else if ($table == 'customer_order' ) $results = $mainControl->updateCustomerOrderById($selectedID,$date_done,$total_price,$payment_code,$customer_id,$trip_id, $flower_id);
   else if ($table == 'driver_review' ) $results = $mainControl->updateDriverReviewById($selectedID, $review_context, $review_score,$car_id);
@@ -93,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="car-code">CAR CODE</label>
         <input name="car-code" type="text" value=<?= "'".$result['CAR_CODE']."'"?> required/>
         <select name="available">
+          <?php echo $result['AVAILABILITY_CODE']?>
             <?php if($result['AVAILABILITY_CODE']==0):?>
                 <option selected value="false">false</option>
                 <option value="true">true</option>
