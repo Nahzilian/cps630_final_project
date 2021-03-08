@@ -37,5 +37,11 @@ Class Customer
       $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
       return $query;
     }
+
+    public function deleteCustomer ($id) {
+      $sql = "DELETE FROM CUSTOMER WHERE CuSTOMER_ID = $id";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>

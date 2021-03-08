@@ -26,14 +26,26 @@ Class CustomerOrder
         else echo 'Order failed, try again!';
     }
 
-    public function deleteTripWithTripID($id) {
-        $sql = "DELETE FROM TRIP WHERE CAR_ID = $id;";
+    public function deleteCustomerOrderByTripID($id) {
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE TRIP_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
+    public function deleteCustomerOrderByCustomerID($id) {
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE CUSTOMER_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+
+    public function deleteCustomerOrderByFlowerID($id) {
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE FLOWER_ID = $id;";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
 
     public function deleteCustomerOrder($id) {
-        $sql = "DELETE FROM TRIP WHERE ORDER_ID = $id;";
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE ORDER_ID = $id;";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

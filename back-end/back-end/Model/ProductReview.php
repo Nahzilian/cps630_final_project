@@ -24,6 +24,15 @@ Class ProductReview
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
-
+    public function deleteDReviewByFlowerID($id) {
+        $sql = "DELETE FROM PRODUCT_REVIEW WHERE FLOWER_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+    public function deleteReview($id) {
+        $sql = "DELETE FROM PRODUCT_REVIEW WHERE REVIEW_ID=$id";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>

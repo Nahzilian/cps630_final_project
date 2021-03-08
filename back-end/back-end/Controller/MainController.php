@@ -39,7 +39,7 @@ Class MainController {
         $this->sign = new Sign($this->customer);
         $this->order = new Order($dbcon);
     }
-
+    //SELECT
     function getCarInfo() {
         return $this->car->getAll();
     }
@@ -72,7 +72,6 @@ Class MainController {
         return $this->car->getAvailableCar();
     }
 
-
     function getCarInfoUsingIds($arrOfIds) {
         return $this->car->getSpecificCar($arrOfIds);
     }
@@ -81,39 +80,39 @@ Class MainController {
         return $this->flower->getSpecificFlower($arrOfIds);
     }
 
+    // DELETE
     function deleteCustomerOrder ($id) {
         $this->customerOrder->deleteCustomerOrder($id);
     }
 
-    function updateGeneral($fields, $value, $table, $id) {
-        //$sql="UPDATE SET "
-    }
-
     function deleteCar ($id) {
-        // Fix to delete cascade
+        $this->deleteTrip($id);
         $this->car->deleteCar($id);
     }
+    
+    function deleteTrip ($id) {
+        $this->customerOrder->deleteCustomerOrderByTripID($id);
+        $this->trip->deleteTrip($id);
+    }
+    
+    function deleteFlower ($id) {
+        $this->customerOrder->deleteCustomerOrderByFlowerID($id);
+        $this->pReview->deleteDReviewByFlowerID($id);
+        $this->flower->deleteFlower($id);
+    }
 
-    // function deleteFlower ($id) {
+    function deleteCustomer ($id) {
+        $this->customerOrder->deleteCustomerOrderByCustomerID($id);
+        $this->customer->deleteCustomer($id);
+    }
 
-    // }
+    function deleteProductComment ($id) {
+        $this->pReview->deleteReview($id);
+    }
 
-    // function deleteCustomer ($id) {
-
-    // }
-
-
-    // function deleteTrip ($id) {
-
-    // }
-
-    // function deleteProductComment ($id) {
-
-    // }
-
-    // function deleteDriverComment ($id) {
-
-    // }
+    function deleteDriverComment ($id) {
+        $this->pReview->deleteReview($id);
+    }
 
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
         if($selected == 'product') {

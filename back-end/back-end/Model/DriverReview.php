@@ -24,5 +24,11 @@ Class DriverReview
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         return $query;
     }
+
+    public function deleteDReviewByCarID($id) {
+        $sql = "DELETE FROM DRIVER_REVIEW WHERE CAR_ID = $id;";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>
