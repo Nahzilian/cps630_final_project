@@ -24,7 +24,7 @@ $orders;
             }
             $allOrder = array();
             while ($order = $orders->fetch_assoc()) {
-                $allOrder[] = $orders;
+                $allOrder[] = $order;
             }
         }else {
             echo 'Your cart is empty';

@@ -30,6 +30,8 @@ if (!empty($table)) {
     }
 }
 ?>
+
+<a href="/dbmaintain.php">Return to main Dashboard</a>
     <table>
         <tr>
             <th></th>
