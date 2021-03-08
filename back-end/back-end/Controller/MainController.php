@@ -72,14 +72,6 @@ Class MainController {
         return $this->car->getAvailableCar();
     }
 
-    function getCarInfoUsingIds($arrOfIds) {
-        return $this->car->getSpecificCar($arrOfIds);
-    }
-
-    function getFlowerInfoUsingIds($arrOfIds) {
-        return $this->flower->getSpecificFlower($arrOfIds);
-    }
-
     // DELETE
     function deleteCustomerOrder ($id) {
         echo $id;

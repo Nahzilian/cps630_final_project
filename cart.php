@@ -17,9 +17,9 @@ $orders;
             $id_list = rtrim($_GET['orders'], ",");
             if( isset($_GET['type']) && !empty($_GET['type'])) {
                 if ($_GET['type'] == 'driver') {
-                    $orders = $mainConn->getCarInfoUsingIds($id_list);
+                    $orders = $mainConn->getCarById($id_list);
                 }else {
-                    $orders = $mainConn->getFlowerInfoUsingIds($id_list);
+                    $orders = $mainConn->getFlowerById($id_list);
                 }
             }
             $allOrder = array();
