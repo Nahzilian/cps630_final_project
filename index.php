@@ -69,9 +69,12 @@
   if (isset($_SESSION['username'])) {
     // code...
     // $user = $main->getUser($_SESSION['username'])->fetch_assoc();
-    $searchs  = $main->search($_GET['u'], $_GET['o']);
-    while ($search = $searchs->fetch_assoc()) {
-      $allSearch[] = $search;
+    if (isset($_GET['u'])) {
+      // code...
+      $searchs  = $main->search($_GET['u'], $_GET['o']);
+      while ($search = $searchs->fetch_assoc()) {
+        $allSearch[] = $search;
+    }
     }
   }else {echo 'No session';}
  // ?>
@@ -98,16 +101,18 @@
 <?php include './template/contact_about.php' ?>
 
 
-<div class="right" id="search">
-    <?php if (count($allSearch) >= 1): ?>
-      <h4>
-        Order Through!
-    </h4>
-    <?php else: ?>
-      <h4>
-        Order Does Not Exist!
-    </h4>
-  <?php endif; ?>
-</div>
+<?php if (isset($_GET['u'])): ?>
+  <div class="right" id="search">
+      <?php if (count($allSearch) >= 1): ?>
+        <h4>
+          Order Through!
+      </h4>
+      <?php else: ?>
+        <h4>
+          Order Does Not Exist!
+      </h4>
+    <?php endif; ?>
+  </div>
+<?php endif; ?>
 
 <?php include './template/footer.php' ?>
