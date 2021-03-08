@@ -6,19 +6,7 @@
 $mainControl = new MainController();
 $table = $_GET['table'];
 $results;
-if (!empty($table)){
-    if ($table == 'car') $results = $mainControl->getCarInfo();
-    else if ($table == 'customer' ) $results = $mainControl->getCustomerInfo();
-    else if ($table == 'customer_order' ) $results = $mainControl->getCustomerOrderInfo();
-    else if ($table == 'driver_review' ) $results = $mainControl->getDriverReviewInfo();
-    else if ($table == 'flower' ) $results = $mainControl->getFlowerInfo();
-    else if ($table == 'product_review' ) $results = $mainControl->getProductReviewInfo();
-    else if ($table == 'trip' ) $results = $mainControl->getTripInfo();
-    $allResult = array();
-    while($result = $results->fetch_assoc()){
-        $allResult[] = $result;
-    }
-}
+
 $cars = $mainControl->getCarInfo();
 $customers = $mainControl->getCustomerInfo();
 $trips = $mainControl->getTripInfo();
