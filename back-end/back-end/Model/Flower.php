@@ -30,5 +30,14 @@ Class Flower
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function updateById($id, $storecode, $price) {
+        $sql = "UPDATE FLOWER
+        SET STORE_CODE='$storecode', PRICE='$price'
+        WHERE FLOWER_ID = '$id';";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
+    
 }
 ?>

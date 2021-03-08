@@ -36,5 +36,13 @@ Class Car
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function updateById($id, $model, $code, $avail) {
+        $sql = "UPDATE CAR
+        SET CAR_MODE = '$model', CAR_CODE= '$code', AVAILABILITY_CODE='$avail'
+        WHERE CAR_ID = '$id';";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>

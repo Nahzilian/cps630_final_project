@@ -149,8 +149,8 @@ Class MainController {
         $this->pReview->writeReview($flower_id, $context, $score);
     }
 
-    function insertTrip($destin, $source, $distamce, $car_id,$price) {
-        $this->trip->insertTrip($destin, $source, $distamce, $car_id,$price);
+    function insertTrip($destin, $source, $distance, $car_id,$price) {
+        $this->trip->insertTrip($destin, $source, $distance, $car_id,$price);
     }
 
     // GET BY ID
@@ -183,6 +183,36 @@ Class MainController {
        return $this->trip->getTripById($id);
     }
     
+    // UPDATE
+
+    function updateCarById($id,$model, $code, $avail) {
+        return $this->car->updateById($id,$model, $code, $avail);
+     }
+ 
+     function updateCustomerById($id, $username, $fname, $address, $city,$phone, $email, $balance, $admin) {
+        return $this->customer->updateById($id, $username, $fname, $address, $city,$phone, $email, $balance, $admin);
+     }
+ 
+     function updateCustomerOrderById($id, $date_d, $total_price, $code, $customer_id, $trip_id, $flower_id) {
+        return $this->customerOrder->updateById($id, $date_d, $total_price, $code, $customer_id, $trip_id, $flower_id);
+     }
+ 
+     function updateDriverReviewById($id, $context, $score, $car_id) {
+        return $this->dReview->updateById($id, $context, $score, $car_id);
+     }
+ 
+     function updateFlowerById($id, $storecode, $price) {
+        return $this->flower->updateById($id, $storecode, $price);
+     }
+ 
+     function updateProductReviewById($id ,$context,$score, $flower_id) {
+        return $this->pReview->updateById($id, $context,$score, $flower_id);
+     }
+ 
+     function updateTripById($id, $destin, $source, $price, $car_id, $distance) {
+        return $this->trip->updateById($id, $destin, $source, $price, $car_id, $distance);
+     }
+
     public function login(){
       $this->login->process();
       $this->sign->process();

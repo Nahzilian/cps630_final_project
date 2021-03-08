@@ -53,11 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $source = $_POST['source'];
   $destin = $_POST['destin'];
   $distance = $_POST['distance'];
-  $price = $_POST['price'];
   if ($table == 'car') $results = $mainControl->insertCar($car_model, $car_code);
-  else if ($table == 'customer' ) $results = $mainControl->insertCustomer($username, $password, $fullname, $addressm, $city, $phone, $email);
+  else if ($table == 'customer' ) $results = $mainControl->insertCustomer($username, $password, $fullname, $address, $city, $phone, $email);
   else if ($table == 'customer_order' ) $results = $mainControl->insertCustomerOrder($customer_id,$date_done,$total_price,$payment_code,$trip_id, $flower_id);
-  else if ($table == 'driver_review' ) $results = $mainControl->insertDriverReview($driver_id, $review_context, $review_score);
+  else if ($table == 'driver_review' ) $results = $mainControl->insertDriverReview($car_id, $review_context, $review_score);
   else if ($table == 'flower' ) $results = $mainControl->insertFlower($store_code, $price);
   else if ($table == 'product_review' ) $results = $mainControl->insertProductReview($flower_id, $review_context, $review_score);
   else if ($table == 'trip' ) $results = $mainControl->insertTrip($destin, $source, $distance, $car_id, $price);

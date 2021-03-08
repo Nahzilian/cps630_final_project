@@ -36,5 +36,13 @@ Class DriverReview
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function updateById($id, $context, $total_price, $car_id) {
+        $sql = "UPDATE DRIVER_REVIEW
+        SET R_CONTEXT='$context', R_SCORE='$total_price', CAR_ID='$car_id'
+        WHERE REVIEW_ID = '$id';";
+        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
+        return $query;
+    }
 }
 ?>

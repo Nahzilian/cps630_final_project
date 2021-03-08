@@ -45,6 +45,7 @@ while ($customer = $customers->fetch_assoc()) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $car_model = $_POST['car-model'];
   $car_code = $_POST['car-code'];
+  $available = $_POST['available'];
   $fullname = $_POST['fname'];
   $address = $_POST['address'];
   $city = $_POST['city'];
@@ -68,14 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $source = $_POST['source'];
   $destin = $_POST['destin'];
   $distance = $_POST['distance'];
-  $price = $_POST['price'];
-//   if ($table == 'car') $results = $mainControl->insertCar($car_model, $car_code);
-//   else if ($table == 'customer' ) $results = $mainControl->insertCustomer($username, $password, $fullname, $addressm, $city, $phone, $email);
-//   else if ($table == 'customer_order' ) $results = $mainControl->insertCustomerOrder($customer_id,$date_done,$total_price,$payment_code,$trip_id, $flower_id);
-//   else if ($table == 'driver_review' ) $results = $mainControl->insertDriverReview($driver_id, $review_context, $review_score);
-//   else if ($table == 'flower' ) $results = $mainControl->insertFlower($store_code, $price);
-//   else if ($table == 'product_review' ) $results = $mainControl->insertProductReview($flower_id, $review_context, $review_score);
-//   else if ($table == 'trip' ) $results = $mainControl->insertTrip($destin, $source, $distance, $car_id, $price);
+  if ($table == 'car') $results = $mainControl->updateCarById($selectedId,$car_model, $car_code, $available);
+  else if ($table == 'customer' ) $results = $mainControl->updateCustomerById($selectedID,$username, $fullname, $address, $city, $phone, $email, $balance, $is_admin);
+  else if ($table == 'customer_order' ) $results = $mainControl->updateCustomerOrderById($selectedID,$date_done,$total_price,$payment_code,$customer_id,$trip_id, $flower_id);
+  else if ($table == 'driver_review' ) $results = $mainControl->updateDriverReviewById($selectedID, $review_context, $review_score,$car_id);
+  else if ($table == 'flower' ) $results = $mainControl->updateFlowerById($selectedID, $store_code, $price);
+  else if ($table == 'product_review' ) $results = $mainControl->updateProductReviewById($selectedID,$review_context, $review_score, $flower_id);
+  else if ($table == 'trip' ) $results = $mainControl->updateTripById($selectedID, $destin, $source, $price,$car_id,$distance);
+  header('Location: /dbupdate.php?table='.$table);
 }
 
 
@@ -84,13 +85,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <a href="dbmaintain.php">Return to main Dashboard</a>
 <a href=<?php echo "dbupdate.php?table=".$table?>>Return to update table</a>
-<form method="post" action=<?php echo "dbudetails.php?table=".$table."&id=".$id?>>
+<form method="post" action=<?php echo "dbudetails.php?table=".$table."&id=".$selectedID?>>
 <?php foreach ($allResult as $result): ?>
     <?php if ($table == 'car'):?>
         <label for="car-model">CAR MODEL</label>
         <input name="car-model" type="text" value=<?= "'".$result['CAR_MODEL']."'"?> required/>
         <label for="car-code">CAR CODE</label>
         <input name="car-code" type="text" value=<?= "'".$result['CAR_CODE']."'"?> required/>
+        <select name="available">
+            <?php if($result['AVAILABILITY_CODE']==0):?>
+                <option selected value="false">false</option>
+                <option value="true">true</option>
+            <?php else: ?>
+                <option selected value="true">true</option>
+                <option value="false">false</option>
+            <?php endif;?>
+        </select>
     <?php elseif ($table == 'customer' ):?>
       <label for="fullname">Full Name</label>
       <input name="fname" id="fullname" value=<?= "'".$result['CUSTOMER_NAME']."'"?> type="text" required>
