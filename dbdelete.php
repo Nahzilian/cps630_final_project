@@ -7,6 +7,16 @@ $mainControl = new MainController();
 $table = $_GET['table'];
 $results;
 if (!empty($table)) {
+    if ($_GET["id"]){
+        $id=$_GET["id"];
+        if ($table == 'car') $results = $mainControl->deleteCar($id);
+        else if ($table == 'customer') $results = $mainControl->deleteCustomer($id);
+        else if ($table == 'customer_order') $results = $mainControl->deleteCustomerOrder($id);
+        else if ($table == 'driver_review') $results = $mainControl->deleteDriverComment($id);
+        else if ($table == 'flower') $results = $mainControl->deleteFlower($id);
+        else if ($table == 'product_review') $results = $mainControl->deleteProductComment($id);
+        else if ($table == 'trip') $results = $mainControl->deleteTrip($id);
+    }
     if ($table == 'car') $results = $mainControl->getCarInfo();
     else if ($table == 'customer') $results = $mainControl->getCustomerInfo();
     else if ($table == 'customer_order') $results = $mainControl->getCustomerOrderInfo();
@@ -20,9 +30,9 @@ if (!empty($table)) {
     }
 }
 ?>
-<form>
     <table>
         <tr>
+            <th></th>
             <?php if ($table == 'car') : ?>
                 <th>CAR ID</th>
                 <th>CAR MODEL</th>
@@ -74,11 +84,13 @@ if (!empty($table)) {
         <?php foreach ($allResult as $result) : ?>
             <tr>
                 <?php if ($table == 'car') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['CAR_ID']?>>Delete</a></td>
                     <td><?= $result['CAR_ID'] ?></td>
                     <td><?= $result['CAR_MODEL'] ?></td>
                     <td><?= $result['CAR_CODE'] ?></td>
                     <td><?= $result['AVAILABILITY_CODE'] ?></td>
                 <?php elseif ($table == 'customer') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['CUSTOMER_ID']?>>Delete</a></td>
                     <td><?= $result['CUSTOMER_ID'] ?></td>
                     <td><?= $result['CUSTOMER_NAME'] ?></td>
                     <td><?= $result['CUSTOMER_TEL'] ?></td>
@@ -90,6 +102,7 @@ if (!empty($table)) {
                     <td><?= $result['CUSTOMER_BALANCE'] ?></td>
                     <td><?= $result['CUSTOMER_ADMIN'] ?></td>
                 <?php elseif ($table == 'customer_order') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['ORDER_ID']?>>Delete</a></td>
                     <td><?= $result['ORDER_ID'] ?></td>
                     <td><?= $result['DATE_ISSUED'] ?></td>
                     <td><?= $result['DATE_DONE'] ?></td>
@@ -99,20 +112,24 @@ if (!empty($table)) {
                     <td><?= $result['TRIP_ID'] ?></td>
                     <td><?= $result['FLOWER_ID'] ?></td>
                 <?php elseif ($table == 'driver_review') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['REVIEW_ID']?>>Delete</a></td>
                     <td><?= $result['REVIEW_ID'] ?></td>
                     <td><?= $result['REVIEW_CONTEXT'] ?></td>
                     <td><?= $result['REVIEW_SCORE'] ?></td>
                     <td><?= $result['CAR_ID'] ?></td>
                 <?php elseif ($table == 'flower') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['FLOWER_ID']?>>Delete</a></td>
                     <td><?= $result['FLOWER_ID'] ?></td>
                     <td><?= $result['STORE_CODE'] ?></td>
                     <td><?= $result['PRICE'] ?></td>
                 <?php elseif ($table == 'product_review') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['REVIEW_ID']?>>Delete</a></td>
                     <td><?= $result['REVIEW_ID'] ?></td>
                     <td><?= $result['REVIEW_CONTEXT'] ?></td>
                     <td><?= $result['REVIEW_SCORE'] ?></td>
                     <td><?= $result['FLOWER_ID'] ?></td>
                 <?php elseif ($table == 'trip') : ?>
+                    <td><a href=<?php echo "/dbdelete.php?table=".$table."&id=".$result['TRIP_ID']?>>Delete</a></td>
                     <td><?= $result['TRIP_ID'] ?></td>
                     <td><?= $result['DESTINATION_CODE'] ?></td>
                     <td><?= $result['SOURCE_CODE'] ?></td>
@@ -123,5 +140,5 @@ if (!empty($table)) {
             </tr>
         <?php endforeach; ?>
     </table>
-</form>
+
 <?php include './template/footer.php' ?>

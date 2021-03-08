@@ -20,7 +20,7 @@ Class Flower
     }
 
     public function deleteFlower($id) {
-        $sql = "DELETE FROM FLOWER WHERE FLOWER_ID = $id";
+        $sql = "DELETE FROM FLOWER WHERE FLOWER_ID = '$id'";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

@@ -82,6 +82,7 @@ Class MainController {
 
     // DELETE
     function deleteCustomerOrder ($id) {
+        echo $id;
         $this->customerOrder->deleteCustomerOrder($id);
     }
 

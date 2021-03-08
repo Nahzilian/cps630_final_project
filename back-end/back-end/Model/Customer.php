@@ -39,7 +39,7 @@ Class Customer
     }
 
     public function deleteCustomer ($id) {
-      $sql = "DELETE FROM CUSTOMER WHERE CuSTOMER_ID = $id";
+      $sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = '$id'";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }

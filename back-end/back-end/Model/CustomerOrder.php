@@ -21,33 +21,34 @@ Class CustomerOrder
 
     public function addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id) {
         $sql = "INSERT INTO CUSTOMER_ORDER (DATE_DONE, TOTAL_PRICE, PAYMENT_CODE, CUSTOMER_ID, TRIP_ID, FLOWER_ID) values ($date, $total, $payment, $id, $flower_id, $trip_id);";
-        $query = $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
         if ($query) echo 'You have successfully placed an order';
         else echo 'Order failed, try again!';
     }
 
     public function deleteCustomerOrderByTripID($id) {
-        $sql = "DELETE FROM CUSTOMER_ORDER WHERE TRIP_ID = $id;";
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE TRIP_ID = '$id'";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
 
     public function deleteCustomerOrderByCustomerID($id) {
-        $sql = "DELETE FROM CUSTOMER_ORDER WHERE CUSTOMER_ID = $id;";
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE CUSTOMER_ID = '$id'";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
 
     public function deleteCustomerOrderByFlowerID($id) {
-        $sql = "DELETE FROM CUSTOMER_ORDER WHERE FLOWER_ID = $id;";
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE FLOWER_ID = '$id'";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
 
     public function deleteCustomerOrder($id) {
-        $sql = "DELETE FROM CUSTOMER_ORDER WHERE ORDER_ID = $id;";
-        $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
-        return $query;
+        $sql = "DELETE FROM CUSTOMER_ORDER WHERE ORDER_ID = '$id'";
+        echo $id;
+        echo $sql;
+        mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
     }
 }
 ?>

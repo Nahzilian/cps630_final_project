@@ -20,13 +20,13 @@ Class Trip
     }
 
     public function deleteTrip($id) {
-        $sql = "DELETE FROM TRIP WHERE TRIP_ID = $id;";
+        $sql = "DELETE FROM TRIP WHERE TRIP_ID = '$id';";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
 
     public function deleteTripWithCarID($id) {
-        $sql = "DELETE FROM TRIP WHERE CAR_ID = $id;";
+        $sql = "DELETE FROM TRIP WHERE CAR_ID = '$id';";
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
