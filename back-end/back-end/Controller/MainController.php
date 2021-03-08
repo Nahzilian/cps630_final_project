@@ -156,31 +156,31 @@ Class MainController {
     // GET BY ID
 
     function getCarById($id) {
-        $this->car->getSpecificCar($id);
+       return $this->car->getSpecificCar($id);
     }
 
     function getCustomerById($id) {
-        $this->customer->getSpecificCustomer($id);
+       return $this->customer->getSpecificCustomer($id);
     }
 
     function getCustomerOrderById($id) {
-        $this->customerOrder->getCustomerOrderById($id);
+       return $this->customerOrder->getCustomerOrderById($id);
     }
 
     function getDriverReviewById($id) {
-        $this->dReview->getReviewById($id);
+       return $this->dReview->getReviewById($id);
     }
 
     function getFlowerById($id) {
-        $this->flower->getSpecificFlower($id);
+       return $this->flower->getSpecificFlower($id);
     }
 
     function getProductReviewById($id) {
-        $this->pReview->getReviewById($id);
+       return $this->pReview->getReviewById($id);
     }
 
     function getTripById($id) {
-        $this->trip->getTripById($id);
+       return $this->trip->getTripById($id);
     }
     
     public function login(){

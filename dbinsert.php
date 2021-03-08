@@ -77,28 +77,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input name="car-code" type="text" required/>
     <?php elseif ($table == 'customer' ):?>
       <label for="fullname">Full Name</label>
-      <input name="fname" id="fullname" type="textrequired">
+      <input name="fname" id="fullname" type="text" required>
   
       <label for="address">Address</label>
-      <input name="address" id="address" type="textrequired">
+      <input name="address" id="address" type="text" required>
     
       <label for="city">City Code</label>
-      <input name="city" id="city" type="textrequired">
+      <input name="city" id="city" type="text" required>
   
       <label for="user">Username</label>
-      <input name="username" id="user" type="textrequired">
+      <input name="username" id="user" type="text" required>
   
       <label for="phone">Telephone (xxx xxx xxxx)</label>
-      <input name="phone" id="phone" type="textrequired">
+      <input name="phone" id="phone" type="text" required>
   
       <label for="email">Email</label>
-      <input name="email" id="email" type="emailrequired">
+      <input name="email" id="email" type="email" required>
   
       <label for="pass">Password</label>
-      <input name="password" id="pass" type="textrequired">
+      <input name="password" id="pass" type="text" required>
 
       <label for="pass">Balance</label>
-      <input name="balance" id="pass" type="numberrequired">
+      <input name="balance" id="pass" type="number" required>
 
       <label for="isAdmin">Admin</label>
       <select name="isAdmin">
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <?php elseif ($table == 'customer_order' ):?>
         <label for="date-done">DATE DONE</label>
-        <input name="date-issued" type="datetime-local" required/>
+        <input name="date-issued" type="date" required/>
         <label for="total-price">TOTAL PRICE</label>
         <input name="total-price" type="text" required/>
         <label for="payment-code">PAYMENT CODE</label>
@@ -159,9 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php endforeach; ?>
         </select><br/>
     <?php elseif ($table == 'trip' ):?>
-      <input type="text" id="source" name="source" value="required">
+      <input type="text" id="source" name="source" required>
       <label for="source">Source</label>
-      <input type="text" id="destin" name="destin" value="required">
+      <input type="text" id="destin" name="destin" required>
       <label for="destin">Destination</label><br/>
       <label for = "distance">DISTANCE</label>
       <input name = "distance" type="text" required/>

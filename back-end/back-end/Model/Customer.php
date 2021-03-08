@@ -32,7 +32,7 @@ Class Customer
       list($fname_err, $lname_err, $address_err, $city_err, $phone_err, $email_err) = $fields['form_err_secondary'];
       $name = $fname." ".$lname;
       $password = password_hash($password, PASSWORD_DEFAULT);
-      $sql = "INSERT INTO CUSTOMER (CUSTOMER_NAME, CUSTOMER_TEL, CUSTOMER_EMAIL, CUSTOMER_ADDRESS,CUSTOMER_CITY_CODE,CUSTOMER_USERNAME,CUSTOMER_PASSWORD) VALUES ('$name', '$phone' , '$email', '$address', '$city', '$username', '$password');";
+      $sql = "INSERT INTO CUSTOMER (CUSTOMER_NAME, CUSTOMER_TEL, CUSTOMER_EMAIL, CUSTOMER_ADDRESS,CUSTOMER_CITY_CODE,CUSTOMER_USERNAME,CUSTOMER_PASSWORD, CUSTOMER_BALANCE, CUSTOMER_ADMIN) VALUES ('$name', '$phone' , '$email', '$address', '$city', '$username', '$password', 0, false);";
       // echo $sql;
       $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
       return $query;
