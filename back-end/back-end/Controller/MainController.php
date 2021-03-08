@@ -153,6 +153,36 @@ Class MainController {
         $this->trip->insertTrip($destin, $source, $distamce, $car_id,$price);
     }
 
+    // GET BY ID
+
+    function getCarById($id) {
+        $this->car->getSpecificCar($id);
+    }
+
+    function getCustomerById($id) {
+        $this->customer->getSpecificCustomer($id);
+    }
+
+    function getCustomerOrderById($id) {
+        $this->customerOrder->getCustomerOrderById($id);
+    }
+
+    function getDriverReviewById($id) {
+        $this->dReview->getReviewById($id);
+    }
+
+    function getFlowerById($id) {
+        $this->flower->getSpecificFlower($id);
+    }
+
+    function getProductReviewById($id) {
+        $this->pReview->getReviewById($id);
+    }
+
+    function getTripById($id) {
+        $this->trip->getTripById($id);
+    }
+    
     public function login(){
       $this->login->process();
       $this->sign->process();

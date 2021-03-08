@@ -43,5 +43,11 @@ Class Customer
         $query = mysqli_query($this->conn, $sql) or die (mysqli_error($this->conn));
         return $query;
     }
+
+    public function getSpecificCustomer ($id){
+      $sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID='$id';";
+      $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+      return $query;
+    }
 }
 ?>

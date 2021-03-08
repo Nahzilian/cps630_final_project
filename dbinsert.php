@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <a href="dbmaintain.php">Return to main Dashboard</a>
+
 <form method="post" action=<?php echo "dbinsert.php?table=".$table?>>
     <?php if ($table == 'car'):?>
         <label for="car-model">CAR MODEL</label>
@@ -164,8 +165,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label for="destin">Destination</label><br/>
       <label for = "distance">DISTANCE</label>
       <input name = "distance" type="text" required/>
-      <label for="car_id">CAR ID</label>
-      <input name="car_id" type="text" required/>
+      <label for="car-id">CAR ID</label>
+      <input name="car-id" type="text" required/>
       <label for="price">PRICE</label>
       <input name="price" type="text" required/>
     <?php endif;?>

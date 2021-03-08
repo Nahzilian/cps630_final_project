@@ -19,6 +19,12 @@ Class CustomerOrder
         return $query;
     }
 
+    public function getCustomerOrderById($id){
+        $sql = "SELECT * FROM CUSTOMER_ORDER WHERE ORDER_ID = '$id';";
+        $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        return $query;
+    }
+
     public function addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id) {
         $sql = "INSERT INTO CUSTOMER_ORDER (DATE_DONE, TOTAL_PRICE, PAYMENT_CODE, CUSTOMER_ID, TRIP_ID, FLOWER_ID) values ($date, $total, $payment, $id, $flower_id, $trip_id);";
         $query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
