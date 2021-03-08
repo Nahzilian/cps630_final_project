@@ -139,9 +139,5 @@ Class MainController {
     public function checkout($id, $date, $total, $payment, $trip_id, $flower_id) {
         $this->customerOrder->addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id);
     }
-
-    public function getOrders(){
-      return $this->$customerOrder;
-    }
 }
 ?>

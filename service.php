@@ -75,13 +75,14 @@ while ($car = $availableCars->fetch_assoc()) {
     <label for="destin">Destination</label>
   </div>
   <button class="btn-large col s12 m6 l6" type="button" name="show" onclick="showMap()">Show Map</button>
-  <div class="" id="map"></div>
+  <div id="map"></div>
   <div>
     <label for="cars">Choose a driver:</label>
     <select name="cars" id="avail-cars">
-    <?php foreach ($allAvailCar as $car): ?>
-      <option value=<?php echo $car['CAR_CODE']?>><?php echo $car['CAR_MODEL']?></option>
-    <?php endforeach; ?>
+      <option value="">Choose a car</option>
+      <?php foreach ($allAvailCar as $car): ?>
+        <option value=<?php echo $car['CAR_CODE']?>><?php echo $car['CAR_MODEL']?></option>
+      <?php endforeach; ?>
     </select> 
   </div>
     <table class="striped">
@@ -157,11 +158,27 @@ while ($car = $availableCars->fetch_assoc()) {
       }
       orderList+=temp + ',';
     })
-    console.log('tyuififj '+type)
     const destVal = document.getElementById('destin').value;
     const sourceVal = document.getElementById('source').value;
-    const carCode = document.getElementById('avail-cars').value;
-    window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}&type=${type}&car=${carCode}`);
+    if(!destVal) {
+      alert('Please select a destination');
+      return;
+    }
+    if(!sourceVal) {
+      alert('Please select a destination');
+      return;
+    }
+    if(orderList=="" || orderList ==",") {
+      alert('Please select your items');
+      return;
+    }
+    if (type==='flower'){
+      var carCode = document.getElementById('avail-cars');
+      if(carCode)
+        window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}&type=${type}&car=${carCode}`);
+      else {alert('Please select a driver!'); return;}
+    }
+    window.location.replace(`http://localhost:3000/cart.php?orders=${orderList}&dest=${destVal}&src=${sourceVal}&type=${type}`);
   }
 
   function showMap () {

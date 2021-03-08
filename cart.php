@@ -3,7 +3,6 @@
 <?php
 include './back-end/back-end/Controller/MainController.php';
 $mainConn = new MainController();
-$allOrders = $mainConn->getOrders();
 $orders;
 ?>
 
@@ -66,7 +65,7 @@ $orders;
         </tr>
         <?php endforeach; ?>
         <tr>
-          <td></td>
+          <td>Total</td>
           <td>$<?= $price?></td>
         </tr>
 
