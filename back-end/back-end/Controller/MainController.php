@@ -8,6 +8,8 @@ include './back-end/back-end/Model/Flower.php';
 include './back-end/back-end/Model/ProductReview.php';
 include './back-end/back-end/Model/DriverReview.php';
 include './back-end/back-end/include/login.inc.php';
+include './back-end/back-end/include/sign.inc.php';
+include './back-end/back-end/include/order.inc.php';
 
 Class MainController {
     public $customer;
@@ -20,6 +22,8 @@ Class MainController {
 
 
     private $login;
+    private $sign;
+    private $order;
     public function __construct()
     {
         $dbcon = new dbconnect();
@@ -32,14 +36,75 @@ Class MainController {
         $this->dReview = new DriverReview($dbcon);
 
         $this->login = new Login($this->customer);
+        $this->sign = new Sign($this->customer);
+        $this->order = new Order($dbcon);
     }
-
+    //SELECT
     function getCarInfo() {
         return $this->car->getAll();
     }
 
     function getFlowerInfo() {
         return $this->flower->getAll();
+    }
+
+    function getCustomerInfo() {
+        return $this->customer->getAll();
+    }
+
+    function getCustomerOrderInfo() {
+        return $this->customerOrder->getAll();
+    }
+
+    function getTripInfo() {
+        return $this->trip->getAll();
+    }
+
+    function getDriverReviewInfo() {
+        return $this->dReview->getAll();
+    }
+
+    function getProductReviewInfo() {
+        return $this->pReview->getAll();
+    }
+
+    function getAvailableCars() {
+        return $this->car->getAvailableCar();
+    }
+
+    // DELETE
+    function deleteCustomerOrder ($id) {
+        echo $id;
+        $this->customerOrder->deleteCustomerOrder($id);
+    }
+
+    function deleteCar ($id) {
+        $this->deleteTrip($id);
+        $this->car->deleteCar($id);
+    }
+    
+    function deleteTrip ($id) {
+        $this->customerOrder->deleteCustomerOrderByTripID($id);
+        $this->trip->deleteTrip($id);
+    }
+    
+    function deleteFlower ($id) {
+        $this->customerOrder->deleteCustomerOrderByFlowerID($id);
+        $this->pReview->deleteDReviewByFlowerID($id);
+        $this->flower->deleteFlower($id);
+    }
+
+    function deleteCustomer ($id) {
+        $this->customerOrder->deleteCustomerOrderByCustomerID($id);
+        $this->customer->deleteCustomer($id);
+    }
+
+    function deleteProductComment ($id) {
+        $this->pReview->deleteReview($id);
+    }
+
+    function deleteDriverComment ($id) {
+        $this->pReview->deleteReview($id);
     }
 
     function writeReview($flowerId, $driverId, $message, $score, $selected) {
@@ -49,10 +114,112 @@ Class MainController {
             $this->dReview->writeReview($driverId,$message,$score);
         }
     }
+    // INSERT
+
+    function insertCar ($model, $code) {
+        $this->car->insertCar($model, $code);
+    }
+
+    function insertFlower($code, $price){
+        $this->flower->insertFlower($code, $price);
+    }
+
+    function insertCustomer($username, $password, $fname, $address, $city, $phone, $email) {
+        $fields = array('form_content'=>array($username, $password, $fname,'', $address, $city, $phone, $email, $password));
+        $this->customer->insert($fields);
+    }
+
+    function insertCustomerOrder($customer_id, $date, $total, $payment, $trip_id, $flower_id) {
+        $this->customerOrder->addNewOrder($customer_id, $date, $total, $payment, $trip_id, $flower_id);
+    }
+
+    function insertDriverReview($driver_id, $context, $score) {
+        $this->dReview->writeReview($driver_id, $context, $score);
+    }
+
+    function insertProductReview($flower_id, $context, $score) {
+        $this->pReview->writeReview($flower_id, $context, $score);
+    }
+
+    function insertTrip($destin, $source, $distance, $car_id,$price) {
+        $this->trip->insertTrip($destin, $source, $distance, $car_id,$price);
+    }
+
+    // GET BY ID
+
+    function getCarById($id) {
+       return $this->car->getSpecificCar($id);
+    }
+
+    function getCustomerById($id) {
+       return $this->customer->getSpecificCustomer($id);
+    }
+
+    function getCustomerOrderById($id) {
+       return $this->customerOrder->getCustomerOrderById($id);
+    }
+
+    function getDriverReviewById($id) {
+       return $this->dReview->getReviewById($id);
+    }
+
+    function getFlowerById($id) {
+       return $this->flower->getSpecificFlower($id);
+    }
+
+    function getProductReviewById($id) {
+       return $this->pReview->getReviewById($id);
+    }
+
+    function getTripById($id) {
+       return $this->trip->getTripById($id);
+    }
+    
+    // UPDATE
+
+    function updateCarById($id,$model, $code, $avail) {
+        return $this->car->updateById($id,$model, $code, $avail);
+     }
+ 
+     function updateCustomerById($id, $username, $fname, $address, $city,$phone, $email, $balance, $admin) {
+        return $this->customer->updateById($id, $username, $fname, $address, $city,$phone, $email, $balance, $admin);
+     }
+ 
+     function updateCustomerOrderById($id, $date_d, $total_price, $code, $customer_id, $trip_id, $flower_id) {
+        return $this->customerOrder->updateById($id, $date_d, $total_price, $code, $customer_id, $trip_id, $flower_id);
+     }
+ 
+     function updateDriverReviewById($id, $context, $score, $car_id) {
+        return $this->dReview->updateById($id, $context, $score, $car_id);
+     }
+ 
+     function updateFlowerById($id, $storecode, $price) {
+        return $this->flower->updateById($id, $storecode, $price);
+     }
+ 
+     function updateProductReviewById($id ,$context,$score, $flower_id) {
+        return $this->pReview->updateById($id, $context,$score, $flower_id);
+     }
+ 
+     function updateTripById($id, $destin, $source, $price, $car_id, $distance) {
+        return $this->trip->updateById($id, $destin, $source, $price, $car_id, $distance);
+     }
 
     public function login(){
       $this->login->process();
+      $this->sign->process();
     }
 
+    public function search($id, $s){
+      return $this->order->search($s, $id);
+    }
+
+    public function getUser($user){
+      return $this->customer->getUser($user);
+    }
+
+    public function checkout($id, $date, $total, $payment, $trip_id, $flower_id) {
+        $this->customerOrder->addNewOrder($id, $date, $total, $payment, $trip_id, $flower_id);
+    }
 }
 ?>

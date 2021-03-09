@@ -13,7 +13,7 @@ class Login
     $user_err = $pass_err = "";
 
     // Check if data submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['send'] === 'login') {
       list($username, $password, $user_err, $pass_err)  = $this->clean();
 
       // Validate
@@ -50,9 +50,9 @@ class Login
     if (empty($confirm_user['CUSTOMER_USERNAME'])) {
       $user_err = "Username does not exist";
     }else{
-      if ($password === $confirm_user['CUSTOMER_PASSWORD']) {
-        header("location:index.php?login=success");
+      if (password_verify($password ,$confirm_user['CUSTOMER_PASSWORD'])) {
         $_SESSION['username'] = $username;
+        header("Location:index.php?login=success", true, 301);
       }else{
         $pass_err = "Wrong password";
       }

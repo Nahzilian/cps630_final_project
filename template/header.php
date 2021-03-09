@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,11 +24,6 @@
 
       ?>
     <?php if (strpos($url, "service.php") !== false): ?>
-      <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqZTUi_ipGJ2YdWfEJi3cLUcpa3OfbCkI&callback=initMap&libraries=places&v=weekly"
-      async
-      ></script>
-
     <?php endif; ?>
     <link rel="shortcut icon" href="/res/img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./res/css/index.css">
