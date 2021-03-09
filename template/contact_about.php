@@ -12,28 +12,31 @@
       <div class="row profile">
         <div class="col s12 m4 l4">
           <img class="up col s12" src="./res/img/profile.jpg" alt="">
-          <h6>Software Engineer</h6>
+          <h6>Duc (Doug) Nguyen</h6>
           <hr>
           <article class="">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo
+            Team 6 Software Engineer<br/>
+            Student ID: 500910998
           </article>
           <a href="#"> <i class="fab fa-github"></i> </a>
         </div>
         <div class="col s12 m4 l4">
           <img class="col s12" src="./res/img/profile.jpg" alt="">
-          <h6>Software Engineer</h6>
+          <h6>Farhan Tahmeed Sami</h6>
           <hr>
           <article class="">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo
+            Team 6 Software Engineer<br/>
+            Student ID: 500982031
           </article>
           <a href="#"> <i class="fab fa-github"></i> </a>
         </div>
         <div class="col s12 m4 l4">
           <img class="up col s12" src="./res/img/profile.jpg" alt="">
-          <h6>Software Engineer</h6>
+          <h6>Sourena Khanzade</h6>
           <hr>
           <article class="">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo
+            Team 6 Software Engineer<br/>
+            Student ID: 500929191
           </article>
           <a href="#"> <i class="fab fa-github"></i> </a>
         </div>

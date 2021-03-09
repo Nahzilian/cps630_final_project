@@ -19,7 +19,11 @@
         The project applies the “Plan for Smart Services” (P2S) Web application methodology as a mean of creating potential services help reduce air pollution. The web application is developed under the LAMP stack (Linux, Apache, MySQL, PHP) with MVC architecture. Additionally, the web app includes open libraries such as google map, SASS, JQuery to assist the system.
       </blockquote>
       <div class="submit-btn">
-        <button class="pink accent-3 waves-effect waves-light btn btn-large" type="button" name="sign Up">Sign Up</button>
+        <?php if($_SESSION['username']):?>
+          <a href="./index.php"><button class="pink accent-3 waves-effect waves-light btn btn-large" type="button" name="sign Up">Sign Up</button></a>
+        <?php else: ?>
+          <a href="./signup.php"><button class="pink accent-3 waves-effect waves-light btn btn-large" type="button" name="sign Up">Sign Up</button></a>
+        <?php endif;?>
       </div>
     </div>
     <div class="col s12 m12 l6 driver content-blk">
