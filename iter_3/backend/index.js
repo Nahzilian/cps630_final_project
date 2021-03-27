@@ -26,8 +26,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
-app.get('/', (req, res) => {
-    res.send('Hello world')
+app.get('/api/', (req, res) => {
+    res.json({msg: "Data 1"})
 });
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);

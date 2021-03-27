@@ -4,9 +4,15 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import axios from 'axios';
+
+axios.defaults.baseURL = environment.apiUrl || 'http://localhost:5500';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 if (environment.production) {
   enableProdMode();
 }
+
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
