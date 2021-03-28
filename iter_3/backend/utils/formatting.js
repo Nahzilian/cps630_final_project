@@ -6,7 +6,8 @@ const userInfoFormat = (data) => {
         email: data.email,
         address: data.address,
         cityCode: data.cityCode,
-        balance: data.balance
+        balance: data.balance,
+        isAdmin: data.isAdmin
     }
 }
 

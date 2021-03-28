@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from "@angular/router";
 import { login } from '../../utils/api/apiController';
-
-import axios from 'axios';
 
 @Component({
   selector: 'app-login-form',
@@ -14,19 +13,18 @@ export class LoginFormComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
-  data: String;
   error: String;
-  constructor() {
+  constructor(private router: Router) {
+
   }
 
   ngOnInit(): void {
-    axios.get('/').then(res => this.data = res.data.msg)
   }
   submit() {
     if (this.form.valid) {
       try {
         login(this.form.controls['username'].value, this.form.controls['password'].value);
-        console.log('Here')
+        this.router.navigate(['/']);
       } catch (err){
         this.error = err
       }

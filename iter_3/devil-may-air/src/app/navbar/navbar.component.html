@@ -6,13 +6,49 @@
     <span>Devil May Air</span>
     <span class="example-spacer"></span>
 
-    <a routerLink="/login">
-      Login
-    </a>
 
-    <a routerLink="/signup">
-      Sign up
-    </a>
 
+    <div class="not-logged-in">
+      <a *ngIf="userAccount && isAdmin" routerLink="/home">
+        DB Maintain
+      </a>
+
+      <a routerLink="/home">
+        Home
+      </a>
+
+      <a routerLink="/home">
+        About us
+      </a>
+
+      <a routerLink="/home">
+        Contact Us
+      </a>
+
+      <a *ngIf="userAccount" routerLink="/home">
+        Reviews
+      </a>
+
+      <a *ngIf="userAccount" routerLink="/home">
+        Cart
+      </a>
+
+      <a routerLink="/home">
+        Services
+      </a>
+
+      <a *ngIf="!userAccount" routerLink="/login">
+        Login
+      </a>
+
+      <a *ngIf="!userAccount" routerLink="/signup">
+        Sign up
+      </a>
+
+      <div *ngIf="userAccount">
+        {{userAccount.name}}
+      </div>
+
+    </div>
   </mat-toolbar>
 </p>

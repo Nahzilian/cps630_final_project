@@ -1,19 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import User from '../../models/user';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.sass']
 })
+
 export class NavbarComponent implements OnInit {
   navbarOpen = false;
+  userAccount: User;
+  isAdmin: boolean;
 
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
+  refreshed = false;
+  constructor() {
+    this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
+    this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
   }
-  constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  ngAfterViewChecked(): void {
+    if(localStorage.getItem('user')) {
+      this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
+      this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
+    }
   }
 
 }
