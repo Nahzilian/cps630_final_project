@@ -1,1 +1,47 @@
-<p>contact-us works!</p>
+<div class="contact-us" *ngIf="!mailSent">
+  <div class="banner">
+    <div class="banner-text-wrapper">
+      <div class="banner-text">Let's get in touch</div>
+    </div>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>We are thrilled to be connected with you!</mat-card-title>
+      <mat-card-subtitle>Don't worry, your email is safe with us</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
+            <mat-error *ngIf="form.invalid">Please enter your email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Your email subject</mat-label>
+            <input matInput placeholder="ie. Title of your email" formControlName="subject" required>
+            <mat-error *ngIf="form.invalid">Please enter a subject for your email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Message</mat-label>
+            <textarea matInput placeholder="Your Message to us" formControlName="message">
+            </textarea>
+            <mat-error *ngIf="form.invalid">Error</mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-button type="submit">Send email</button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<div class="contact-us" *ngIf="mailSent">
+  <div class="banner banner-success">
+    <div class="banner-text-wrapper">
+      <div class="banner-text banner-text-success">Thank you for your email!<br/> <span>We will reply to it shortly</span></div>
+    </div>
+  </div>
+</div>
