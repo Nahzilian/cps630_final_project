@@ -19,13 +19,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

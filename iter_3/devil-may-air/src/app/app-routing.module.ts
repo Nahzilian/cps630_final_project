@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 
 const routes: Routes = [
+  {path: "", component: HomeComponent},
   {path: "login", component: LoginFormComponent},
   {path: "signup", component: SignupFormComponent},
+  {path: "about", component: AboutUsComponent},
+  {path: "contact", component: ContactUsComponent},
   {path: "**", redirectTo: '/' , pathMatch: 'full'},
 ];
 

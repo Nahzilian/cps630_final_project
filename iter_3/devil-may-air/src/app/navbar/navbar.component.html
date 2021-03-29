@@ -9,8 +9,8 @@
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
       <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
       <a routerLink="/home" mat-button>Home</a>
-      <a routerLink="/home" mat-button>About us</a>
-      <a routerLink="/home" mat-button>Contact us</a>
+      <a routerLink="/about" mat-button>About us</a>
+      <a routerLink="/contact" mat-button>Contact us</a>
       <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
       <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
       <a routerLink="/home" mat-button>Services</a>
@@ -27,8 +27,8 @@
       <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
       <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
       <a routerLink="/home" mat-button>Home</a>
-      <a routerLink="/home" mat-button>About us</a>
-      <a routerLink="/home" mat-button>Contact us</a>
+      <a routerLink="/about" mat-button>About us</a>
+      <a routerLink="/contact" mat-button>Contact us</a>
       <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
       <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
       <a routerLink="/home" mat-button>Services</a>
