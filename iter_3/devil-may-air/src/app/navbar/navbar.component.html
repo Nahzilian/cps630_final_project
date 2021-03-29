@@ -1,54 +1,40 @@
-<p>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Devil May Air</span>
-    <span class="example-spacer"></span>
-
-
-
-    <div class="not-logged-in">
-      <a *ngIf="userAccount && isAdmin" routerLink="/home">
-        DB Maintain
-      </a>
-
-      <a routerLink="/home">
-        Home
-      </a>
-
-      <a routerLink="/home">
-        About us
-      </a>
-
-      <a routerLink="/home">
-        Contact Us
-      </a>
-
-      <a *ngIf="userAccount" routerLink="/home">
-        Reviews
-      </a>
-
-      <a *ngIf="userAccount" routerLink="/home">
-        Cart
-      </a>
-
-      <a routerLink="/home">
-        Services
-      </a>
-
-      <a *ngIf="!userAccount" routerLink="/login">
-        Login
-      </a>
-
-      <a *ngIf="!userAccount" routerLink="/signup">
-        Sign up
-      </a>
-
-      <div *ngIf="userAccount">
-        {{userAccount.name}}
-      </div>
-
+    <span>Devil may air</span>
+    <span class="menu-spacer"></span>
+    <div fxShow="true" fxHide.lt-md>
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
+      <a routerLink="/home" mat-button>Home</a>
+      <a routerLink="/home" mat-button>About us</a>
+      <a routerLink="/home" mat-button>Contact us</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
+      <a routerLink="/home" mat-button>Services</a>
+      <a *ngIf="!userAccount" routerLink="/login" mat-button>Login</a>
+      <a *ngIf="!userAccount" routerLink="/signup" mat-button>Sign up</a>
+      <a *ngIf="userAccount" mat-button>{{userAccount.name}}</a>
     </div>
-  </mat-toolbar>
-</p>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container >
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+      <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
+      <a routerLink="/home" mat-button>Home</a>
+      <a routerLink="/home" mat-button>About us</a>
+      <a routerLink="/home" mat-button>Contact us</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
+      <a routerLink="/home" mat-button>Services</a>
+      <a *ngIf="!userAccount" routerLink="/login" mat-button>Login</a>
+      <a *ngIf="!userAccount" routerLink="/signup" mat-button>Sign up</a>
+      <a *ngIf="userAccount" mat-button>{{userAccount.name}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
