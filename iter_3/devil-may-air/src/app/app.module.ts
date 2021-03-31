@@ -29,6 +29,10 @@ import { MainServicesComponent } from './main-services/main-services.component';
 import { DriverServiceComponent } from './main-services/driver-service/driver-service.component';
 import { FlowerServiceComponent } from './main-services/flower-service/flower-service.component';
 
+import { AutocompleteAddressComponent } from './main-services/autocomplete-address/autocomplete-address.component';
+import { MapComponent } from './main-services/map/map.component'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +44,9 @@ import { FlowerServiceComponent } from './main-services/flower-service/flower-se
     HomeComponent,
     MainServicesComponent,
     DriverServiceComponent,
-    FlowerServiceComponent
+    FlowerServiceComponent,
+    AutocompleteAddressComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,7 @@ import { FlowerServiceComponent } from './main-services/flower-service/flower-se
     MatListModule,
     MatTabsModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
