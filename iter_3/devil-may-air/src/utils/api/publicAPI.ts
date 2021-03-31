@@ -9,9 +9,10 @@ export async function getAllCar (page, limit) {
   }
 }
 
-export async function getAllFlower () {
+export async function getAllFlower (page, limit) {
   try {
-    const result = await axios.get('/services/flower')
+    const result = await axios.get(`/services/flower?page=${page}&limit=${limit}`)
+    console.log(result);
     return result;
   } catch (err) {
     throw new Error(err);

@@ -1,1 +1,44 @@
-<p>flower-service works!</p>
+<div class="address-autocomplete">
+  <app-autocomplete-address (setAddress)="getSourceAddress($event)"></app-autocomplete-address>
+  <mat-icon>arrow_right_alt</mat-icon>
+  <app-autocomplete-address (setAddress)="getDestinAddress($event)"></app-autocomplete-address>
+</div>
+
+<div class="btn-middle">
+  <button mat-button color="primary" (click)="showMap()">Show map!</button>
+</div>
+<app-map #myMap></app-map>
+
+<div class="flowers-tab-header">
+  <span>Our current products</span>
+</div>
+<div class="flower-arc-wrapper" *ngIf="allFlower">
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = updateData($event)">
+  </mat-paginator>
+  <mat-accordion *ngFor="let flower of allFlower">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Flower name</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{flower.flowerName}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="flower-dropdown">
+        <div class="flower-img">
+          <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+        </div>
+        <div class="flower-details">
+          <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
+          <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
+          <div><strong>Price</strong> - {{flower.price}}$</div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
