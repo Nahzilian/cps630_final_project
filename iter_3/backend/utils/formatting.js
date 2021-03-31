@@ -11,4 +11,14 @@ const userInfoFormat = (data) => {
     }
 }
 
+const pageDataFormatting = (data, pageSize, pageNum, dataCount) => {
+    return {
+        pageSize: pageSize,
+        pageNum: pageNum,
+        row: dataCount,
+        data: data,
+    }
+}
+
 module.exports.userInfoFormat = userInfoFormat;
+module.exports.pageDataFormatting = pageDataFormatting;

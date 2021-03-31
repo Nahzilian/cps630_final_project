@@ -17,11 +17,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
+import { MainServicesComponent } from './main-services/main-services.component';
+import { DriverServiceComponent } from './main-services/driver-service/driver-service.component';
+import { FlowerServiceComponent } from './main-services/flower-service/flower-service.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,10 @@ import { HomeComponent } from './home/home.component';
     SignupFormComponent,
     AboutUsComponent,
     ContactUsComponent,
-    HomeComponent
+    HomeComponent,
+    MainServicesComponent,
+    DriverServiceComponent,
+    FlowerServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +56,10 @@ import { HomeComponent } from './home/home.component';
     MatGridListModule,
     FlexLayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

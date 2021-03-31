@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
-// const authRoute = require('./routes/auth');
-// const privRoute = require('./routes/api');
+const carRoute = require('./routes/cars');
+const flowerRoute = require('./routes/flowers');
+const orderRoute = require('./routes/orders');
+
+// Allow cors for local development
 const cors = require('cors');
 
 // Use dotenv for environment config
@@ -31,5 +34,8 @@ app.get('/api/', (req, res) => {
 });
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
+app.use('/api/services/car', carRoute);
+app.use('/api/services/flower', flowerRoute);
+app.use('/api/services/order', orderRoute);
 
 app.listen(PORT,() => console.log(`Listening on port ${PORT}`));

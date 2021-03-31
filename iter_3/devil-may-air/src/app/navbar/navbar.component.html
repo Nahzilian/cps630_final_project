@@ -8,15 +8,15 @@
     <div fxShow="true" fxHide.lt-md>
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
       <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
-      <a routerLink="/home" mat-button>Home</a>
-      <a routerLink="/about" mat-button>About us</a>
-      <a routerLink="/contact" mat-button>Contact us</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
-      <a routerLink="/home" mat-button>Services</a>
-      <a *ngIf="!userAccount" routerLink="/login" mat-button>Login</a>
-      <a *ngIf="!userAccount" routerLink="/signup" mat-button>Sign up</a>
-      <a *ngIf="userAccount" mat-button>{{userAccount.name}}</a>
+      <a routerLink="/home" mat-button><mat-icon>home</mat-icon> Home</a>
+      <a routerLink="/about" mat-button><mat-icon>code</mat-icon> About us</a>
+      <a routerLink="/contact" mat-button><mat-icon>mail</mat-icon> Contact us</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
+      <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
+      <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
+      <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
+      <a *ngIf="userAccount" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -26,15 +26,15 @@
     <mat-nav-list>
       <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
       <a *ngIf="userAccount && isAdmin" routerLink="/home" mat-button>Db maintain</a>
-      <a routerLink="/home" mat-button>Home</a>
-      <a routerLink="/about" mat-button>About us</a>
-      <a routerLink="/contact" mat-button>Contact us</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button>Cart</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button>Reviews</a>
-      <a routerLink="/home" mat-button>Services</a>
-      <a *ngIf="!userAccount" routerLink="/login" mat-button>Login</a>
-      <a *ngIf="!userAccount" routerLink="/signup" mat-button>Sign up</a>
-      <a *ngIf="userAccount" mat-button>{{userAccount.name}}</a>
+      <a routerLink="/home" mat-button><mat-icon>home</mat-icon> Home</a>
+      <a routerLink="/about" mat-button><mat-icon>code</mat-icon> About us</a>
+      <a routerLink="/contact" mat-button><mat-icon>mail</mat-icon> Contact us</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
+      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
+      <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
+      <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
+      <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
+      <a *ngIf="userAccount" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

@@ -1,0 +1,35 @@
+<div class="drivers-tab-header">
+  <span>Our current drivers</span>
+</div>
+
+<div class="car-arc-wrapper" *ngIf="allCar">
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = updateData($event)">
+  </mat-paginator>
+  <mat-accordion *ngFor="let car of allCar">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Car model</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{car.model}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="car-dropdown">
+        <div class="car-img">
+          <img [src]="getCarImgSrc(car.imageid)" alt={{car.model}} width="200px">
+        </div>
+        <div class="car-details">
+          <div><strong>Car Model</strong> - {{car.model}}</div>
+          <div><strong>Car code</strong> - {{car.carCode}}</div>
+          <div><strong>Availability</strong> - {{car.available? "Yes" : "No"}}</div>
+          <div><strong>Price</strong> - 12$ per km</div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
