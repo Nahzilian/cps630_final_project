@@ -18,6 +18,22 @@ export function login(username, password) {
     }).catch(err => { throw new Error(err) })
 }
 
+export function logout() {
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
+}
+
+export function editUserInfo(data) {
+  let user = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
+  axios.put(`/user/me/update/${user.id}`, data, {headers: {'x-auth-token': token}}).then(res => {
+    if(res.status === 201) {
+      Object.assign(user, data);
+      localStorage.setItem('user', JSON.stringify(user));
+    };
+  }).catch(err => {throw new Error(err)});
+}
+
 
 export function register(form) {
   console.log(form)

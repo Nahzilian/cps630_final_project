@@ -30,7 +30,8 @@ import { DriverServiceComponent } from './main-services/driver-service/driver-se
 import { FlowerServiceComponent } from './main-services/flower-service/flower-service.component';
 
 import { AutocompleteAddressComponent } from './main-services/autocomplete-address/autocomplete-address.component';
-import { MapComponent } from './main-services/map/map.component'
+import { MapComponent } from './main-services/map/map.component';
+import { UserInfoComponent } from './user-info/user-info.component'
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MapComponent } from './main-services/map/map.component'
     DriverServiceComponent,
     FlowerServiceComponent,
     AutocompleteAddressComponent,
-    MapComponent
+    MapComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

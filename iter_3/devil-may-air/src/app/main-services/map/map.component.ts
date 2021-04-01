@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, Input, ViewChild, ElementRef, Directive } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-map',

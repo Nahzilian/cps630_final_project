@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MainServicesComponent } from './main-services/main-services.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "about", component: AboutUsComponent},
   {path: "contact", component: ContactUsComponent},
   {path: "services", component: MainServicesComponent},
+  {path: "me", component: UserInfoComponent},
   {path: "**", redirectTo: '/' , pathMatch: 'full'},
 ];
 

@@ -1,0 +1,66 @@
+<div class="user-info-wrapper">
+  <mat-card class="personal-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Your personal information setting <mat-icon>settings</mat-icon>
+      </mat-card-title>
+      <mat-card-subtitle>Edit your personal information here</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div class="current-balance">Your current balance: <strong>{{balance}} $</strong></div>
+        <form [formGroup]="form" (ngSubmit)="saveChanges()" class="personal-info-form">
+          <p>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="name">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="form.patchValue({name: ''})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="form.patchValue({email: ''})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Phone</mat-label>
+              <input matInput type="tel" formControlName="phone">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="form.patchValue({phone: ''})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput type="text" formControlName="address">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="form.patchValue({address: ''})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>City code</mat-label>
+              <input matInput type="text" formControlName="cityCode">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="form.patchValue({cityCode: ''})">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+
+          <button mat-button type="submit">Save changes</button>
+        </form>
+        <button mat-button (click)="loadUserInfo()">Cancel</button>
+        <button mat-button (click)="logout()">Log out</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

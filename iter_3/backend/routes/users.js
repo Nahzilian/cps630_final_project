@@ -43,4 +43,27 @@ router.get('/me', validateToken, (req, res, next) => {
     res.send('Hello world')
 })
 
+router.put('/me/update/:id', validateToken, async (req, res, next) => {
+    const userId = req.params.id;
+    const user = {
+        address: req.body.address,
+        cityCode: req.body.cityCode,
+        email: req.body.email,
+        name: req.body.name,
+        phone: req.body.phone
+    }
+
+    console.log(userId)
+    console.log(user)
+    User.updateOne({_id: userId}, user).then(
+        () => {
+            res.status(201).json({
+                msg: "Updated successfully"
+            })
+        }
+    ).catch( (err) => res.status(400).json({
+        error: err
+    }))
+})
+
 module.exports = router;

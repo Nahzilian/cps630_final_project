@@ -7,7 +7,7 @@ import User from '../../models/user';
   styleUrls: ['./navbar.component.sass']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewChecked {
   navbarOpen = false;
   userAccount: User;
   isAdmin: boolean;
@@ -23,6 +23,9 @@ export class NavbarComponent implements OnInit {
     if(localStorage.getItem('user')) {
       this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
       this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
+    } else {
+      this.userAccount = null;
+      this.isAdmin = false;
     }
   }
 

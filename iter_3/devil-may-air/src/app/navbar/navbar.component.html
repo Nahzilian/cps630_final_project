@@ -16,7 +16,7 @@
       <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
       <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
       <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
-      <a *ngIf="userAccount" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
+      <a *ngIf="userAccount" routerLink="/me" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -34,7 +34,7 @@
       <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
       <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
       <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
-      <a *ngIf="userAccount" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
+      <a *ngIf="userAccount" routerLink="/me" mat-button><mat-icon>account_circle</mat-icon> {{userAccount.name}}</a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>
