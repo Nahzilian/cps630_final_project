@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import User from '../../models/user';
 
 @Component({
@@ -7,26 +7,25 @@ import User from '../../models/user';
   styleUrls: ['./navbar.component.sass']
 })
 
-export class NavbarComponent implements OnInit, AfterViewChecked {
+export class NavbarComponent implements AfterViewChecked {
   navbarOpen = false;
   userAccount: User;
   isAdmin: boolean;
 
   refreshed = false;
-  constructor() {
-    this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
-    this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
-  }
-
-  ngOnInit(): void {}
+  constructor() {}
   ngAfterViewChecked(): void {
-    if(localStorage.getItem('user')) {
-      this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
-      this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
-    } else {
-      this.userAccount = null;
-      this.isAdmin = false;
-    }
+    // This is to resolve NG0100 error and to update the UI properly
+    // Video of explaination: https://angular.io/errors/NG0100
+    setTimeout(() => {
+      if(localStorage.getItem('user')) {
+        this.userAccount = JSON.parse(localStorage.getItem('user')) || null;
+        this.isAdmin = this.userAccount? this.userAccount.isAdmin :false;
+      } else {
+        this.userAccount = null;
+        this.isAdmin = false;
+      }
+    }, 0)
   }
 
 }
