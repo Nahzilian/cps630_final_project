@@ -9,36 +9,64 @@
 </div>
 <app-map #myMap></app-map>
 
-<div class="flowers-tab-header">
-  <span>Our current products</span>
-</div>
-<div class="flower-arc-wrapper" *ngIf="allFlower">
-  <mat-paginator
-    [length]="length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="pageEvent = updateData($event)">
-  </mat-paginator>
-  <mat-accordion *ngFor="let flower of allFlower">
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <strong>Flower name</strong>
-        </mat-panel-title>
-        <mat-panel-description>
-          {{flower.flowerName}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="flower-dropdown">
-        <div class="flower-img">
-          <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+<!-- DROP DRAG -->
+
+<div cdkDropListGroup>
+
+
+  <div class="shopping-cart"
+    cdkDropList
+    [cdkDropListData]="cart"
+    (cdkDropListDropped)="drop($event)"
+    (click)="checkOut()">
+    <mat-icon>shopping_cart</mat-icon>
+    <div>{{itemCount > 0? itemCount: null}}</div>
+  </div>
+
+  <!-- DROP DRAG -->
+
+  <div class="flowers-tab-header">
+    <span>Our current products</span>
+  </div>
+  <div class="flower-arc-wrapper" *ngIf="allFlower">
+
+    <!-- PAGINATION -->
+
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = updateData($event)">
+    </mat-paginator>
+
+    <!-- ACCORDION LIST -->
+    <mat-accordion
+    cdkDropList
+    [cdkDropListData]="allFlower"
+    (cdkDropListDropped)="drop($event)"
+    *ngFor="let flower of allFlower"
+    >
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" cdkDrag>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>Flower name</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{flower.flowerName}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="flower-dropdown">
+          <div class="flower-img">
+            <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+          </div>
+          <div class="flower-details">
+            <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
+            <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
+            <div><strong>Price</strong> - {{flower.price}}$</div>
+          </div>
+          <div>
+            <button mat-button color="primary">Select flower</button>
+          </div>
         </div>
-        <div class="flower-details">
-          <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
-          <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
-          <div><strong>Price</strong> - {{flower.price}}$</div>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
 </div>

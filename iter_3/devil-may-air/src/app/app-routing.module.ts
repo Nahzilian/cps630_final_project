@@ -5,6 +5,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MainServicesComponent } from './main-services/main-services.component';
+import { MyCartComponent } from './my-cart/my-cart.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "contact", component: ContactUsComponent},
   {path: "services", component: MainServicesComponent},
   {path: "me", component: UserInfoComponent},
+  {path: "cart", component: MyCartComponent},
   {path: "**", redirectTo: '/' , pathMatch: 'full'},
 ];
 

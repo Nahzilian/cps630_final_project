@@ -31,7 +31,9 @@ import { FlowerServiceComponent } from './main-services/flower-service/flower-se
 
 import { AutocompleteAddressComponent } from './main-services/autocomplete-address/autocomplete-address.component';
 import { MapComponent } from './main-services/map/map.component';
-import { UserInfoComponent } from './user-info/user-info.component'
+import { UserInfoComponent } from './user-info/user-info.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MyCartComponent } from './my-cart/my-cart.component';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { UserInfoComponent } from './user-info/user-info.component'
     FlowerServiceComponent,
     AutocompleteAddressComponent,
     MapComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    MyCartComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { UserInfoComponent } from './user-info/user-info.component'
     MatTabsModule,
     MatExpansionModule,
     MatPaginatorModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

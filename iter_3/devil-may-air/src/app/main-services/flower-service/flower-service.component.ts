@@ -1,20 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import Flower from 'src/models/flower';
 import { MapComponent } from '../map/map.component';
 import { getAllFlower } from '../../../utils/api/publicAPI';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flower-service',
   templateUrl: './flower-service.component.html',
   styleUrls: ['./flower-service.component.sass']
 })
-export class FlowerServiceComponent implements OnInit {
-  @ViewChild (MapComponent) map!: MapComponent;
-  constructor() {
-    this.getFlowers(0);
-  }
+export class FlowerServiceComponent implements OnInit, OnChanges {
+  @ViewChild(MapComponent) map!: MapComponent;
   allFlower: Array<Flower>;
+  cart: Array<Flower>;
+
   panelOpenState = false;
 
   length = 100;
@@ -28,7 +29,35 @@ export class FlowerServiceComponent implements OnInit {
   source: string;
   destin: string;
 
-  updateData (event?: PageEvent) {
+  // Drag drop
+  itemCount: number
+
+  drop(event: CdkDragDrop<string[]>) {
+    setTimeout(() => {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    })
+    console.log(this.cart)
+    this.itemCount = this.cart.length + 1;
+  }
+
+  checkOut () {
+    // Couldnt find a way to pass data due to how the components are set up.
+    // Proposal solution: Navbar should just hold all the components instead
+    // https://medium.com/ableneo/how-to-pass-data-between-routed-components-in-angular-2306308d8255
+    // https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
+    localStorage.setItem('items', JSON.stringify(this.cart));
+    this.router.navigate(['/cart'])
+  }
+
+  constructor(private router: Router) {
+    this.getFlowers(0);
+    this.cart = [];
+  }
+
+  updateData(event?: PageEvent) {
     this.pageSize = event.pageSize;
     this.getFlowers(event.pageIndex);
   }
@@ -45,7 +74,6 @@ export class FlowerServiceComponent implements OnInit {
     }
   }
 
-
   getSourceAddress(place: object) {
     this.source = place['formatted_address'];
   }
@@ -54,8 +82,8 @@ export class FlowerServiceComponent implements OnInit {
     this.destin = place['formatted_address'];
   }
 
-  showMap () {
-    if(this.source && this.destin)
+  showMap() {
+    if (this.source && this.destin)
       this.map.showMap(this.source, this.destin);
     else alert('Please provide your source and destination')
   }
@@ -66,7 +94,8 @@ export class FlowerServiceComponent implements OnInit {
     return '../../../assets/img/flower/plc.jpeg';
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
   }
+  ngOnInit(): void { }
 
 }
