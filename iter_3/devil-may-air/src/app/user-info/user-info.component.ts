@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { editUserInfo, logout } from '../../utils/api/apiController'
+import { logout } from '../../utils/api/apiController';
+import axios from 'axios';
 
 @Component({
   selector: 'app-user-info',
@@ -9,34 +10,69 @@ import { editUserInfo, logout } from '../../utils/api/apiController'
   styleUrls: ['./user-info.component.sass']
 })
 export class UserInfoComponent implements OnInit {
-  form: FormGroup;
+  userForm: FormGroup;
   balance: number;
+  error: string;
 
   constructor(private router: Router) {
+    this.loadUser();
+  }
+
+  toggleError () {
+    this.error = '';
+  }
+  saveChanges() {
+      const data = {
+        name: this.userForm.controls['name'].value,
+        address: this.userForm.controls['address'].value,
+        cityCode: this.userForm.controls['cityCode'].value,
+        email: this.userForm.controls['email'].value,
+        phone: this.userForm.controls['phone'].value,
+      }
+      this.editUserInfo(data);
+  }
+
+  loadUser() {
+    this.userForm = new FormGroup({
+      name: new FormControl(''),
+      address: new FormControl(''),
+      cityCode: new FormControl(''),
+      email: new FormControl(''),
+      phone: new FormControl(''),
+    });
     this.loadUserInfo()
   }
 
-  saveChanges () {
-    const data = {
-      name: this.form.controls['name'].value,
-      address: this.form.controls['address'].value,
-      cityCode: this.form.controls['cityCode'].value,
-      email: this.form.controls['email'].value,
-      phone: this.form.controls['phone'].value,
-    }
-    editUserInfo(data);
+  async loadUserInfo() {
+    // Since there's only 1 tester, this will directly call API
+      let user = await this.getPersonalInfo();
+      this.userForm.patchValue({
+        name: user.name,
+        address: user.address,
+        cityCode: user.cityCode,
+        email: user.email,
+        phone: user.phone,
+      })
+      this.balance = user.balance;
   }
 
-  loadUserInfo () {
-    let user = JSON.parse(localStorage.getItem('user'));
-    this.form = new FormGroup({
-      name: new FormControl(user.name),
-      address: new FormControl(user.address),
-      cityCode: new FormControl(user.cityCode),
-      email: new FormControl(user.email),
-      phone: new FormControl(user.phone),
-    });
-    this.balance = user.balance;
+
+  editUserInfo(data) {
+    let user = JSON.parse(localStorage.getItem('user'))
+    const token = JSON.parse(localStorage.getItem('token'))
+    axios.put(`/user/me/update/${user.id}`, data, {headers: {'x-auth-token': token}}).then(res => {
+      if(res.status === 201) {
+        Object.assign(user, data);
+        localStorage.setItem('user', JSON.stringify(user));
+      };
+    }).catch(err => {this.error = err});
+  }
+
+  async getPersonalInfo() {
+    let token = JSON.parse(localStorage.getItem('token'));
+    let userId = JSON.parse(localStorage.getItem('user')).id;
+    const result = await axios.get(`/user/me/${userId}`, {headers: {'x-auth-token': token}}).catch(err => this.error = err);
+    return result.data;
   }
 
   logout() {

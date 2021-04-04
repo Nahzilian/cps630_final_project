@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { userInfoValidation } = require('../utils/validation');
+const { userInfoValidation, updateUserValidation } = require('../utils/validation');
 const { encryptPassword } = require('../utils/encrypt');
 const { userInfoFormat } = require('../utils/formatting');
 const { signToken, validateToken } = require('../utils/authentication');
@@ -32,19 +32,24 @@ router.post('/register', async (req, res) => {
     // Try saving user info
     try {
         const savedUser = await user.save();
-        
         return res.send({user: userInfoFormat(savedUser), token: signToken(savedUser)});
     } catch(err) {
         return res.status(400).send(err);
     }
 })
 
-router.get('/me', validateToken, (req, res, next) => {
-    res.send('Hello world')
-})
+router.get('/me/:id', validateToken, async (req, res, next) => {
+    const user = await User.findOne({_id: req.params.id});
+    if(!user) return res.status(400).send({error: 'No user found'});
+    return res.status(200).json(user);
+});
 
 router.put('/me/update/:id', validateToken, async (req, res, next) => {
     const userId = req.params.id;
+    
+    const { error } = updateUserValidation(req.body);
+    if( error ) return res.status(400).send(error.details[0].message);
+    
     const user = {
         address: req.body.address,
         cityCode: req.body.cityCode,
@@ -53,8 +58,6 @@ router.put('/me/update/:id', validateToken, async (req, res, next) => {
         phone: req.body.phone
     }
 
-    console.log(userId)
-    console.log(user)
     User.updateOne({_id: userId}, user).then(
         () => {
             res.status(201).json({
