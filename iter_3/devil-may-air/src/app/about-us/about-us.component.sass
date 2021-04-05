@@ -1,16 +1,21 @@
+// width = 1084 => will break
 .about-us-wrapper
-  // width: auto
-//   padding: 100px
-//   display: flex
-//   flex-direction: row
-//   flex-wrap: wrap
-//   justify-content: space-evenly
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+
+.card-wrapper
+  width: 25%
+  @media screen and ( max-width:  1084px)
+    width: 70%
+    margin-bottom: 20px
 
 
 .about-us-header
   width: 100%
   text-align: center
-  margin: 40px
+  margin: 40px 0
 
 .about-us-header span
   font-size: 40px
