@@ -1,5 +1,7 @@
 const Joi = require('joi');
 
+// Users
+
 const userInfoValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().min(1).required(),
@@ -25,6 +27,19 @@ const updateUserValidation = (data) => {
     });
     return schema.validate(data);
 }
+
+// Orders
+
+const orderValidation = () => {
+
+}
+
+// Products
+
+
+// Trips
+
+
 
 module.exports.userInfoValidation = userInfoValidation;
 module.exports.updateUserValidation = updateUserValidation;

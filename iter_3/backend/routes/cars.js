@@ -3,19 +3,6 @@ const Car = require('../models/Car');
 const Trip = require('../models/Trip');
 const { pageDataFormatting } = require('../utils/formatting');
 
-// For init a new record for testing
-
-// router.get('/init', async (req, res) => {
-//     const testCar = new Car({
-//         model: "Volvo",
-//         carCode: "XYZ 123",
-//         imageid: 1
-//     })
-//     await testCar.save();
-//     res.send('OK')
-// })
-
-
 router.get('/', async (req, res) => {
     const pageLimit = parseInt(req.query.limit);
     const pageNum = parseInt(req.query.page);

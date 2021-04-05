@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -10,8 +10,12 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 export class MapComponent {
   @ViewChild('myMap') myMap: ElementRef;
   map: google.maps.Map;
-
+  distance: number;
   constructor() {
+  }
+
+  getDistance() {
+    return this.distance
   }
 
   showMap(org, des) {
@@ -32,7 +36,9 @@ export class MapComponent {
     direction.route(
       directionRequest,
       (res, status) => {
+
         if (status === google.maps.DirectionsStatus.OK) {
+          this.distance = res.routes[0].legs[0].distance.value;
           new google.maps.DirectionsRenderer({
             map: this.map,
             directions: res

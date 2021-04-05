@@ -28,6 +28,7 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
   // Google map
   source: string;
   destin: string;
+  error: string;
 
   // Drag drop
   itemCount: number
@@ -48,8 +49,25 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     // Proposal solution: Navbar should just hold all the components instead
     // https://medium.com/ableneo/how-to-pass-data-between-routed-components-in-angular-2306308d8255
     // https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
-    localStorage.setItem('items', JSON.stringify(this.cart));
+    if(this.cart.length === 0) {
+      this.error = 'Your cart is empty';
+      return;
+    }
+
+    if(!this.source) {
+      this.error = 'Please select a source'
+    }
+
+    if(!this.destin) {
+      this.error = 'Please select a destination';
+      return;
+    }
+    this.map.showMap(this.source, this.destin);
+    let distance = this.map.getDistance();
+    console.log(distance)
+    localStorage.setItem('items', JSON.stringify({cart: this.cart, distance: distance}));
     this.router.navigate(['/cart'])
+    return;
   }
 
   constructor(private router: Router) {

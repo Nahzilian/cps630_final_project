@@ -7,6 +7,12 @@
 <div class="btn-middle">
   <button mat-button color="primary" (click)="showMap()">Show map!</button>
 </div>
+
+<div *ngIf ="error">
+  {{error}}
+</div>
+
+
 <app-map #myMap></app-map>
 
 <!-- DROP DRAG -->
