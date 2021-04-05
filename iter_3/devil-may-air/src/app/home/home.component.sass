@@ -20,15 +20,30 @@
   border-left: 5px solid
   padding-left: 10px
 
+
 .flex-items
   width: calc(50% - 200px)
   padding: 100px
   @media screen and (max-width: 1294px)
     width: 100%
 
+@mixin parallax($src)
+    background: fixed url($src) no-repeat
+    background-size: cover
+    background-position: center
+
+.img-1
+  @extend .flex-items
+  @include parallax('/assets/img/florist_wedding.jpg')
+  @media screen and (min-width: 1294px)
+    background-position: 500px
+.img-2
+  @extend .flex-items
+  @include parallax('/assets/img/florist2.jpeg')
+
 .homepage-register-btn
   @media screen and (max-width: 1294px)
-    text-align: center
+    text-align: right
 
 .homepage-register-btn button
   background-color: pink

@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { AboutCardComponent } from './about-us/about-card/about-card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
 import { MainServicesComponent } from './main-services/main-services.component';
@@ -51,7 +52,8 @@ import { MyCartComponent } from './my-cart/my-cart.component';
     AutocompleteAddressComponent,
     MapComponent,
     UserInfoComponent,
-    MyCartComponent
+    MyCartComponent,
+    AboutCardComponent
   ],
   imports: [
     BrowserModule,
