@@ -2,58 +2,14 @@
 <div class="about-us-header">
   <span><strong>Meet the developers!</strong></span>
 </div>
-<div class="about-us-wrapper">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Duc Nguyen</mat-card-title>
-      <mat-card-subtitle># 500910998</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Team 6 Full stack engineer
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Farhan Tahmeed Sami</mat-card-title>
-      <mat-card-subtitle># 500982031</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Team 6 Back-end stack engineer
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Sourena Khanzade</mat-card-title>
-      <mat-card-subtitle># 500929191</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Team 6 Front-end stack engineer
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="about-us-wrapper" fxLayout.xs="column" fxLayout="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+  <div fxFlex="25%">
+    <about-card name="Duc Nguyen" student_number="# 500910998" job="Team 6 Full stack engineer"></about-card>
+  </div>
+  <div fxFlex="25%">
+    <about-card name="Sourena Khanzadeh" student_number="# 500929191" job="Team 6 Full stack engineer"></about-card>
+  </div>
+  <div fxFlex="25%">
+    <about-card name="Farhan Tahmeed Sami" student_number="# 500982031" job="Team 6 Full stack engineer"></about-card>
+  </div>
 </div>
