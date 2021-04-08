@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-services.component.sass']
 })
 export class MainServicesComponent implements OnInit {
+  ordered: boolean;
 
-  constructor() { }
+  constructor() {
+    this.ordered = true;
+  }
 
   ngOnInit(): void {
   }
