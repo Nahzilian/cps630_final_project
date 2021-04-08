@@ -8,6 +8,7 @@ import { MainServicesComponent } from './main-services/main-services.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { UserReviewComponent } from './user-review/user-review.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "services", component: MainServicesComponent},
   {path: "me", component: UserInfoComponent},
   {path: "cart", component: MyCartComponent},
+  {path: "review", component: UserReviewComponent},
   {path: "**", redirectTo: '/' , pathMatch: 'full'},
 ];
 

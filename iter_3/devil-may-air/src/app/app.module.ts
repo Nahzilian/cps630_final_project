@@ -35,6 +35,7 @@ import { MapComponent } from './main-services/map/map.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MyCartComponent } from './my-cart/my-cart.component';
+import { UserReviewComponent } from './user-review/user-review.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MyCartComponent } from './my-cart/my-cart.component';
     MapComponent,
     UserInfoComponent,
     MyCartComponent,
-    AboutCardComponent
+    AboutCardComponent,
+    UserReviewComponent
   ],
   imports: [
     BrowserModule,
