@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import Flower from 'src/models/flower';
 
 @Component({
@@ -8,25 +9,28 @@ import Flower from 'src/models/flower';
 })
 export class MyCartComponent implements OnInit, AfterViewChecked {
 
+  @Input() customerOrder: any;
   orderedFlower: Array<Flower>;
   panelOpenState = false;
   distance: number;
   travelingPrice: number;
 
+
+
   constructor() {
     this.travelingPrice = 12;
-    if (localStorage.getItem('items'))
-      this.orderedFlower = JSON.parse(localStorage.getItem('items'));
+    if (this.customerOrder){
+      let cart = this.customerOrder.cart;
+      this.orderedFlower = cart;
+    }
   }
 
   ngOnInit(): void {}
 
   ngAfterViewChecked(): void {
-    let userOrder = localStorage.getItem('items');
-    if (userOrder){
-      let data = JSON.parse(userOrder);
-      this.orderedFlower = data.cart;
-      this.distance = data.distance;
+    if (this.customerOrder){
+      this.orderedFlower = this.customerOrder.cart;
+      this.distance = this.customerOrder.distance;
     }
   }
 

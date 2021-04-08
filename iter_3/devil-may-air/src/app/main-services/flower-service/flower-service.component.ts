@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, Output, EventEmitter } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import Flower from 'src/models/flower';
 import { MapComponent } from '../map/map.component';
@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 })
 export class FlowerServiceComponent implements OnInit, OnChanges {
   @ViewChild(MapComponent) map!: MapComponent;
+
+  @Output() newFlowerOrder = new EventEmitter<Object>();
+
   allFlower: Array<Flower>;
   cart: Array<Flower>;
 
@@ -65,8 +68,10 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     this.map.showMap(this.source, this.destin);
     let distance = this.map.getDistance();
     console.log(distance)
-    localStorage.setItem('items', JSON.stringify({cart: this.cart, distance: distance}));
-    this.router.navigate(['/cart'])
+    let obj = {cart: this.cart, distance}
+    localStorage.setItem('items', JSON.stringify(obj));
+    this.addNewOrder(obj);
+    // this.router.navigate(['/cart'])
     return;
   }
 
@@ -110,6 +115,10 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     const max = 5
     if (id <= max) return `../../../assets/img/flower/flower${id}.jpeg`;
     return '../../../assets/img/flower/plc.jpeg';
+  }
+
+  addNewOrder(value: Object) {
+    this.newFlowerOrder.emit(value);
   }
 
   ngOnChanges(): void {

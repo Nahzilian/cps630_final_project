@@ -1,10 +1,10 @@
 <div *ngIf="!ordered">
   <mat-tab-group mat-align-tabs="start" animationDuration="500ms">
   <mat-tab label="Drivers"><app-driver-service></app-driver-service></mat-tab>
-  <mat-tab label="Stores"><app-flower-service></app-flower-service></mat-tab>
+  <mat-tab label="Stores"><app-flower-service (newFlowerOrder)="addFlowerOrder($event)"></app-flower-service></mat-tab>
   <mat-tab label="Green Ride">Content 3</mat-tab>
 </mat-tab-group>
 </div>
 <div *ngIf="ordered">
-  <app-my-cart></app-my-cart>
+  <app-my-cart [customerOrder]="customerOrder"></app-my-cart>
 </div>
