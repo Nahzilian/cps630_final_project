@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
     </button>
-    <a href="/"><img src="../assets/img/logo2.png" alt="logo" width="55" height="55"></a>
+    <a routerLink="/home"><img src="../assets/img/logo2.png" alt="logo" width="55" height="55"></a>
     <span class="menu-spacer"></span>
     <div fxShow="true" fxHide.lt-md>
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
@@ -12,7 +12,7 @@
       <a routerLink="/about" mat-button><mat-icon>code</mat-icon> About us</a>
       <a routerLink="/contact" mat-button><mat-icon>mail</mat-icon> Contact us</a>
       <a *ngIf="userAccount" routerLink="/cart" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
+      <a *ngIf="userAccount" routerLink="/review" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
       <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
       <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
       <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
@@ -30,7 +30,7 @@
       <a routerLink="/about" mat-button><mat-icon>code</mat-icon> About us</a>
       <a routerLink="/contact" mat-button><mat-icon>mail</mat-icon> Contact us</a>
       <a *ngIf="userAccount" routerLink="/cart" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
-      <a *ngIf="userAccount" routerLink="/home" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
+      <a *ngIf="userAccount" routerLink="/review" mat-button><mat-icon>reviews</mat-icon> Reviews</a>
       <a routerLink="/services" mat-button><mat-icon>info</mat-icon> Services</a>
       <a *ngIf="!userAccount" routerLink="/login" mat-button><mat-icon>login</mat-icon> Login</a>
       <a *ngIf="!userAccount" routerLink="/signup" mat-button><mat-icon>create</mat-icon> Sign up</a>
