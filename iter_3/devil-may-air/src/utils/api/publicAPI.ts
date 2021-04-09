@@ -17,3 +17,13 @@ export async function getAllFlower (page, limit) {
     throw new Error(err);
   }
 }
+
+export async function getAvailableCar() {
+  try {
+    const { data } = await axios.get('/services/car/available');
+    // clientInfoCaching(data.user);
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}

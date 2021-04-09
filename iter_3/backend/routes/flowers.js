@@ -5,7 +5,7 @@ const { pageDataFormatting } = require('../utils/formatting');
 router.get('/', async (req, res, next) => {
     const pageLimit = parseInt(req.query.limit);
     const pageNum = parseInt(req.query.page);
-    const countAllData = await Flower.count();
+    const countAllData = await Flower.countDocuments();
 
     if (!req.query.limit || !req.query.page) {
         const allFlower = await Flower.find({});

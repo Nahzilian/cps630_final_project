@@ -25,7 +25,6 @@ export function logout() {
 
 
 export function register(form) {
-  console.log(form)
   if (!form) throw new Error("No info found")
   const newUser = {
     name: form['name'].value,
@@ -46,3 +45,15 @@ export function register(form) {
   ).catch(err => { throw new Error(err) });
 
 }
+
+export async function checkout(info) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const { data } = await axios.post('/services/order', info, {headers: {'x-auth-token': token}});
+    localStorage.setItem('user', JSON.stringify(data.user));
+  } catch (err) {
+    console.log(err)
+    throw new Error(err);
+  }
+}
+

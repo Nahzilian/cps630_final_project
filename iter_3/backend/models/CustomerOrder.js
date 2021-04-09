@@ -6,6 +6,9 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
+let date = new Date();
+let dateDone = date.addDays(5);
+
 const schema = {
     _id: {
         type: mongoose.Types.ObjectId,
@@ -15,19 +18,15 @@ const schema = {
     },
     dateIssued: {
         type: Date,
-        default: Date.now()
+        default: date
     },
     dateDone: {
         type: Date,
-        default: Date.now().addDays(5)
+        default: dateDone
     },
     totalPrice: {
         type: Number,
         required: true,
-    },
-    paymentStatus: {
-        type: String,
-        default: 'pending',
     },
     customerId: {
         type: String,
@@ -37,8 +36,8 @@ const schema = {
         type: String,
         required: true,
     },
-    flowerId: {
-        type: String,
+    flowers: {
+        type: Array,
         required: true,
     }
 }

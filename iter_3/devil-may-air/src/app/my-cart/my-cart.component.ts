@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Flower from 'src/models/flower';
 import { CartService } from '../../utils/services/cart.service';
+import { checkout } from '../../utils/api/apiController';
+import { getAvailableCar } from '../../utils/api/publicAPI';
 
 @Component({
   selector: 'app-my-cart',
@@ -47,15 +49,32 @@ export class MyCartComponent implements OnInit {
     }
   }
 
-  getSummary() {
+  async getSummary() {
     let totalPrice = 0;
     console.log(this.distance)
-    totalPrice += this.distance * this.travelingPrice;
+    let tripPrice = this.distance * this.travelingPrice;
+    totalPrice += tripPrice;
+
     this.orderedFlower.forEach((elem) => {
       totalPrice += elem.price * elem.quantity;
     })
-    this.summary = totalPrice;
-    console.log(this.summary)
+    this.summary = parseFloat(totalPrice.toFixed(2));
+
+    let availableCar = await getAvailableCar();
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(availableCar);
+    let obj = {
+        source: this.source,
+        destination: this.destin,
+        distance: this.distance,
+        carId: availableCar[0]._id,
+        price: tripPrice,
+        totalPrice: this.summary,
+        customerId: user.id,
+        flowers: this.orderedFlower
+    }
+    console.log(obj)
+    checkout(obj);
   }
 
   getFlowerImgSrc(id) {
