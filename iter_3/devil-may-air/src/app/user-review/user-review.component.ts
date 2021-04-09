@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getAllCar } from '../../utils/api/publicAPI';
 
 @Component({
   selector: 'app-user-review',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-review.component.sass']
 })
 export class UserReviewComponent implements OnInit {
-
-  constructor() { }
+  select_img_size: number;
+  constructor() {
+    this.select_img_size = 35;
+  }
 
   ngOnInit(): void {
+
   }
 
 }
