@@ -10,26 +10,23 @@
     </mat-card-header>
     <mat-card-content>
       <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
       <mat-form-field appearance="fill">
         <mat-label>Drivers</mat-label>
-        <mat-select>
-          <mat-option>None</mat-option>
-          <mat-option value="option1">
-            <img [width]="select_img_size" [height]="select_img_size" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg">
-            Option 1
-          </mat-option>
-          <mat-option value="option2">
-            <img [width]="select_img_size" [height]="select_img_size" src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg">
-            Option 2
-          </mat-option>
 
+        <mat-select #select_car>
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let car of allCar" [value]="car.carCode">
+            <img [width]="select_img_size" [height]="select_img_size" [src]="getCarImgSrc(car.imageid)">
+            {{car.model}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
-
+      <mat-chip-list aria-label="Fish selection" *ngIf="select_car.value">
+        Car Code:
+        <mat-chip color="primary">{{select_car.value}}</mat-chip>
+     </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
