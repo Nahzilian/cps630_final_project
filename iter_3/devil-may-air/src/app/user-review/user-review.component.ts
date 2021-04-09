@@ -15,6 +15,8 @@ export class UserReviewComponent implements OnInit {
   widthFactor: number;
   like: boolean;
   dislike: boolean;
+  stars: number;
+  check = false;
 
   constructor() {
     this.select_img_size = 35;
@@ -22,14 +24,26 @@ export class UserReviewComponent implements OnInit {
     this.getCars();
     this.like = false;
     this.dislike = false;
+    this.stars = 0;
+
   }
 
   review(like: string){
     if (like === 'like') {
       this.like = true;
+      if(!this.check)
+        this.stars++;
+      if(this.check && this.dislike)
+        this.stars+=2;
+      this.check = true;
       this.dislike = false;
     }else if (like === 'dislike') {
       this.dislike = true;
+      if(!this.check)
+        this.stars--;
+      if(this.check && this.like)
+      this.stars-=2;
+      this.check = true;
       this.like = false;
     }
   }
