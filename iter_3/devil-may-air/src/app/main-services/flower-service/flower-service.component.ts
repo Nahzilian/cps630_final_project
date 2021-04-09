@@ -6,6 +6,8 @@ import { MapComponent } from '../map/map.component';
 import { getAllFlower } from '../../../utils/api/publicAPI';
 import { Router } from '@angular/router';
 
+import { CartService } from '../../../utils/services/cart.service';
+
 @Component({
   selector: 'app-flower-service',
   templateUrl: './flower-service.component.html',
@@ -47,35 +49,36 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     this.itemCount = this.cart.length + 1;
   }
 
-  checkOut () {
+  checkOut() {
     // Couldnt find a way to pass data due to how the components are set up.
     // Proposal solution: Navbar should just hold all the components instead
     // https://medium.com/ableneo/how-to-pass-data-between-routed-components-in-angular-2306308d8255
     // https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
-    if(this.cart.length === 0) {
+    if (this.cart.length === 0) {
       this.error = 'Your cart is empty';
       return;
     }
 
-    if(!this.source) {
+    if (!this.source) {
       this.error = 'Please select a source'
     }
 
-    if(!this.destin) {
+    if (!this.destin) {
       this.error = 'Please select a destination';
       return;
     }
     this.map.showMap(this.source, this.destin);
     let distance = this.map.getDistance();
     console.log(distance)
-    let obj = {cart: this.cart, distance}
+    let obj = { cart: this.cart, distance }
     localStorage.setItem('items', JSON.stringify(obj));
     this.addNewOrder(obj);
-    // this.router.navigate(['/cart'])
+    this.cartService.setData(obj);
+    this.router.navigate(['/cart'])
     return;
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cartService :CartService) {
     this.getFlowers(0);
     this.cart = [];
   }

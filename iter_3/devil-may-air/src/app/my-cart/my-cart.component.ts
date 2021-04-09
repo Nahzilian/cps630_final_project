@@ -1,6 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import Flower from 'src/models/flower';
+import { CartService } from '../../utils/services/cart.service';
 
 @Component({
   selector: 'app-my-cart',
@@ -17,24 +17,24 @@ export class MyCartComponent implements OnInit, AfterViewChecked {
 
 
 
-  constructor() {
+  constructor(private cartService: CartService) {
     this.travelingPrice = 12;
-    if (this.customerOrder){
-      let cart = this.customerOrder.cart;
-      this.orderedFlower = cart;
+    if (!this.customerOrder) {
+      let obj = this.cartService.getData()
+      this.orderedFlower = obj.cart;
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewChecked(): void {
-    if (this.customerOrder){
-      this.orderedFlower = this.customerOrder.cart;
-      this.distance = this.customerOrder.distance;
+    if (!this.customerOrder) {
+      let obj = this.cartService.getData()
+      this.orderedFlower = obj.cart;
     }
   }
 
-  getSummary(){
+  getSummary() {
     let totalPrice = 0;
     totalPrice += this.distance * this.travelingPrice;
     this.orderedFlower.forEach((elem) => {
@@ -43,7 +43,7 @@ export class MyCartComponent implements OnInit, AfterViewChecked {
   }
 
   getFlowerImgSrc(id) {
-    const max = 5
+    const max = 14
     if (id <= max) return `../../assets/img/flower/flower${id}.jpeg`;
     return '../../assets/img/flower/plc.jpeg';
   }
