@@ -28,9 +28,17 @@
         <mat-chip color="primary">{{select_car.value}}</mat-chip>
      </mat-chip-list>
     </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
     <mat-card-footer>
+      <mat-form-field  class="textarea" appearance="outline">
+        <mat-label>comment</mat-label>
+        <textarea matInput cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+      <mat-card-actions *ngIf="select_car.value">
+        <button mat-button (click)="review('like')" [ngStyle]="{color: like? 'green': 'black'}"><mat-icon>thumb_up</mat-icon></button>
+        <button mat-button (click)="review('dislike')"  [ngStyle]="{color: dislike? 'red': 'black'}"><mat-icon>thumb_down</mat-icon></button>
+      </mat-card-actions>
     </mat-card-footer>
   </mat-card>
 </div>
