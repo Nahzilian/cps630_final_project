@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Flower from 'src/models/flower';
 
 @Component({
   selector: 'app-main-services',
@@ -13,11 +12,7 @@ export class MainServicesComponent implements OnInit {
   constructor() {
     this.ordered = false;
   }
-  addFlowerOrder(newOrder: Object) {
-    this.ordered = true;
-    this.customerOrder = newOrder;
-    console.log(newOrder);
-  }
+
 
   ngOnInit(): void {
   }

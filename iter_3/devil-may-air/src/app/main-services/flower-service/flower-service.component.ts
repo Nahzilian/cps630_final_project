@@ -60,21 +60,22 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     }
 
     if (!this.source) {
-      this.error = 'Please select a source'
+      this.error = 'Please select a source';
+      return;
     }
 
     if (!this.destin) {
       this.error = 'Please select a destination';
       return;
     }
+
     this.map.showMap(this.source, this.destin);
     let distance = this.map.getDistance();
     console.log(distance)
-    let obj = { cart: this.cart, distance }
-    localStorage.setItem('items', JSON.stringify(obj));
-    this.addNewOrder(obj);
+
+    let obj = { cart: this.cart, distance: distance }
     this.cartService.setData(obj);
-    this.router.navigate(['/cart'])
+    this.router.navigate(['/cart']);
     return;
   }
 
@@ -118,10 +119,6 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     const max = 5
     if (id <= max) return `../../../assets/img/flower/flower${id}.jpeg`;
     return '../../../assets/img/flower/plc.jpeg';
-  }
-
-  addNewOrder(value: Object) {
-    this.newFlowerOrder.emit(value);
   }
 
   ngOnChanges(): void {
