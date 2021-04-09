@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -35,6 +36,7 @@ import { MapComponent } from './main-services/map/map.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MyCartComponent } from './my-cart/my-cart.component';
+import { UserReviewComponent } from './user-review/user-review.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { MyCartComponent } from './my-cart/my-cart.component';
     MapComponent,
     UserInfoComponent,
     MyCartComponent,
-    AboutCardComponent
+    AboutCardComponent,
+    UserReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { MyCartComponent } from './my-cart/my-cart.component';
     MatTabsModule,
     MatExpansionModule,
     MatPaginatorModule,
-    DragDropModule
+    DragDropModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
