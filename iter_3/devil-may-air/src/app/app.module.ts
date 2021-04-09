@@ -22,6 +22,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -38,6 +39,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { UserReviewComponent } from './user-review/user-review.component';
+import { ReviewCardComponent } from './user-review/review-card/review-card.component';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { UserReviewComponent } from './user-review/user-review.component';
     UserInfoComponent,
     MyCartComponent,
     AboutCardComponent,
-    UserReviewComponent
+    UserReviewComponent,
+    ReviewCardComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,8 @@ import { UserReviewComponent } from './user-review/user-review.component';
     MatPaginatorModule,
     DragDropModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
