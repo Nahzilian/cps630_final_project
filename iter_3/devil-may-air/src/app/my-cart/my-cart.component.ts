@@ -21,7 +21,10 @@ export class MyCartComponent implements OnInit, AfterViewChecked {
     this.travelingPrice = 12;
     if (!this.customerOrder) {
       let obj = this.cartService.getData()
-      this.orderedFlower = obj.cart;
+      if(obj) {
+        this.orderedFlower = obj.cart;
+        this.distance = obj.distance
+      }
     }
   }
 
@@ -29,8 +32,11 @@ export class MyCartComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     if (!this.customerOrder) {
-      let obj = this.cartService.getData()
-      this.orderedFlower = obj.cart;
+      let obj = this.cartService.getData();
+      if(obj) {
+        this.orderedFlower = obj.cart;
+        this.distance = obj.distance
+      }
     }
   }
 
