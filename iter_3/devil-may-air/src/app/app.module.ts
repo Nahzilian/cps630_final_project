@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -77,7 +78,8 @@ import { UserReviewComponent } from './user-review/user-review.component';
     MatExpansionModule,
     MatPaginatorModule,
     DragDropModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
