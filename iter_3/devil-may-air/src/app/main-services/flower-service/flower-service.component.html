@@ -8,8 +8,12 @@
   <button mat-button color="primary" (click)="showMap()">Show map!</button>
 </div>
 
-<div *ngIf ="error">
-  {{error}}
+<div *ngIf="error" class="error-msg-wrapper">
+  <div class="error-msg">
+    <span>
+      <mat-icon>error</mat-icon> {{error}}
+    </span>
+  </div>
 </div>
 
 
@@ -20,10 +24,7 @@
 <div cdkDropListGroup>
 
 
-  <div class="shopping-cart"
-    cdkDropList
-    [cdkDropListData]="cart"
-    (cdkDropListDropped)="drop($event)"
+  <div class="shopping-cart" cdkDropList [cdkDropListData]="cart" (cdkDropListDropped)="drop($event)"
     (click)="checkOut()">
     <mat-icon>shopping_cart</mat-icon>
     <div>{{itemCount > 0? itemCount: null}}</div>
@@ -43,12 +44,33 @@
     </mat-paginator>
 
     <!-- ACCORDION LIST -->
-    <mat-accordion
-    cdkDropList
-    [cdkDropListData]="allFlower"
-    (cdkDropListDropped)="drop($event)"
-    *ngFor="let flower of allFlower"
-    >
+
+    <mat-accordion *ngFor="let flower of cart">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>Flower name</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            <span>{{flower.flowerName}} - <span class="in-cart"> In Cart</span></span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="flower-dropdown">
+          <div class="flower-img">
+            <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+          </div>
+          <div class="flower-details">
+            <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
+            <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
+            <div><strong>Price</strong> - {{flower.price}}$</div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <mat-accordion cdkDropList [cdkDropListData]="allFlower" (cdkDropListDropped)="drop($event)"
+      *ngFor="let flower of allFlower">
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" cdkDrag>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -67,10 +89,8 @@
             <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
             <div><strong>Price</strong> - {{flower.price}}$</div>
           </div>
-          <div>
-            <button mat-button color="primary">Select flower</button>
-          </div>
         </div>
+        <img *cdkDragPreview [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
       </mat-expansion-panel>
     </mat-accordion>
   </div>

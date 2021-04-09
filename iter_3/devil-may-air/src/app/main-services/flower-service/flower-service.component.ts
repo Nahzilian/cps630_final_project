@@ -39,44 +39,38 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
   itemCount: number
 
   drop(event: CdkDragDrop<string[]>) {
+    //this.cart.push()
     setTimeout(() => {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+        this.itemCount = this.cart.length;
     })
-    console.log(this.cart)
-    this.itemCount = this.cart.length + 1;
   }
 
-  checkOut() {
-    // Couldnt find a way to pass data due to how the components are set up.
-    // Proposal solution: Navbar should just hold all the components instead
-    // https://medium.com/ableneo/how-to-pass-data-between-routed-components-in-angular-2306308d8255
-    // https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
+  async checkOut() {
     if (this.cart.length === 0) {
       this.error = 'Your cart is empty';
+      setInterval(()=> {this.error = ''}, 6000)
       return;
     }
 
     if (!this.source) {
       this.error = 'Please select a source';
+      setInterval(()=> {this.error = ''}, 6000)
       return;
     }
 
     if (!this.destin) {
       this.error = 'Please select a destination';
+      setInterval(()=> {this.error = ''}, 6000)
       return;
     }
 
-    this.map.showMap(this.source, this.destin);
-    let distance = this.map.getDistance();
-    console.log(distance)
-
-    let obj = { cart: this.cart, distance: distance }
+    let obj = { cart: this.cart, source: this.source, destin: this.destin }
     this.cartService.setData(obj);
     this.router.navigate(['/cart']);
-    return;
   }
 
   constructor(private router: Router, private cartService :CartService) {
@@ -121,8 +115,8 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     return '../../../assets/img/flower/plc.jpeg';
   }
 
-  ngOnChanges(): void {
-  }
+  ngOnChanges(): void { }
+
   ngOnInit(): void { }
 
 }

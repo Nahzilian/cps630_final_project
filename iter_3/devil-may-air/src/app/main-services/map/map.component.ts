@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -14,8 +14,24 @@ export class MapComponent {
   constructor() {
   }
 
-  getDistance() {
-    return this.distance
+  async getDistance(org, des) {
+    var direction = new google.maps.DirectionsService();
+    var directionRequest = {
+      origin: org,
+      destination: des,
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
+    }
+    const temp = await direction.route(
+      directionRequest,
+      (res, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          console.log(res.routes[0].legs[0].distance.value)
+          this.distance = res.routes[0].legs[0].distance.value;
+          return this.distance;
+        }
+      }
+    )
   }
 
   showMap(org, des) {
