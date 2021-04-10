@@ -7,6 +7,11 @@ import Review from 'src/models/review';
 
 
 import { sendReview } from '../../../utils/api/apiController';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-review-card',
@@ -33,7 +38,11 @@ export class ReviewCardComponent implements OnInit {
   numberOfReviews: number;
 
   check = false;
-  constructor() {
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  duration: number = 700;
+  constructor(private _snackBar: MatSnackBar) {
     this.select_img_size = 35;
     this.widthFactor = 15;
     this.like = false;
@@ -124,8 +133,20 @@ export class ReviewCardComponent implements OnInit {
       type: this.title,
       itemId: productName
     };
-
-    sendReview(obj);
+    try {
+      sendReview(obj);
+        this._snackBar.open('Successfully Commented', 'Nice!!', {
+        duration: this.duration,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      });
+    } catch (err) {
+      this._snackBar.open('Oooops Something Went Wrong', 'Noooooo!!', {
+      duration: this.duration,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    }
   }
 
   ngOnInit(): void {
