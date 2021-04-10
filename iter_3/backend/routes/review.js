@@ -14,11 +14,51 @@ router.post('/', validateToken, async (req, res, next) => {
   const newReview = new Review(newReviewObj);
   const saveReview = await newReview.save();
 
-  return res.status(200).send({msg: "Review Added successfully"})
+  return res.status(200).send({ msg: "Review Added successfully" })
 })
 
-router.get('/', (req, res, next)=>{
+router.get('/:id', (req, res, next) => {
+  const reviewId = req.params.id;
 
+  if (reviewId) {
+    const reviewById = await Review.findById(reviewId);
+    return res.send(reviewById);
+  }
+
+  const allReview = await Review.find({});
+  return res.send(allReview);
+})
+
+router.put('/', (req, res, next) => {
+  const reviewId = req.body.id;
+  const newReviewObj = {
+    review: req.body.review,
+    score: req.body.score,
+  }
+
+  const reviewIdValidation = Review.findById(reviewId);
+  if (!reviewIdValidation) return res.status(400).send({ msg: "Invalid id" });
+  Review.updateOne({ _id: reviewId }, newReviewObj).then(
+    () => {
+      res.status(201).json({
+        msg: "Updated successfully"
+      })
+    }
+  ).catch((err) => res.status(400).json({
+    error: err
+  }))
+})
+
+router.delete('/:id', (req, res, next) => {
+  Review.deleteOne({ _id: req.params.id }).then(
+    () => {
+      res.status(201).json({
+        msg: "Deleted successfully"
+      })
+    }
+  ).catch((err) => res.status(400).json({
+    error: err
+  }))
 })
 
 
