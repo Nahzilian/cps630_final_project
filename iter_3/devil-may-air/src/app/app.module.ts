@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatRippleModule} from '@angular/material/core';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -85,7 +86,8 @@ import { ReviewCardComponent } from './user-review/review-card/review-card.compo
     MatSelectModule,
     MatChipsModule,
     MatButtonToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
