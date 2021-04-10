@@ -17,8 +17,9 @@ router.post('/', validateToken, async (req, res, next) => {
   return res.status(200).send({msg: "Review Added successfully"})
 })
 
-router.get('/', (req, res, next)=>{
-
+router.get('/', async (req, res, next)=>{
+  const review = await Review.find({itemId:req.query.id});
+  return res.json(review);
 })
 
 
