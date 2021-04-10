@@ -54,3 +54,19 @@
     </span>
   </mat-card-footer>
 </mat-card>
+
+
+<mat-accordion *ngIf="select.value && allReviews.length > 0" class="comments" multi>
+  <h2>Reviews</h2>
+  <mat-expansion-panel *ngFor="let review of allReviews">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{review.itemId}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-icon [ngStyle]="{color: review.score == 1? 'green': 'red'}">{{review.score == 1?'thumb_up':'thumb_down'}}</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <p>{{review.review}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
