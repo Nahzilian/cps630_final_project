@@ -27,3 +27,12 @@ export async function getAvailableCar() {
     throw new Error(err);
   }
 }
+
+export async function findReview(id){
+  try {
+    const result = await axios.get(`/review?id=${id}`);
+    return result;
+  } catch (err) {
+
+  }
+}
