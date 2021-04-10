@@ -33,14 +33,14 @@
   <mat-card-footer>
     <mat-form-field  class="textarea" appearance="outline">
       <mat-label>comment</mat-label>
-      <textarea matInput cdkTextareaAutosize [disabled]="!select.value"
+      <textarea #comment matInput cdkTextareaAutosize [disabled]="!select.value"
       cdkAutosizeMinRows="1"
       cdkAutosizeMaxRows="4"></textarea>
     </mat-form-field>
     <mat-card-actions *ngIf="select.value">
       <button mat-button (click)="review('like')" [ngStyle]="{color: like? 'green': 'black'}"><mat-icon>thumb_up</mat-icon></button>
       <button mat-button (click)="review('dislike')"  [ngStyle]="{color: dislike? 'red': 'black'}"><mat-icon>thumb_down</mat-icon></button>
-      <button mat-button><mat-icon>send</mat-icon></button>
+      <button mat-button (click)="submit(comment.value, select.value)"><mat-icon>send</mat-icon></button>
     </mat-card-actions>
     <span class="star" *ngIf="select.value">
       {{stars}}
