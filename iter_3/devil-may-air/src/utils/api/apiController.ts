@@ -57,3 +57,13 @@ export async function checkout(info) {
   }
 }
 
+export async function sendReview(data){
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const d  = await axios.post('/review', data, {headers: {'x-auth-token': token}});
+
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+}
