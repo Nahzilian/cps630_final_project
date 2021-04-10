@@ -6,6 +6,8 @@ import Flower from 'src/models/flower';
 
 import { getAllFlower } from '../../../utils/api/publicAPI';
 
+import { sendReview } from '../../../utils/api/apiController';
+
 @Component({
   selector: 'app-review-card',
   templateUrl: './review-card.component.html',
@@ -81,6 +83,17 @@ export class ReviewCardComponent implements OnInit {
   onResize(event) {
 
     this.innerWidth = window.innerWidth;
+  }
+
+  submit(comment, productName){
+    let obj = {
+      review: comment,
+      score: this.stars,
+      type: this.title,
+      itemId: productName
+    };
+
+    sendReview(obj);
   }
 
   ngOnInit(): void {
