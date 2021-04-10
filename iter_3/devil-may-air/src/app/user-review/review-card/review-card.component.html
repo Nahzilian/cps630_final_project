@@ -44,13 +44,15 @@
       <small>{{numberOfReviews}} Users Voted</small>
     </mat-card-actions>
     <span class="star" *ngIf="select.value && numberOfReviews == 0">
-      {{ (score/(numberOfReviews + 1))*5 | number:'1.1'}}/5
-      <mat-icon>star</mat-icon>
+      {{ (score/(numberOfReviews + 1))*5 | number:'1.1-1'}}/5
+      <mat-icon>star_outline</mat-icon>
     </span>
 
     <span class="star" *ngIf="select.value && numberOfReviews > 0">
-      {{(score/numberOfReviews)*5 | number:'1.1'}}/5
-      <mat-icon>star</mat-icon>
+      {{(score/numberOfReviews)*5 | number:'1.1-1'}}/5
+      <mat-icon *ngIf="(score/numberOfReviews)*5 == 5">star</mat-icon>
+      <mat-icon *ngIf="(score/numberOfReviews)*5 < 5 && (score/numberOfReviews)*5 > 0">star_half</mat-icon>
+      <mat-icon *ngIf="score == 0">star_outline</mat-icon>
     </span>
   </mat-card-footer>
 </mat-card>
