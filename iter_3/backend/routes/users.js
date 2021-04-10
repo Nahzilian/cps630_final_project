@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { userInfoValidation, updateUserValidation } = require('../utils/validation');
 const { encryptPassword } = require('../utils/encrypt');
 const { userInfoFormat } = require('../utils/formatting');
-const { signToken, validateToken } = require('../utils/authentication');
+const { signToken, validateToken, validateAdmin } = require('../utils/authentication');
 const User = require('../models/User');
 
 router.post('/register', async (req, res) => {
@@ -67,6 +67,23 @@ router.put('/me/update/:id', validateToken, async (req, res, next) => {
     ).catch( (err) => res.status(400).json({
         error: err
     }))
+})
+
+
+router.delete('/:id', validateAdmin, async (req, res, next) => {
+    const userId = req.body.id;
+    const userValidation = User.findById(userId);
+    if (!userValidation) return res.status(400).send({ msg: "Invalid id" });
+    User.deleteOne({_id: userId}).then(
+        () => {
+            res.status(201).json({
+                msg: "Updated successfully"
+            })
+        }
+    ).catch( (err) => res.status(400).json({
+        error: err
+    }))
+
 })
 
 module.exports = router;

@@ -50,6 +50,9 @@ router.put('/', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
+  const reviewId = req.body.id;
+  const reviewIdValidation = Review.findById(reviewId);
+  if (!reviewIdValidation) return res.status(400).send({ msg: "Invalid id" });
   Review.deleteOne({ _id: req.params.id }).then(
     () => {
       res.status(201).json({
