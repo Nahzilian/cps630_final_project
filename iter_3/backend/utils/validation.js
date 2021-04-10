@@ -52,6 +52,16 @@ const carValidation = (data) => {
     return schema.validate(data);
 }
 
+const flowerValidation = (data) => {
+    const schema = Joi.object({
+        price: Joi.number().required(),
+        flowerName: Joi.string().required(),
+        storeCode: Joi.string().required(),
+        imageid: Joi.number().required()
+    })
+    return schema.validate(data);
+}
+
 
 // Trips
 const tripValidation = (data) => {
@@ -72,3 +82,4 @@ module.exports.updateUserValidation = updateUserValidation;
 module.exports.orderValidation = orderValidation;
 module.exports.tripValidation = tripValidation;
 module.exports.carValidation = carValidation;
+module.exports.flowerValidation = flowerValidation;
