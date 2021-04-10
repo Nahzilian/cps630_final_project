@@ -28,7 +28,6 @@ export class BrowserComponent implements OnInit {
   }
 
   myBrowser() {
-    console.log(navigator.userAgent.indexOf('OPR'));
 
      if((navigator.userAgent.indexOf("Opera") != -1 || navigator.userAgent.indexOf('OPR')) != -1 ) {
 

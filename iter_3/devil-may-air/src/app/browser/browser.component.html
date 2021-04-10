@@ -2,12 +2,19 @@
   <i *ngIf="browserName === 'Chrome'" class="fab fa-chrome"></i>
   <i *ngIf="browserName === 'Opera'" class="fab fa-opera"></i>
   <i *ngIf="browserName === 'Firefox'" class="fab fa-firefox-browser"></i>
-  
+  <i *ngIf="browserName === 'IE'" class="fab fa-internet-explorer"></i>
+  <i *ngIf="browserName === 'Safari'" class="fab fa-safari"></i>
+  <i *ngIf="browserName === 'unKnown'" class="far fa-window-maximize"></i>
+
 </button>
 <div class="browser" [ngStyle]="{display:click?'block':'none', transform:click?'scaleX(1)':'scaleX(0)'}">
   <i *ngIf="browserName === 'Chrome'" class="fab fa-chrome"></i>
   <i *ngIf="browserName === 'Opera'" class="fab fa-opera"></i>
   <i *ngIf="browserName === 'Firefox'" class="fab fa-firefox-browser"></i>
+  <i *ngIf="browserName === 'IE'" class="fab fa-internet-explorer"></i>
+  <i *ngIf="browserName === 'Safari'" class="fab fa-safari"></i>
+  <i *ngIf="browserName === 'unKnown'" class="far fa-window-maximize"></i>
+
   <mat-chip-list aria-label="Fish selection">
     <mat-chip color="primary" selected>{{browserName}}</mat-chip>
     <mat-chip color="accent" selected>{{browserVersion}}</mat-chip>
