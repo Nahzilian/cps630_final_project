@@ -26,6 +26,22 @@ const validateToken = async (req, res, next) => {
     }
 }
 
+const validateAdmin = async (req, res, next) => {
+    const token = req.header('x-auth-token');
+    if (!token) {
+        throw new Unauthorized('Access denied no token provided.');
+    }
+    try {
+        const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findOne({ _id: decoded.sub });
+        if (!user) throw new BadRequest('User associated with this token does not exist.');
+        if (!user.isAdmin)  throw new Unauthorized('User does not have permission to access this data');
+        req.user = user;
+        next();
+    } catch (error) {
+        next(new BadRequest('Invalid Token. ' + error.message));
+    }
+}
 
 const login = async (username, password) => {
     const user = await User.findOne({ username: username });
@@ -38,3 +54,4 @@ const login = async (username, password) => {
 module.exports.login = login;
 module.exports.signToken = signToken;
 module.exports.validateToken = validateToken;
+module.exports.validateAdmin = validateAdmin;
