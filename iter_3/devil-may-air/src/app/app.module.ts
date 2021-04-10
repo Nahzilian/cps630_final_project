@@ -42,6 +42,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { UserReviewComponent } from './user-review/user-review.component';
 import { ReviewCardComponent } from './user-review/review-card/review-card.component';
+import { BrowserComponent } from './browser/browser.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ReviewCardComponent } from './user-review/review-card/review-card.compo
     MyCartComponent,
     AboutCardComponent,
     UserReviewComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    BrowserComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { ReviewCardComponent } from './user-review/review-card/review-card.compo
     MatChipsModule,
     MatButtonToggleModule,
     MatSnackBarModule,
-    MatRippleModule
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
