@@ -29,7 +29,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.sass"
+              "src/styles.sass",
+              "../../iter_1_2/res/css/fontawsome/css/all.min.css"
             ],
             "scripts": []
           },
