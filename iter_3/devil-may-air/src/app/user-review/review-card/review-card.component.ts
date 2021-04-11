@@ -100,7 +100,7 @@ export class ReviewCardComponent implements OnInit {
     this.allReviews.forEach(element => {
       temp += element.score;
     });
-    this.score = temp;
+    this.score = temp < 0? 0:temp;
     this.og_score = this.score;
     this.check = false;
     this.like = false;
