@@ -96,12 +96,7 @@ export class DbMaintainComponent implements OnInit {
   constructor(private router: Router) {
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user.isAdmin) this.router.navigate(['/']);
-    this.getCars(0);
-    this.getFlowers(0);
-    this.getAllUserForDBMaintain();
-    this.getTrips();
-    this.getOrders();
-    this.getReviews();
+    this.refreshData();
   }
 
   deleteItem(id) {
@@ -111,7 +106,15 @@ export class DbMaintainComponent implements OnInit {
     if (this.tabIndex === 3) deleteTrip(id);
     if (this.tabIndex === 4) deleteOrder(id);
     if (this.tabIndex === 5) deleteReview(id);
-    this.router.navigate(['/maintain'])
+    this.refreshData();
+  }
+  refreshData(){
+    this.getCars(0);
+    this.getFlowers(0);
+    this.getAllUserForDBMaintain();
+    this.getTrips();
+    this.getOrders();
+    this.getReviews();
   }
 
   ngOnInit(): void {
