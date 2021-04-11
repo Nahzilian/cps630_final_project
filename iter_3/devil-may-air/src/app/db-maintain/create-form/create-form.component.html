@@ -1,1 +1,79 @@
-<p>create-form works!</p>
+<div *ngIf="formType === 'cars'">
+  Cars
+</div>
+<div *ngIf="formType === 'flowers'">
+  Flowers
+</div>
+<div *ngIf="formType === 'users'">
+  <mat-card>
+    <mat-card-title>Add user</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="submitUser()">
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Full name" formControlName="name">
+          </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row">
+          <mat-form-field>
+            <input type="phone" matInput placeholder="Phone" formControlName="phone">
+          </mat-form-field>
+          <mat-form-field>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Address" formControlName="address">
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput placeholder="City Code" formControlName="cityCode">
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Credit card" formControlName="creditCard">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Register</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+<div *ngIf="formType === 'trips'">
+  Trips
+</div>
+<div *ngIf="formType === 'orders'">
+  Orders
+</div>
+<div *ngIf="formType === 'reviews'">
+  Reviews
+</div>

@@ -2,10 +2,11 @@
   <!-- Cars -->
 
   <mat-tab label="Cars">
-
     <!-- Display -->
     <div class="generic-arc-wrapper" *ngIf="allCar">
-
+      <div>
+        <app-create-form [formType]="'cars'"></app-create-form>
+      </div>
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = updateData($event)">
       </mat-paginator>
@@ -42,7 +43,9 @@
 
   <mat-tab label="Flowers">
     <div class="generic-arc-wrapper" *ngIf="allFlower">
-
+      <div>
+        <app-create-form [formType]="'flowers'"></app-create-form>
+      </div>
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = updateData($event)">
       </mat-paginator>
@@ -79,7 +82,9 @@
 
   <mat-tab label="Users">
     <div class="generic-arc-wrapper" *ngIf="allUsers">
-
+      <div>
+        <app-create-form [formType]="'users'"></app-create-form>
+      </div>
       <!-- <mat-paginator
         [length]="length"
         [pageSize]="pageSize"
@@ -113,8 +118,13 @@
       </mat-accordion>
     </div>
   </mat-tab>
+
+
   <mat-tab label="Trips">
     <div class="generic-arc-wrapper" *ngIf="allTrip">
+      <div>
+        <app-create-form [formType]="'trips'"></app-create-form>
+      </div>
       <!--
       <mat-paginator
         [length]="length"
@@ -151,6 +161,9 @@
 
   <mat-tab label="Orders">
     <div class="generic-arc-wrapper" *ngIf="allOrder">
+      <div>
+        <app-create-form [formType]="'orders'"></app-create-form>
+      </div>
       <!--
             <mat-paginator
               [length]="length"
@@ -183,8 +196,13 @@
       </mat-accordion>
     </div>
   </mat-tab>
+
+
   <mat-tab label="Reviews">
     <div class="generic-arc-wrapper" *ngIf="allOrder">
+      <div>
+        <app-create-form [formType]="'reviews'"></app-create-form>
+      </div>
       <!--
             <mat-paginator
               [length]="length"
