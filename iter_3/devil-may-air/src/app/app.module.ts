@@ -43,6 +43,7 @@ import { MyCartComponent } from './my-cart/my-cart.component';
 import { UserReviewComponent } from './user-review/user-review.component';
 import { ReviewCardComponent } from './user-review/review-card/review-card.component';
 import { BrowserComponent } from './browser/browser.component';
+import { GreenComponent } from './main-services/green/green.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { BrowserComponent } from './browser/browser.component';
     AboutCardComponent,
     UserReviewComponent,
     ReviewCardComponent,
-    BrowserComponent
+    BrowserComponent,
+    GreenComponent
   ],
   imports: [
     BrowserModule,
