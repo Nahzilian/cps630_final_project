@@ -1,1 +1,87 @@
-<p>db-maintain works!</p>
+<mat-tab-group mat-align-tabs="start" #tabGroup (selectedTabChange)="tabChanged($event)">
+  <!-- Cars -->
+
+  <mat-tab label="Cars">
+
+    <!-- Display -->
+    <div class="generic-arc-wrapper" *ngIf="allCar">
+
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator>
+      <mat-accordion *ngFor="let car of allCar">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Car model</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{car.model}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="car-img">
+              <img [src]="getCarImgSrc(car.imageid)" alt={{car.model}} width="200px">
+            </div>
+            <div class="generic-details">
+              <div><strong>Car Model</strong> - {{car.model}}</div>
+              <div><strong>Car code</strong> - {{car.carCode}}</div>
+              <div><strong>Availability</strong> - {{car.available? "Yes" : "No"}}</div>
+              <div><strong>Price</strong> - 12$ per km</div>
+            </div>
+            <div>
+              <button mat-button color="primary">Select car</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+  <!-- Flowers -->
+
+  <mat-tab label="Flowers">
+    <div class="generic-arc-wrapper" *ngIf="allFlower">
+
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator>
+
+      <mat-accordion *ngFor="let flower of allFlower">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Flower name</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              <span>{{flower.flowerName}}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="flower-img">
+              <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+            </div>
+            <div class="generic-details">
+              <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
+              <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
+              <div><strong>Price</strong> - {{flower.price}}$</div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+
+
+  <mat-tab label="Users">Users</mat-tab>
+  <mat-tab label="Trips">Trips</mat-tab>
+  <mat-tab label="Orders">Orders</mat-tab>
+  <mat-tab label="Reviews">Reviews</mat-tab>
+</mat-tab-group>

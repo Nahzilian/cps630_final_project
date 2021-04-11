@@ -38,6 +38,11 @@ router.post('/register', async (req, res) => {
     }
 })
 
+router.get('/', validateAdmin, async (req, res , next) => {
+    const users = await User.find({});
+    return res.json(users);
+})
+
 router.get('/me/:id', validateToken, async (req, res, next) => {
     const user = await User.findOne({_id: req.params.id});
     if(!user) return res.status(400).send({error: 'No user found'});

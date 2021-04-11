@@ -67,3 +67,8 @@ export async function sendReview(data){
     throw new Error(err);
   }
 }
+
+
+export async function getAllUserForDBMaintain() {
+  axios.get('/user/')
+}
