@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { register } from 'src/utils/api/apiController';
+import { register, addCar } from 'src/utils/api/apiController';
 
 @Component({
   selector: 'app-create-form',
@@ -8,7 +8,7 @@ import { register } from 'src/utils/api/apiController';
   styleUrls: ['./create-form.component.sass']
 })
 export class CreateFormComponent implements OnInit {
-  error: String;
+  error = '';
   @Input() formType: String;
   userForm: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -22,8 +22,29 @@ export class CreateFormComponent implements OnInit {
   });
 
   carForm: FormGroup = new FormGroup({
-    
+    model : new FormControl(''),
+    carCode : new FormControl(''),
+    imageid : new FormControl(''),
+    available: new FormControl('')
   })
+
+  flowerForm: FormGroup = new FormGroup({
+    price : new FormControl(''),
+    flowerName : new FormControl(''),
+    storeCode: new FormControl(''),
+    imageid: new FormControl(''),
+    quantity: new FormControl('')
+  })
+
+  submitCar() {
+    if (this.carForm.valid) {
+      try {
+        addCar(this.carForm.controls);
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
 
   submitUser() {
     if (this.userForm.valid) {
@@ -33,6 +54,10 @@ export class CreateFormComponent implements OnInit {
         this.error = err
       }
     }
+  }
+
+  submitFlower() {
+    
   }
 
 

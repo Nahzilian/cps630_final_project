@@ -1,9 +1,93 @@
 <div *ngIf="formType === 'cars'">
-  Cars
+  <mat-card>
+    <mat-card-title>Add Car</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='carForm' (ngSubmit)="submitCar()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Model" formControlName="model">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Car Code" formControlName="carCode">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Available" formControlName="available">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Add</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+
 <div *ngIf="formType === 'flowers'">
-  Flowers
+  <mat-card>
+    <mat-card-title>Add Flower</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='flowerForm' (ngSubmit)="submitFlower()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Flower name" formControlName="flowerName">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Store Code" formControlName="storeCode">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Quantity" formControlName="quantity" min="1">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Price" formControlName="price">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Add</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+
 <div *ngIf="formType === 'users'">
   <mat-card>
     <mat-card-title>Add user</mat-card-title>
@@ -15,7 +99,6 @@
             <input type="text" matInput placeholder="Full name" formControlName="name">
           </mat-form-field>
         </div>
-
 
         <div fxLayout="row">
           <mat-form-field>
@@ -60,7 +143,7 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-button>Register</button>
+          <button type="submit" mat-button>Add</button>
         </div>
 
       </form>

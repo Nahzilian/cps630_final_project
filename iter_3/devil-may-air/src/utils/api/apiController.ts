@@ -162,3 +162,19 @@ export async function deleteOrder(id) {
     throw new Error(err);
   }
 }
+
+
+// Add
+
+export async function addCar(form) {
+  if (!form) throw new Error("No info found");
+  const newCar = {
+    name: form['model'].value,
+    phone: form['carCode'].value,
+    email: form['imageid'].value,
+    address: form['available'].value,
+  }
+  axios.post('/services/car', newCar)
+  .catch(err => { throw new Error(err) });
+
+}
