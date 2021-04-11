@@ -27,7 +27,10 @@ export class GreenComponent implements OnInit {
   source: string;
   destin: string;
 
-  constructor() { }
+  constructor() {
+    
+    this.getCars(0);
+   }
 
   ngOnInit(): void {
   }
@@ -44,6 +47,13 @@ export class GreenComponent implements OnInit {
     this.length = tempCar.data.row;
     
     // this.updateReview();
+  }
+
+  
+  getCarImgSrc(id) {
+    const max = 5
+    if (id <= max) return `../../../assets/img/car/car${id}.jpeg`;
+    return '../../../assets/img/car/plc.jpeg';
   }
 
   getSourceAddress(place: object) {
