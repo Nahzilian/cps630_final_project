@@ -89,7 +89,11 @@
             <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
             <div><strong>Price</strong> - {{flower.price}}$</div>
             
-          <div *ngIf="flower.usersVoted">{{flower.score | number: '1.1-1'}}/5 <mat-icon>star</mat-icon></div>
+          <div *ngIf="flower.usersVoted">{{flower.score | number: '1.1-1'}}/5 
+            <mat-icon *ngIf="flower.score == 5">star</mat-icon>
+            <mat-icon *ngIf="flower.score < 5 && flower.score > 0">star_half</mat-icon>
+            <mat-icon *ngIf="flower.score == 0">star_outline</mat-icon>
+          </div>
           <div *ngIf="flower.usersVoted">{{flower.usersVoted}} Users Voted</div>
           <div *ngIf="!flower.usersVoted">No Reviews Submitted <mat-icon>sentiment_dissatisfied</mat-icon></div>
           </div>

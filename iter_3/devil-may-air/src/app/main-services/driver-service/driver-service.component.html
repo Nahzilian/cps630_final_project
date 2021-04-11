@@ -37,7 +37,11 @@
           <div><strong>Car code</strong> - {{car.carCode}}</div>
           <div><strong>Availability</strong> - {{car.available? "Yes" : "No"}}</div>
           <div><strong>Price</strong> - 12$ per km</div>
-          <div *ngIf="car.usersVoted">{{car.score | number: '1.1-1'}}/5 <mat-icon>star</mat-icon></div>
+          <div *ngIf="car.usersVoted">{{car.score | number: '1.1-1'}}/5 
+            <mat-icon *ngIf="car.score == 5">star</mat-icon>
+            <mat-icon *ngIf="car.score < 5 && car.score > 0">star_half</mat-icon>
+            <mat-icon *ngIf="car.score == 0">star_outline</mat-icon>
+          </div>
           <div *ngIf="car.usersVoted">{{car.usersVoted}} Users Voted</div>
           <div *ngIf="!car.usersVoted">No Reviews Submitted <mat-icon>sentiment_dissatisfied</mat-icon></div>
         </div>
