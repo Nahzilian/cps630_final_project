@@ -50,12 +50,19 @@ export class GreenComponent implements OnInit {
     let content = card.children[1] as HTMLElement;
     let score = content.children[0] as HTMLElement;
     
-    if( isNaN(this.carPin2.score) ){
+    if( (isNaN(this.carPin2.score) || this.carPin1.score === 0)  && (isNaN(this.carPin1.score) || this.carPin2.score === 0) ){
+      score.innerHTML = `no user review <i style="color: gold" class="fas fa-minus"></i>`;
+    }else if(isNaN(this.carPin2.score)){
       score.innerHTML = `no user review <i style="color: red" class="fas fa-sort-down"></i>`;
     }
-    if(this.carPin1.score > this.carPin2.score){
+    else if(this.carPin1.score > this.carPin2.score){
       
       score.innerHTML = `${this.carPin2.score}/5 <i style="color: red" class="fas fa-sort-down"></i>`;
+    }else if(this.carPin1.score < this.carPin2.score){
+      score.innerHTML = `${this.carPin2.score.toFixed(1)}/5 <i style="color: green" class="fas fa-sort-up"></i>`;
+      
+    }else if(this.carPin2.score === this.carPin1.score){
+      score.innerHTML = `${this.carPin2.score.toFixed(1)}/5 <i style="color: gold" class="fas fa-minus"></i>`;
     }
     
   }
@@ -75,6 +82,8 @@ export class GreenComponent implements OnInit {
       
       if(isNaN(this.carPin2.score)){
         score.innerHTML = "no user reviews";
+      }else{
+        score.innerHTML = `${this.carPin2.score.toFixed(1)}/5`;
       }
       this.pin1 = null as HTMLElement;
       this.pin2 = null as HTMLElement;
@@ -108,6 +117,9 @@ export class GreenComponent implements OnInit {
         
         if(isNaN(this.carPin2.score)){
           score.innerHTML = "no user reviews";
+        }else{
+          score.innerHTML = `${this.carPin2.score.toFixed(1)}/5`;
+
         }
       }
       this.carPin2 = car;
