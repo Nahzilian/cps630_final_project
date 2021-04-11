@@ -12,4 +12,17 @@
 
 <div class="green-tab-header">
     <span>Our current drivers & products</span>
-  </div>
+</div>
+
+<div class="green-container">
+    <mat-button-toggle-group [formControl]="toggleControl" aria-label="Font Style">
+        <mat-button-toggle value="driver"><mat-icon>time_to_leave</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="flower"><mat-icon>yard</mat-icon></mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = updateData($event)">
+  </mat-paginator>
+</div>
