@@ -88,6 +88,10 @@
             <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
             <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
             <div><strong>Price</strong> - {{flower.price}}$</div>
+            
+          <div *ngIf="flower.usersVoted">{{flower.score | number: '1.1-1'}}/5 <mat-icon>star</mat-icon></div>
+          <div *ngIf="flower.usersVoted">{{flower.usersVoted}} Users Voted</div>
+          <div *ngIf="!flower.usersVoted">No Reviews Submitted <mat-icon>sentiment_dissatisfied</mat-icon></div>
           </div>
         </div>
         <img *cdkDragPreview [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
