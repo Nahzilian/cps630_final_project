@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const { userInfoValidation, updateUserValidation } = require('../utils/validation');
+const { userInfoValidation, updateUserValidation, orderValidation } = require('../utils/validation');
 const { encryptPassword } = require('../utils/encrypt');
 const { userInfoFormat } = require('../utils/formatting');
 const { signToken, validateToken, validateAdmin } = require('../utils/authentication');
 const User = require('../models/User');
+const Review = require('../models/Review');
+const Trip = require('../models/Trip');
+const CustomerOrder = require('../models/CustomerOrder');
 
 router.post('/register', async (req, res) => {
     // If info is invalid
@@ -76,11 +79,18 @@ router.put('/me/update/:id', validateToken, async (req, res, next) => {
 
 
 router.delete('/:id', validateAdmin, async (req, res, next) => {
-    const userId = req.body.id;
+    const userId = req.params.id;
     const userValidation = User.findById(userId);
     if (!userValidation) return res.status(400).send({ msg: "Invalid id" });
-
     // If you are deleting users, you have to delete Review, Order, Trip accordingly
+
+    await Review.deleteMany({userId: userId})
+    const listOfOrder = await (await CustomerOrder.find({customerId: userId}))
+    for(let order of listOfOrder) {
+        await Trip.deleteOne({_id: order.tripId})
+    }
+    await CustomerOrder.deleteMany({customerId: userId})
+
     User.deleteOne({_id: userId}).then(
         () => {
             res.status(201).json({

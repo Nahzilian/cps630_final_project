@@ -8,7 +8,8 @@ router.post('/', validateToken, async (req, res, next) => {
     review: req.body.review,
     score: req.body.score,
     type: req.body.type,
-    itemId: req.body.itemId
+    itemId: req.body.itemId,
+    userId: req.body.userId,
   };
 
   const newReview = new Review(newReviewObj);

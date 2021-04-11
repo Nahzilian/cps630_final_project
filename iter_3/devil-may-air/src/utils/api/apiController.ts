@@ -118,6 +118,7 @@ export async function deleteTrip(id) {
 }
 
 export async function deleteUser(id) {
+  console.log(id)
   const token = JSON.parse(localStorage.getItem('token'));
   try {
     await axios.delete(`/user/${id}`, {headers: {'x-auth-token': token}})

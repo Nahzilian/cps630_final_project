@@ -86,11 +86,13 @@ export class ReviewCardComponent implements OnInit {
   }
 
   submit(comment, productName){
+    const user = JSON.parse(localStorage.getItem('user'));
     let obj = {
       review: comment,
       score: this.stars,
       type: this.title,
-      itemId: productName
+      itemId: productName,
+      userId: user.id
     };
 
     sendReview(obj);

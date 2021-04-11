@@ -59,8 +59,9 @@ router.put('/', validateAdmin, async (req, res, next) => {
 
 router.delete('/:id', validateAdmin, async (req, res, next) => {
     /** 
-     * If you are deleting car, all of the review, order, trip will be deleted accordingly
+     * If you are deleting flower nothing changed since the invoice is needed
     */
+
     Flower.deleteOne({ _id: req.params.id }).then(
         () => {
             res.status(201).json({
