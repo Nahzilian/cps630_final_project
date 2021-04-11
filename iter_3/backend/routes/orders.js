@@ -49,7 +49,7 @@ router.post('/', validateToken, async (req, res, next) => {
     return res.status(200).send({ msg: "Added successfully", user: userInfoFormat(updatedUser) });
 })
 
-router.get('/:id', validateToken, async (req, res, next) => {
+router.get('/', validateToken, async (req, res, next) => {
     const orderId = req.params.id;
     const customerId = req.body.customerId;
     const isAdmin = req.body.isAdmin;
@@ -62,10 +62,13 @@ router.get('/:id', validateToken, async (req, res, next) => {
         const allOrderAdmin = await CustomerOrder.find({});
         return res.json(allOrderAdmin);
     }
+    if (customerId) {
+        const allOrderFromCustomer = await CustomerOrder.find({ customerId: customerId });
+        return res.json(allOrderFromCustomer);
+    }
 
-    const allOrder = await CustomerOrder.find({ customerId: customerId });
+    const allOrder = await CustomerOrder.find({});
     return res.json(allOrder);
-
 })
 
 // Order should not be updated or delete

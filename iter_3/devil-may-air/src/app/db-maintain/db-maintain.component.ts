@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { getAllCar, getAllFlower } from '../../utils/api/publicAPI';
+//getAllUserForDBMaintain
+import { getAllUserForDBMaintain, getTrips, getOrders, getReviews } from '../../utils/api/apiController';
 import Car from 'src/models/car';
 import Flower from 'src/models/flower';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
+import User from 'src/models/user';
+import Trip from 'src/models/trips';
 
 @Component({
   selector: 'app-db-maintain',
@@ -14,6 +19,10 @@ export class DbMaintainComponent implements OnInit {
   @ViewChild('tabGroup') tabGroup;
   allCar: Array<Car>;
   allFlower: Array<Flower>;
+  allUsers: Array<User>;
+  allTrip: Array<Trip>;
+  allOrder: Array<Trip>;
+  allReview: Array<any>;
 
   panelOpenState = false;
 
@@ -28,8 +37,8 @@ export class DbMaintainComponent implements OnInit {
 
   updateData(event?: PageEvent) {
     this.pageSize = event.pageSize;
-    if(this.tabIndex === 0) this.getCars(event.pageIndex);
-    if(this.tabIndex === 1) this.getFlowers(event.pageIndex);
+    if (this.tabIndex === 0) this.getCars(event.pageIndex);
+    if (this.tabIndex === 1) this.getFlowers(event.pageIndex);
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {
@@ -50,6 +59,10 @@ export class DbMaintainComponent implements OnInit {
     return '../../assets/img/flower/plc.jpeg';
   }
 
+  async getAllUserForDBMaintain() {
+    let tempUsers = await getAllUserForDBMaintain();
+    this.allUsers = tempUsers.data;
+  }
 
   async getCars(page) {
     let tempCar = await getAllCar(page, this.pageSize);
@@ -63,11 +76,31 @@ export class DbMaintainComponent implements OnInit {
     this.length = tempCar.data.row;
   }
 
+  async getTrips() {
+    let tempTrip = await getTrips();
+    this.allTrip = tempTrip.data;
+  }
 
+  async getOrders() {
+    let tempOrder = await getOrders();
+    this.allOrder = tempOrder.data;
+    console.log(this.allOrder)
+  }
 
-  constructor() {
+  async getReviews() {
+    let tempReview = await getReviews();
+    this.allReview = tempReview.data;
+  }
+
+  constructor(private router: Router) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user.isAdmin) this.router.navigate(['/']);
     this.getCars(0);
     this.getFlowers(0);
+    this.getAllUserForDBMaintain();
+    this.getTrips();
+    this.getOrders();
+    this.getReviews();
   }
 
   ngOnInit(): void {

@@ -8,6 +8,7 @@ const carRoute = require('./routes/cars');
 const flowerRoute = require('./routes/flowers');
 const orderRoute = require('./routes/orders');
 const reviewRoute = require('./routes/review');
+const tripRoute = require('./routes/trip');
 
 // Allow cors for local development
 const cors = require('cors');
@@ -39,5 +40,7 @@ app.use('/api/services/car', carRoute);
 app.use('/api/services/flower', flowerRoute);
 app.use('/api/services/order', orderRoute);
 app.use('/api/review', reviewRoute);
+app.use('/api/services/trip', tripRoute);
+
 
 app.listen(PORT,() => console.log(`Listening on port ${PORT}`));

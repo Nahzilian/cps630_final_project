@@ -52,7 +52,6 @@ export async function checkout(info) {
     const { data } = await axios.post('/services/order', info, {headers: {'x-auth-token': token}});
     localStorage.setItem('user', JSON.stringify(data.user));
   } catch (err) {
-    console.log(err)
     throw new Error(err);
   }
 }
@@ -63,12 +62,72 @@ export async function sendReview(data){
     const d  = await axios.post('/review', data, {headers: {'x-auth-token': token}});
 
   } catch (err) {
-    console.log(err);
     throw new Error(err);
   }
 }
 
-
 export async function getAllUserForDBMaintain() {
-  axios.get('/user/')
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const data = await axios.get('/user', {headers: {'x-auth-token': token}})
+    return data;
+  } catch(err) {
+    throw new Error(err);
+  }
+}
+
+export async function getTrips() {
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const data = await axios.get('/services/trip?id=', {headers: {'x-auth-token': token}})
+    return data;
+  } catch(err) {
+    throw new Error(err);
+  }
+}
+
+export async function getReviews() {
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const data = await axios.get('/review', {headers: {'x-auth-token': token}})
+    return data;
+  } catch(err) {
+    throw new Error(err);
+  }
+}
+
+export async function getOrders() {
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    const data = await axios.get('/services/order', {headers: {'x-auth-token': token}});
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+// Delete
+
+export async function deleteTrip(id) {
+
+}
+
+export async function deleteUser(id) {
+
+}
+
+export async function deleteReview(id) {
+
+}
+
+export async function deleteCar(id) {
+
+}
+
+export async function deleteFlower(id) {
+
+}
+
+export async function deleteOrder(id) {
+
 }

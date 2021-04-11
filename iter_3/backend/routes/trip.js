@@ -4,7 +4,7 @@ const Car = require('../models/Car');
 const { validateAdmin, validateToken } = require('../utils/authentication');
 const { tripValidation } = require('../utils/validation');
 
-router.get('/:id', validateToken ,async (req, res, next) => {
+router.get('/', validateToken ,async (req, res, next) => {
     const tripId = req.params.id;
     
     if(tripId) {
@@ -38,3 +38,4 @@ router.post('/', validateToken, async (req, res, next) => {
 })
 
 // User are not allow to update this information, as well as admin
+module.exports = router;

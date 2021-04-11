@@ -17,7 +17,7 @@ router.post('/', validateToken, async (req, res, next) => {
   return res.status(200).send({ msg: "Review Added successfully" })
 })
 
-router.get('/:id', async(req, res, next) => {
+router.get('/', async(req, res, next) => {
   const reviewId = req.params.id;
 
   if (reviewId) {
