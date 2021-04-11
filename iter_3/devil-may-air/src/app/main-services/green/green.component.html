@@ -1,0 +1,15 @@
+<div class="address-autocomplete">
+    <app-autocomplete-address (setAddress)="getSourceAddress($event)"></app-autocomplete-address>
+    <mat-icon>arrow_right_alt</mat-icon>
+    <app-autocomplete-address (setAddress)="getDestinAddress($event)"></app-autocomplete-address>
+</div>
+
+<div class="btn-middle">
+    <button mat-button color="primary" (click)="showMap()">Show map!</button>
+</div>
+<app-map #myMap></app-map>
+
+
+<div class="green-tab-header">
+    <span>Our current drivers & products</span>
+  </div>
