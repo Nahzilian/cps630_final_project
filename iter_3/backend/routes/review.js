@@ -17,7 +17,7 @@ router.post('/', validateToken, async (req, res, next) => {
   return res.status(200).send({ msg: "Review Added successfully" })
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', async(req, res, next) => {
   const reviewId = req.params.id;
 
   if (reviewId) {
@@ -29,7 +29,7 @@ router.get('/:id', (req, res, next) => {
   return res.send(allReview);
 })
 
-router.put('/', (req, res, next) => {
+router.put('/',validateToken,(req, res, next) => {
   const reviewId = req.body.id;
   const newReviewObj = {
     review: req.body.review,
@@ -49,7 +49,7 @@ router.put('/', (req, res, next) => {
   }))
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id',validateToken,(req, res, next) => {
   const reviewId = req.body.id;
   const reviewIdValidation = Review.findById(reviewId);
   if (!reviewIdValidation) return res.status(400).send({ msg: "Invalid id" });

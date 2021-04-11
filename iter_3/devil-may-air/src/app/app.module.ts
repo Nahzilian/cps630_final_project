@@ -40,6 +40,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { UserReviewComponent } from './user-review/user-review.component';
 import { ReviewCardComponent } from './user-review/review-card/review-card.component';
+import { DbMaintainComponent } from './db-maintain/db-maintain.component';
+import { UpdateFormComponent } from './db-maintain/update-form/update-form.component';
+import { CreateFormComponent } from './db-maintain/create-form/create-form.component';
 
 
 @NgModule({
@@ -60,7 +63,10 @@ import { ReviewCardComponent } from './user-review/review-card/review-card.compo
     MyCartComponent,
     AboutCardComponent,
     UserReviewComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    DbMaintainComponent,
+    UpdateFormComponent,
+    CreateFormComponent
   ],
   imports: [
     BrowserModule,
