@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { getAllCar, findReview } from '../../../utils/api/publicAPI';
 import Car from '../../../models/car';
@@ -13,6 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class GreenComponent implements OnInit {
   @ViewChild (MapComponent) map!: MapComponent;
+
   allCar: Array<Car>;
   
   length = 100;
@@ -27,12 +28,56 @@ export class GreenComponent implements OnInit {
   source: string;
   destin: string;
 
+  // pins
+  pin1: HTMLElement;
+  pin2: HTMLElement;
+  numPins: number = 0;
+
   constructor() {
     
     this.getCars(0);
    }
 
   ngOnInit(): void {
+  }
+
+  onPin(elem: HTMLElement){
+    let children = null;
+    let pin = null;
+    if(this.pin1 == elem){
+      this.numPins = 1;
+      pin = elem.children[0] as HTMLElement;
+      pin.style.color = 'black';
+      pin = this.pin2.children[0] as HTMLElement;
+      pin.style.color = 'black';
+      this.pin1 = null as HTMLElement;
+      this.pin2 = null as HTMLElement;
+      return;
+    }
+
+    if(!this.pin1){
+      this.pin1 = elem;
+      children = elem.children;
+      pin = children[0] as HTMLElement;
+      pin.style.color = "red";
+      this.numPins = 1;
+    }else{
+      let temp = null as HTMLElement;
+      if(this.numPins == 2)
+        temp = this.pin2;
+      this.pin2 = elem;
+      children = elem.children;
+      pin = children[0] as HTMLElement;
+      pin.style.color = "green";
+      
+      if(temp){
+        let tempPin = temp.children[0] as HTMLElement;
+        tempPin.style.color = 'black';
+        
+      }
+      this.numPins = 2;
+    }
+    
   }
 
   updateData (event?: PageEvent) {

@@ -25,15 +25,33 @@
     [pageSizeOptions]="pageSizeOptions"
     (page)="pageEvent = updateData($event)">
   </mat-paginator>
-
 </div>
-<ul class="mdc-image-list my-image-list">
-  <li class="mdc-image-list__item" *ngFor="let car of allCar">
-    <div class="mdc-image-list__image-aspect-container">
-      <img class="mdc-image-list__image" [src]="getCarImgSrc(car.imageid)">
-    </div>
-    <div class="mdc-image-list__supporting">
-      <span class="mdc-image-list__label">{{car.model}}</span>
-    </div>
-  </li>
+
+<ul class="mdc-image-list my-image-list" *ngIf="toggleControl.value == 'driver'">
+    <li #item (click)="onPin(item)" class="mdc-image-list__item" *ngFor="let car of allCar">
+        <mat-icon>
+            push_pin
+        </mat-icon>
+        <div class="mdc-image-list__image-aspect-container">
+            <img class="mdc-image-list__image" [src]="getCarImgSrc(car.imageid)">
+        </div>
+        <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+                <mat-card-title>
+                    {{car.model}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{car.carCode}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    <!-- {{description}} -->
+                </p>
+            </mat-card-content>
+        </mat-card>
+        <div class="mdc-image-list__supporting">
+            <span class="mdc-image-list__label">{{12}}$ per km</span>
+        </div>
+    </li>
 </ul>
