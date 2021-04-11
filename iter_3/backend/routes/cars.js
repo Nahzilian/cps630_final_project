@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const Car = require('../models/Car');
+const CustomerOrder = require('../models/CustomerOrder');
+const Review = require('../models/Review');
 const Trip = require('../models/Trip');
 const { validateAdmin } = require('../utils/authentication');
 const { pageDataFormatting } = require('../utils/formatting');
@@ -70,6 +72,12 @@ router.delete('/:id', validateAdmin, async (req, res) => {
     /** 
      * If you are deleting car, all of the review, order, trip will be deleted accordingly
     */
+    await Review.deleteMany({itemId: req.params.id, type: "Driver"})
+    const listOfTrip = await Trip.find({carId: req.params.id});
+    for(let trip of listOfTrip){
+        await CustomerOrder.deleteOne({tripId: trip._id.toString()}).then((data) => console.log(data))
+    }
+    await Trip.deleteMany({carId: req.params.id})
 
     Car.deleteOne({ _id: req.params.id }).then(
         () => {

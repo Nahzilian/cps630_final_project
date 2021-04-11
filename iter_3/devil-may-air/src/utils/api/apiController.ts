@@ -111,7 +111,7 @@ export async function getOrders() {
 export async function deleteTrip(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/services/trip?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/services/trip/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }
@@ -120,7 +120,7 @@ export async function deleteTrip(id) {
 export async function deleteUser(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/user?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/user/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }
@@ -129,7 +129,7 @@ export async function deleteUser(id) {
 export async function deleteReview(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/review?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/review/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }
@@ -138,7 +138,7 @@ export async function deleteReview(id) {
 export async function deleteCar(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/service/car?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/services/car/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }
@@ -147,7 +147,7 @@ export async function deleteCar(id) {
 export async function deleteFlower(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/service/flower?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/services/flower/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }
@@ -156,7 +156,7 @@ export async function deleteFlower(id) {
 export async function deleteOrder(id) {
   const token = JSON.parse(localStorage.getItem('token'));
   try {
-    await axios.delete(`/service/order?id=${id}`, {headers: {'x-auth-token': token}})
+    await axios.delete(`/services/order/${id}`, {headers: {'x-auth-token': token}})
   } catch (err) {
     throw new Error(err);
   }

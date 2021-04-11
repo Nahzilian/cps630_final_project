@@ -111,6 +111,7 @@ export class DbMaintainComponent implements OnInit {
     if (this.tabIndex === 3) deleteTrip(id);
     if (this.tabIndex === 4) deleteOrder(id);
     if (this.tabIndex === 5) deleteReview(id);
+    this.router.navigate(['/maintain'])
   }
 
   ngOnInit(): void {
