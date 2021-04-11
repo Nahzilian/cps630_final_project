@@ -30,7 +30,7 @@
               <div><strong>Price</strong> - 12$ per km</div>
             </div>
             <div>
-              <button mat-button color="primary">Select car</button>
+              <button mat-button (click)="deleteItem(car._id)">Delete</button>
             </div>
           </div>
         </mat-expansion-panel>
@@ -66,6 +66,9 @@
               <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
               <div><strong>Price</strong> - {{flower.price}}$</div>
             </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(flower._id)">Delete</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -103,6 +106,9 @@
               <div><strong>Admin</strong> - {{user.isAdmin}}</div>
             </div>
           </div>
+          <div>
+            <button mat-button (click)="deleteItem(user._id)">Delete</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -133,6 +139,9 @@
               <div><strong>Car ID</strong> - {{trip.carId}}</div>
               <div><strong>Price</strong> - {{trip.price}}</div>
             </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(trip._id)">Delete</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -167,6 +176,9 @@
               <div><strong>flowers</strong> - {{order.flowers.length}}</div>
             </div>
           </div>
+          <div>
+            <button mat-button (click)="deleteItem(order._id)">Delete</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -195,6 +207,9 @@
               <div><strong>Review Score</strong> - {{review.score}}</div>
               <div><strong>Review Item ID</strong> - {{review.itemId}}</div>
             </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(review._id)">Delete</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

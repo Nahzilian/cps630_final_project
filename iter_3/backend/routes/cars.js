@@ -67,6 +67,10 @@ router.post('/', validateAdmin, async (req, res) => {
 
 
 router.delete('/:id', validateAdmin, async (req, res) => {
+    /** 
+     * If you are deleting car, all of the review, order, trip will be deleted accordingly
+    */
+
     Car.deleteOne({ _id: req.params.id }).then(
         () => {
             res.status(201).json({

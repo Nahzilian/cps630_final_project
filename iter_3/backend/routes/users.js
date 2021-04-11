@@ -79,6 +79,8 @@ router.delete('/:id', validateAdmin, async (req, res, next) => {
     const userId = req.body.id;
     const userValidation = User.findById(userId);
     if (!userValidation) return res.status(400).send({ msg: "Invalid id" });
+
+    // If you are deleting users, you have to delete Review, Order, Trip accordingly
     User.deleteOne({_id: userId}).then(
         () => {
             res.status(201).json({

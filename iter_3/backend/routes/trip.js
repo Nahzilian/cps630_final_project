@@ -38,4 +38,6 @@ router.post('/', validateToken, async (req, res, next) => {
 })
 
 // User are not allow to update this information, as well as admin
+
+// If you are deleting trip then you need to delete customer order as well
 module.exports = router;

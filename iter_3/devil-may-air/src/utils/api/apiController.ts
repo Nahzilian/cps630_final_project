@@ -109,25 +109,55 @@ export async function getOrders() {
 // Delete
 
 export async function deleteTrip(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/services/trip?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function deleteUser(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/user?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function deleteReview(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/review?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function deleteCar(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/service/car?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function deleteFlower(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/service/flower?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function deleteOrder(id) {
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  try {
+    await axios.delete(`/service/order?id=${id}`, {headers: {'x-auth-token': token}})
+  } catch (err) {
+    throw new Error(err);
+  }
 }

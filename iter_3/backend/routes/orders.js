@@ -6,7 +6,7 @@ const CustomerOrder = require('../models/CustomerOrder');
 const { tripValidation, orderValidation } = require('../utils/validation');
 const { userInfoFormat } = require('../utils/formatting');
 
-const { validateToken } = require('../utils/authentication');
+const { validateToken, validateAdmin } = require('../utils/authentication');
 
 router.post('/', validateToken, async (req, res, next) => {
     const newTripObj = {
@@ -69,6 +69,19 @@ router.get('/', validateToken, async (req, res, next) => {
 
     const allOrder = await CustomerOrder.find({});
     return res.json(allOrder);
+})
+
+router.delete('/:id', validateAdmin, async (req, res, next) => {
+    const orderId = req.params.id
+    CustomerOrder.deleteOne({ _id: orderId }).then(
+        () => {
+            res.status(201).json({
+                msg: "Deleted successfully"
+            })
+        }
+    ).catch((err) => res.status(400).json({
+        error: err
+    }))
 })
 
 // Order should not be updated or delete

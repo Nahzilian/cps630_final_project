@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { getAllCar, getAllFlower } from '../../utils/api/publicAPI';
 //getAllUserForDBMaintain
 import { getAllUserForDBMaintain, getTrips, getOrders, getReviews } from '../../utils/api/apiController';
+import { deleteCar, deleteFlower, deleteOrder, deleteReview, deleteTrip, deleteUser } from '../../utils/api/apiController'
 import Car from 'src/models/car';
 import Flower from 'src/models/flower';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -101,6 +102,15 @@ export class DbMaintainComponent implements OnInit {
     this.getTrips();
     this.getOrders();
     this.getReviews();
+  }
+
+  deleteItem(id) {
+    if (this.tabIndex === 0) deleteCar(id);
+    if (this.tabIndex === 1) deleteFlower(id);
+    if (this.tabIndex === 2) deleteUser(id);
+    if (this.tabIndex === 3) deleteTrip(id);
+    if (this.tabIndex === 4) deleteOrder(id);
+    if (this.tabIndex === 5) deleteReview(id);
   }
 
   ngOnInit(): void {
