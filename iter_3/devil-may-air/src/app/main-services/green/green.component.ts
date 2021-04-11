@@ -31,6 +31,8 @@ export class GreenComponent implements OnInit {
   // pins
   pin1: HTMLElement;
   pin2: HTMLElement;
+  carPin1 : Car;
+  carPin2: Car;
   numPins: number = 0;
 
   constructor() {
@@ -41,7 +43,24 @@ export class GreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPin(elem: HTMLElement){
+  compare(){
+    let pin = this.pin2;
+    let children = pin.children;
+    let card = children[2] as HTMLElement;
+    let content = card.children[1] as HTMLElement;
+    let score = content.children[0] as HTMLElement;
+    
+    if( isNaN(this.carPin2.score) ){
+      score.innerHTML = `no user review <i style="color: red" class="fas fa-sort-down"></i>`;
+    }
+    if(this.carPin1.score > this.carPin2.score){
+      
+      score.innerHTML = `${this.carPin2.score}/5 <i style="color: red" class="fas fa-sort-down"></i>`;
+    }
+    
+  }
+
+  onPin(elem: HTMLElement, car:Car){
     let children = null;
     let pin = null;
     if(this.pin1 == elem){
@@ -50,13 +69,23 @@ export class GreenComponent implements OnInit {
       pin.style.color = 'black';
       pin = this.pin2.children[0] as HTMLElement;
       pin.style.color = 'black';
+      var card = this.pin2.children[2] as HTMLElement;
+      var content = card.children[1] as HTMLElement;
+      var score = content.children[0] as HTMLElement;
+      
+      if(isNaN(this.carPin2.score)){
+        score.innerHTML = "no user reviews";
+      }
       this.pin1 = null as HTMLElement;
       this.pin2 = null as HTMLElement;
+      this.carPin1 = null as Car;
+      this.carPin2 = null as Car;
       return;
     }
 
     if(!this.pin1){
       this.pin1 = elem;
+      this.carPin1 = car;
       children = elem.children;
       pin = children[0] as HTMLElement;
       pin.style.color = "red";
@@ -73,11 +102,48 @@ export class GreenComponent implements OnInit {
       if(temp){
         let tempPin = temp.children[0] as HTMLElement;
         tempPin.style.color = 'black';
+        var card = temp.children[2] as HTMLElement;
+        var content = card.children[1] as HTMLElement;
+        var score = content.children[0] as HTMLElement;
         
+        if(isNaN(this.carPin2.score)){
+          score.innerHTML = "no user reviews";
+        }
       }
+      this.carPin2 = car;
+      this.compare();
       this.numPins = 2;
     }
     
+  }
+
+  async getReview(id){
+
+    let reviews = await findReview(id);
+    
+    return reviews;
+  }
+
+  updateReview(arr){
+    // Get Reviews
+    for (let i = 0; i < arr.length; i++) {
+      const element = this.getReview(this.allCar[i].carCode);
+      arr[i].usersVoted = 0;
+      arr[i].score = 0;
+      element.then((e)=>{
+        let score = 0;
+        let totUsers = 0;
+        e.data.forEach(element => {
+          score += element.score;
+          totUsers++;
+        });
+        arr[i].usersVoted = totUsers;
+        let tot = (score/totUsers) * 5;
+        arr[i].score = tot < 0? 0:tot;
+        
+      });
+      
+    }
   }
 
   updateData (event?: PageEvent) {
@@ -91,7 +157,7 @@ export class GreenComponent implements OnInit {
     this.allCar = tempCar.data.data;
     this.length = tempCar.data.row;
     
-    // this.updateReview();
+    this.updateReview(this.allCar);
   }
 
   
