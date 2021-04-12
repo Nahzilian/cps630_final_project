@@ -273,6 +273,7 @@ export class GreenComponent implements OnInit {
   updateData (event?: PageEvent) {
     this.pageSize = event.pageSize;
     this.getCars(event.pageIndex);
+    this.getFlowers(event.pageIndex);
     return event;
   }
 
