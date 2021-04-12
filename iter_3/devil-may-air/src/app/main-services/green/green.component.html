@@ -26,7 +26,7 @@
     (page)="pageEvent = updateData($event)">
   </mat-paginator>
 </div>
-<ul class="mdc-image-list my-image-list" *ngIf="toggleControl.value == 'driver'">
+<ul class="mdc-image-list my-image-list"  *ngIf="toggleControl.value == 'driver'">
     <li #item (click)="onPinCar(item, car)" class="mdc-image-list__item" *ngFor="let car of allCar">
         <mat-icon>
             push_pin

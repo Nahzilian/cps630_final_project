@@ -114,6 +114,9 @@ export class GreenComponent implements OnInit {
   onPinCar(elem: HTMLElement, car: Car){
     let children = null;
     let pin = null;
+    if(this.flowerPin1){
+      this.reset();
+    }
     if(this.pin1 == elem){
       this.numPins = 1;
       pin = elem.children[0] as HTMLElement;
@@ -176,6 +179,9 @@ export class GreenComponent implements OnInit {
   onPinFlower(elem: HTMLElement, flower: Flower){
     let children = null;
     let pin = null;
+    if(this.carPin1){
+      this.reset();
+    }
     if(this.pin1 == elem){
       this.numPins = 1;
       pin = elem.children[0] as HTMLElement;
