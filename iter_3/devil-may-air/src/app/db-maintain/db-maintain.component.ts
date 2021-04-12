@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { getAllCar, getAllFlower } from '../../utils/api/publicAPI';
 import { getAllUserForDBMaintain, getTrips, getOrders, getReviews } from '../../utils/api/apiController';
 import { deleteCar, deleteFlower, deleteOrder, deleteReview, deleteTrip, deleteUser } from '../../utils/api/apiController'
+import { updateCar, updateFlower, updateOrder, updateReview, updateTrip, updateUser } from '../../utils/api/apiController'
 import Car from 'src/models/car';
 import Flower from 'src/models/flower';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -61,7 +62,6 @@ export class DbMaintainComponent implements OnInit {
     flowerName: new FormControl(''),
     storeCode: new FormControl(''),
     imageid: new FormControl(''),
-    quantity: new FormControl('')
   })
 
   tripForm: FormGroup = new FormGroup({
@@ -188,7 +188,9 @@ export class DbMaintainComponent implements OnInit {
   submitCar() {
     if (this.carForm.valid) {
       try {
-        // addCar(this.carForm.controls);
+        let id = this.selectedData._id
+        updateCar(this.carForm.controls, id);
+        this.getCars(0);
       } catch (err) {
         this.error = err
       }
@@ -198,7 +200,8 @@ export class DbMaintainComponent implements OnInit {
   submitUser() {
     if (this.userForm.valid) {
       try {
-        // register(this.userForm.controls);
+        let id = this.selectedData._id
+        updateUser(this.userForm.controls, id)
       } catch (err) {
         this.error = err
       }
@@ -206,15 +209,51 @@ export class DbMaintainComponent implements OnInit {
   }
 
   submitFlower() {
-
+    if (this.flowerForm.valid) {
+      try {
+        let id = this.selectedData._id
+        updateFlower(this.flowerForm.controls, id);
+        this.getFlowers(0);
+      } catch (err) {
+        this.error = err
+      }
+    }
   }
 
   submitTrip() {
-
+    if (this.tripForm.valid) {
+      try {
+        let id = this.selectedData._id
+        updateTrip(this.tripForm.controls, id);
+        this.getTrips();
+      } catch (err) {
+        this.error = err
+      }
+    }
   }
 
   submitOrder() {
+    if (this.orderForm.valid) {
+      try {
+        let id = this.selectedData._id
+        updateOrder(this.orderForm.controls, id);
+        this.getOrders();
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
 
+  submitReview() {
+    if (this.reviewForm.valid) {
+      try {
+        let id = this.selectedData._id
+        updateReview(this.reviewForm.controls, id);
+        this.getReviews();
+      } catch (err) {
+        this.error = err
+      }
+    }
   }
 
   updateDataOnChange() {

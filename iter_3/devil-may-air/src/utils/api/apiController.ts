@@ -192,5 +192,99 @@ export async function addFlower(form) {
   }
   axios.post('/services/flower', newCar, {headers: {'x-auth-token': token}})
   .catch(err => { throw new Error(err) });
+}
+
+
+// Update
+
+
+export async function updateCar(form, id) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newCar = {
+    id: id,
+    model: form['model'].value,
+    carCode: form['carCode'].value,
+    imageid: form['imageid'].value,
+    available: form['available'].value,
+  }
+  console.log(newCar)
+  axios.put('/services/car', newCar, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+
+}
+
+export async function updateFlower(form, id) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newCar = {
+    id: id,
+    price: form['price'].value,
+    flowerName: form['flowerName'].value,
+    storeCode: form['storeCode'].value,
+    imageid: form['imageid'].value,
+  }
+  axios.put('/services/flower', newCar, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+}
+
+export async function updateOrder(form, id) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newOrder = {
+    id: id,
+    dateIssued: form['dateIssued'].value,
+    dateDone: form['dateDone'].value,
+  }
+  axios.put('/services/order', newOrder, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+}
+
+export async function updateReview(form, id) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newReview = {
+    id: id,
+    review: form['review'].value,
+    score: form['score'].value,
+    type: form['type'].value,
+  }
+  console.log(newReview)
+  axios.put('/review/admin_update', newReview, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+  console.log('ehrasdlaj')
+}
+
+export async function updateTrip(form, id) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newTrip = {
+    id: id,
+    source: form['source'].value,
+    destination: form['destination'].value,
+    distance: form['distance'].value,
+    price: form['price'].value
+  }
+  axios.put('/services/trip', newTrip, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+}
+
+export async function updateUser(form, id) {
+  if (!form) throw new Error("No info found")
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newUser = {
+    id: id,
+    name: form['name'].value,
+    phone: form['phone'].value,
+    email: form['email'].value,
+    address: form['address'].value,
+    cityCode: form['cityCode'].value,
+  }
+  axios.put('/user/register/admin', newUser, {headers: {'x-auth-token': token}})
+  .then(res => {
+      const userData = res.data;
+      localStorage.setItem('user', JSON.stringify(userData.user));
+    }
+  ).catch(err => { throw new Error(err) });
 
 }

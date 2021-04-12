@@ -53,4 +53,26 @@ router.delete('/:id', validateAdmin, async (req, res, next) => {
         error: err
     }))
 })
+
+router.put('/', validateAdmin, async (req, res) => {
+    const tripId = req.body.id;
+
+    const trip = {
+        source: req.body.source,
+        destination: req.body.destination,
+        distance: req.body.distance,
+        price: req.body.price,
+    }
+    Trip.updateOne({ _id: tripId }, trip).then(
+        () => {
+            res.status(201).json({
+                msg: "Updated successfully"
+            })
+        }
+    ).catch((err) => res.status(400).json({
+        error: err
+    }))
+})
+
+
 module.exports = router;

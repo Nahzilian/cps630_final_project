@@ -30,7 +30,7 @@ router.get('/available', async (req, res) => {
 
 router.put('/', validateAdmin, async (req, res) => {
     const carId = req.body.id;
-    const { error } = carValidation(req.body);
+    // const { error } = carValidation(req.body);
 
     const car = {
         model: req.body.model,
@@ -38,7 +38,6 @@ router.put('/', validateAdmin, async (req, res) => {
         available: req.body.available,
         imageid: req.body.imageid
     }
-    if (error) return res.status(400).send({ msg: "Invalid data" });
     Car.updateOne({ _id: carId }, car).then(
         () => {
             res.status(201).json({
@@ -49,6 +48,7 @@ router.put('/', validateAdmin, async (req, res) => {
         error: err
     }))
 })
+
 
 // Post new car
 router.post('/', validateAdmin, async (req, res) => {

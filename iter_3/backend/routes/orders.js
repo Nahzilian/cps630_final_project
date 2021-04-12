@@ -84,7 +84,22 @@ router.delete('/:id', validateAdmin, async (req, res, next) => {
     }))
 })
 
-// Order should not be updated or delete
+router.put('/', validateAdmin, (req, res, next) => {
+    const orderId = req.body.id;
 
+    const customerOrder = {
+        dateDone: req.body.dateDone,
+        dateIssued: req.body.dateIssued,
+    }
+    CustomerOrder.updateOne({ _id: orderId }, customerOrder).then(
+        () => {
+            res.status(201).json({
+                msg: "Updated successfully"
+            })
+        }
+    ).catch((err) => res.status(400).json({
+        error: err
+    }))
+})
 
 module.exports = router;

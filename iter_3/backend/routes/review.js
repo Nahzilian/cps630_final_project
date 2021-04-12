@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Review = require('../models/Review');
 
-const { validateToken } = require('../utils/authentication');
+const { validateToken, validateAdmin } = require('../utils/authentication');
 
 router.post('/', validateToken, async (req, res, next) => {
   const newReviewObj = {
@@ -30,11 +30,34 @@ router.get('/', async(req, res, next) => {
   return res.send(allReview);
 })
 
-router.put('/',validateToken,(req, res, next) => {
+router.put('/admin_update',validateAdmin, (req, res, next) => {
   const reviewId = req.body.id;
   const newReviewObj = {
     review: req.body.review,
     score: req.body.score,
+    type: req.body.type
+  }
+  console.log(newReviewObj)
+
+  const reviewIdValidation = Review.findById(reviewId);
+  if (!reviewIdValidation) return res.status(400).send({ msg: "Invalid id" });
+  Review.updateOne({ _id: reviewId }, newReviewObj).then(
+    () => {
+      res.status(201).json({
+        msg: "Updated successfully"
+      })
+    }
+  ).catch((err) => res.status(400).json({
+    error: err
+  }))
+})
+
+router.put('/',validateToken, (req, res, next) => {
+  const reviewId = req.body.id;
+  const newReviewObj = {
+    review: req.body.review,
+    score: req.body.score,
+    typte: req.body.type
   }
 
   const reviewIdValidation = Review.findById(reviewId);
