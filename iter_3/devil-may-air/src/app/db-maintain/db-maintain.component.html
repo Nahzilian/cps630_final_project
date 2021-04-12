@@ -43,6 +43,9 @@
               <div class="button">
                 <button type="submit" mat-button>Update</button>
               </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
             </form>
           </mat-card-content>
         </mat-card>
@@ -266,28 +269,23 @@
         <mat-card>
           <mat-card-title>Update Trip</mat-card-title>
           <mat-card-content>
-            <form [formGroup]='flowerForm' (ngSubmit)="submitTrip()">
+            <form [formGroup]='tripForm' (ngSubmit)="submitTrip()">
+
               <div>
                 <mat-form-field>
-                  <input type="text" matInput placeholder="Source" formControlName="flowerName">
+                  <input type="text" matInput placeholder="Source" formControlName="source">
                 </mat-form-field>
               </div>
 
               <div>
                 <mat-form-field>
-                  <input type="text" matInput placeholder="Destination" formControlName="storeCode">
+                  <input type="text" matInput placeholder="Destination" formControlName="destination">
                 </mat-form-field>
               </div>
 
               <div>
                 <mat-form-field>
-                  <input type="number" matInput placeholder="Distance" formControlName="imageid">
-                </mat-form-field>
-              </div>
-
-              <div>
-                <mat-form-field>
-                  <input type="number" matInput placeholder="Car ID" formControlName="quantity" min="1">
+                  <input type="number" matInput placeholder="Distance" formControlName="distance">
                 </mat-form-field>
               </div>
 

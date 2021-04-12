@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { getAllCar, getAllFlower } from '../../utils/api/publicAPI';
-//getAllUserForDBMaintain
 import { getAllUserForDBMaintain, getTrips, getOrders, getReviews } from '../../utils/api/apiController';
 import { deleteCar, deleteFlower, deleteOrder, deleteReview, deleteTrip, deleteUser } from '../../utils/api/apiController'
 import Car from 'src/models/car';
@@ -69,7 +68,6 @@ export class DbMaintainComponent implements OnInit {
     source: new FormControl(''),
     destination: new FormControl(''),
     distance: new FormControl(''),
-    carId: new FormControl(''),
     price: new FormControl(''),
   })
 
@@ -83,6 +81,10 @@ export class DbMaintainComponent implements OnInit {
     score: new FormControl(''),
     type: new FormControl(''),
   })
+
+  closeUpdateData() {
+    this.selectedData = null;
+  }
 
   setSelectedData (data) {
     this.selectedData =  data;
@@ -245,11 +247,10 @@ export class DbMaintainComponent implements OnInit {
       }
       if (this.selectedDataType === 'trips') {
         this.tripForm.patchValue({
-          name: this.selectedData.name,
-          address: this.selectedData.address,
-          cityCode: this.selectedData.cityCode,
-          email: this.selectedData.email,
-          phone: this.selectedData.phone,
+          source: this.selectedData.source,
+          destination: this.selectedData.destination,
+          distance: this.selectedData.distance,
+          price: this.selectedData.price,
         })
       }
       if (this.selectedDataType === 'orders') {
@@ -267,5 +268,4 @@ export class DbMaintainComponent implements OnInit {
       }
     }
   }
-
 }
