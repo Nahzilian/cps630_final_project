@@ -168,13 +168,29 @@ export async function deleteOrder(id) {
 
 export async function addCar(form) {
   if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
   const newCar = {
-    name: form['model'].value,
-    phone: form['carCode'].value,
-    email: form['imageid'].value,
-    address: form['available'].value,
+    model: form['model'].value,
+    carCode: form['carCode'].value,
+    imageid: form['imageid'].value,
+    available: form['available'].value,
   }
-  axios.post('/services/car', newCar)
+  axios.post('/services/car', newCar, {headers: {'x-auth-token': token}})
+  .catch(err => { throw new Error(err) });
+
+}
+
+export async function addFlower(form) {
+  if (!form) throw new Error("No info found");
+  const token = JSON.parse(localStorage.getItem('token'));
+  const newCar = {
+    price: form['price'].value,
+    flowerName: form['flowerName'].value,
+    storeCode: form['storeCode'].value,
+    imageid: form['imageid'].value,
+    quantity: form['quantity'].value,
+  }
+  axios.post('/services/flower', newCar, {headers: {'x-auth-token': token}})
   .catch(err => { throw new Error(err) });
 
 }

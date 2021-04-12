@@ -84,8 +84,7 @@ export class DbMaintainComponent implements OnInit {
 
   async getOrders() {
     let tempOrder = await getOrders();
-    this.allOrder = tempOrder.data;
-    console.log(this.allOrder)
+    this.allOrder = tempOrder.data
   }
 
   async getReviews() {

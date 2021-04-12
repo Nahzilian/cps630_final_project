@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { register, addCar } from 'src/utils/api/apiController';
+import { register, addCar, addFlower } from 'src/utils/api/apiController';
 
 @Component({
   selector: 'app-create-form',
@@ -57,7 +57,13 @@ export class CreateFormComponent implements OnInit {
   }
 
   submitFlower() {
-    
+    if(this.flowerForm.valid) {
+      try {
+        addFlower(this.flowerForm.controls)
+      } catch(err) {
+        this.error = err;
+      }
+    }
   }
 
 

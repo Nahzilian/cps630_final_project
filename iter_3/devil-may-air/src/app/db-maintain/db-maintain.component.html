@@ -7,6 +7,11 @@
       <div>
         <app-create-form [formType]="'cars'"></app-create-form>
       </div>
+
+      <div>
+        <app-update-form [formType]="'cars'"></app-update-form>
+      </div>
+
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = updateData($event)">
       </mat-paginator>
@@ -46,6 +51,11 @@
       <div>
         <app-create-form [formType]="'flowers'"></app-create-form>
       </div>
+
+      <div>
+        <app-update-form [formType]="'flowers'"></app-update-form>
+      </div>
+
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = updateData($event)">
       </mat-paginator>
@@ -85,6 +95,11 @@
       <div>
         <app-create-form [formType]="'users'"></app-create-form>
       </div>
+
+      <div>
+        <app-update-form [formType]="'flowers'"></app-update-form>
+      </div>
+
       <!-- <mat-paginator
         [length]="length"
         [pageSize]="pageSize"
@@ -125,6 +140,11 @@
       <div>
         <app-create-form [formType]="'trips'"></app-create-form>
       </div>
+
+      <div>
+        <app-update-form [formType]="'flowers'"></app-update-form>
+      </div>
+
       <!--
       <mat-paginator
         [length]="length"

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-update-form',
@@ -6,8 +7,59 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-form.component.sass']
 })
 export class UpdateFormComponent implements OnInit {
+  error = '';
+  @Input() formType: String;
+  userForm: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    address: new FormControl(''),
+    cityCode: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
+    creditCard: new FormControl('')
+  });
+
+  carForm: FormGroup = new FormGroup({
+    model : new FormControl(''),
+    carCode : new FormControl(''),
+    imageid : new FormControl(''),
+    available: new FormControl('')
+  })
+
+  flowerForm: FormGroup = new FormGroup({
+    price : new FormControl(''),
+    flowerName : new FormControl(''),
+    storeCode: new FormControl(''),
+    imageid: new FormControl(''),
+    quantity: new FormControl('')
+  })
 
   constructor() { }
+
+  submitCar() {
+    if (this.carForm.valid) {
+      try {
+        // addCar(this.carForm.controls);
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
+
+  submitUser() {
+    if (this.userForm.valid) {
+      try {
+        // register(this.userForm.controls);
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
+
+  submitFlower() {
+
+  }
 
   ngOnInit(): void {
   }
