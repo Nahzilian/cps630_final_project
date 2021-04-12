@@ -138,11 +138,7 @@
   <mat-tab label="Trips">
     <div class="generic-arc-wrapper" *ngIf="allTrip">
       <div>
-        <app-create-form [formType]="'trips'"></app-create-form>
-      </div>
-
-      <div>
-        <app-update-form [formType]="'flowers'"></app-update-form>
+        <app-update-form [formType]="'trips'"></app-update-form>
       </div>
 
       <!--
@@ -182,7 +178,7 @@
   <mat-tab label="Orders">
     <div class="generic-arc-wrapper" *ngIf="allOrder">
       <div>
-        <app-create-form [formType]="'orders'"></app-create-form>
+        <app-update-form [formType]="'orders'"></app-update-form>
       </div>
       <!--
             <mat-paginator
@@ -221,7 +217,7 @@
   <mat-tab label="Reviews">
     <div class="generic-arc-wrapper" *ngIf="allOrder">
       <div>
-        <app-create-form [formType]="'reviews'"></app-create-form>
+        <app-update-form [formType]="'reviews'"></app-update-form>
       </div>
       <!--
             <mat-paginator

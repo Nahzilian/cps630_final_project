@@ -1,6 +1,6 @@
 <div *ngIf="formType === 'cars'">
   <mat-card>
-    <mat-card-title>Add Car</mat-card-title>
+    <mat-card-title>Update Car</mat-card-title>
     <mat-card-content>
       <form [formGroup]='carForm' (ngSubmit)="submitCar()">
         <div>
@@ -32,7 +32,7 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-button>Add</button>
+          <button type="submit" mat-button>Update</button>
         </div>
       </form>
     </mat-card-content>
@@ -42,7 +42,7 @@
 
 <div *ngIf="formType === 'flowers'">
   <mat-card>
-    <mat-card-title>Add Flower</mat-card-title>
+    <mat-card-title>Update Flower</mat-card-title>
     <mat-card-content>
       <form [formGroup]='flowerForm' (ngSubmit)="submitFlower()">
         <div>
@@ -80,7 +80,7 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-button>Add</button>
+          <button type="submit" mat-button>Update</button>
         </div>
       </form>
     </mat-card-content>
@@ -90,7 +90,7 @@
 
 <div *ngIf="formType === 'users'">
   <mat-card>
-    <mat-card-title>Add user</mat-card-title>
+    <mat-card-title>Update user</mat-card-title>
     <mat-card-content>
       <form [formGroup]="userForm" (ngSubmit)="submitUser()">
 
@@ -143,20 +143,120 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-button>Add</button>
+          <button type="submit" mat-button>Update</button>
         </div>
 
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>
+
+
 <div *ngIf="formType === 'trips'">
-  Trips
+  <mat-card>
+    <mat-card-title>Update Trip</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='flowerForm' (ngSubmit)="submitTrip()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Source" formControlName="flowerName">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Destination" formControlName="storeCode">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Distance" formControlName="imageid">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Car ID" formControlName="quantity" min="1">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Price" formControlName="price">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Update</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
 <div *ngIf="formType === 'orders'">
-  Orders
+  <mat-card>
+    <mat-card-title>Update Order</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='flowerForm' (ngSubmit)="submitOrder()">
+        <div>
+          <mat-form-field>
+            <input type="date" matInput placeholder="Date Issued" formControlName="dateIssued">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="date" matInput placeholder="Date Done" formControlName="dateDone">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Update</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
 <div *ngIf="formType === 'reviews'">
-  Reviews
+  <mat-card>
+    <mat-card-title>Update Reviews</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='reviewForm' (ngSubmit)="submitTrip()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="reviewForm" formControlName="review">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Score" formControlName="score">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Type" formControlName="type">
+          </mat-form-field>
+        </div>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Update</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

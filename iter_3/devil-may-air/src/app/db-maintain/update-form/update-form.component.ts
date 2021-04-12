@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class UpdateFormComponent implements OnInit {
   error = '';
   @Input() formType: String;
+  @Input() data: any;
   userForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
@@ -21,18 +22,37 @@ export class UpdateFormComponent implements OnInit {
   });
 
   carForm: FormGroup = new FormGroup({
-    model : new FormControl(''),
-    carCode : new FormControl(''),
-    imageid : new FormControl(''),
+    model: new FormControl(''),
+    carCode: new FormControl(''),
+    imageid: new FormControl(''),
     available: new FormControl('')
   })
 
   flowerForm: FormGroup = new FormGroup({
-    price : new FormControl(''),
-    flowerName : new FormControl(''),
+    price: new FormControl(''),
+    flowerName: new FormControl(''),
     storeCode: new FormControl(''),
     imageid: new FormControl(''),
     quantity: new FormControl('')
+  })
+
+  tripForm: FormGroup = new FormGroup({
+    source: new FormControl(''),
+    destination: new FormControl(''),
+    distance: new FormControl(''),
+    carId: new FormControl(''),
+    price: new FormControl(''),
+  })
+
+  orderForm: FormGroup = new FormGroup({
+    dateDone: new FormControl(''),
+    dateIssued: new FormControl(''),
+  });
+
+  reviewForm: FormGroup = new FormGroup({
+    review: new FormControl(''),
+    score: new FormControl(''),
+    type: new FormControl(''),
   })
 
   constructor() { }
@@ -58,6 +78,14 @@ export class UpdateFormComponent implements OnInit {
   }
 
   submitFlower() {
+
+  }
+
+  submitTrip() {
+
+  }
+
+  submitOrder() {
 
   }
 
