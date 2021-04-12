@@ -10,6 +10,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import User from 'src/models/user';
 import Trip from 'src/models/trips';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-db-maintain',
@@ -26,15 +27,73 @@ export class DbMaintainComponent implements OnInit {
   allReview: Array<any>;
 
   panelOpenState = false;
-
+  error: string = '';
   tabIndex = 0;
 
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
+  selectedData: any;
+  selectedDataType: String = 'cars';
+  isUpdating: boolean = false;
+
   // MatPaginator Output
   pageEvent: PageEvent;
+
+
+  userForm: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    address: new FormControl(''),
+    cityCode: new FormControl('')
+  });
+
+  carForm: FormGroup = new FormGroup({
+    model: new FormControl(''),
+    carCode: new FormControl(''),
+    imageid: new FormControl(''),
+    available: new FormControl('')
+  })
+
+  flowerForm: FormGroup = new FormGroup({
+    price: new FormControl(''),
+    flowerName: new FormControl(''),
+    storeCode: new FormControl(''),
+    imageid: new FormControl(''),
+    quantity: new FormControl('')
+  })
+
+  tripForm: FormGroup = new FormGroup({
+    source: new FormControl(''),
+    destination: new FormControl(''),
+    distance: new FormControl(''),
+    carId: new FormControl(''),
+    price: new FormControl(''),
+  })
+
+  orderForm: FormGroup = new FormGroup({
+    dateDone: new FormControl(''),
+    dateIssued: new FormControl(''),
+  });
+
+  reviewForm: FormGroup = new FormGroup({
+    review: new FormControl(''),
+    score: new FormControl(''),
+    type: new FormControl(''),
+  })
+
+  setSelectedData (data) {
+    this.selectedData =  data;
+    if (this.tabIndex === 0) this.selectedDataType = 'cars'
+    if (this.tabIndex === 1) this.selectedDataType = 'flowers'
+    if (this.tabIndex === 2) this.selectedDataType = 'users'
+    if (this.tabIndex === 3) this.selectedDataType = 'trips'
+    if (this.tabIndex === 4) this.selectedDataType = 'orders'
+    if (this.tabIndex === 5) this.selectedDataType = 'reviews'
+    this.updateDataOnChange()
+  }
 
   updateData(event?: PageEvent) {
     this.pageSize = event.pageSize;
@@ -107,6 +166,7 @@ export class DbMaintainComponent implements OnInit {
     if (this.tabIndex === 5) deleteReview(id);
     this.refreshData();
   }
+
   refreshData(){
     this.getCars(0);
     this.getFlowers(0);
@@ -118,8 +178,94 @@ export class DbMaintainComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.tabIndex = tabChangeEvent.index;
+  }
+
+  submitCar() {
+    if (this.carForm.valid) {
+      try {
+        // addCar(this.carForm.controls);
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
+
+  submitUser() {
+    if (this.userForm.valid) {
+      try {
+        // register(this.userForm.controls);
+      } catch (err) {
+        this.error = err
+      }
+    }
+  }
+
+  submitFlower() {
+
+  }
+
+  submitTrip() {
+
+  }
+
+  submitOrder() {
+
+  }
+
+  updateDataOnChange() {
+    if (this.selectedData) {
+      if (this.selectedDataType === 'cars') {
+        this.carForm.patchValue({
+          model: this.selectedData.model,
+          carCode: this.selectedData.carCode,
+          imageid: this.selectedData.imageid,
+          available: this.selectedData.available
+        })
+      }
+      if (this.selectedDataType === 'flowers') {
+        this.flowerForm.patchValue({
+          flowerName: this.selectedData.flowerName,
+          storeCode: this.selectedData.storeCode,
+          imageid: this.selectedData.imageid,
+          quantity: this.selectedData.quantity,
+          price: this.selectedData.price,
+        })
+      }
+      if (this.selectedDataType === 'users') {
+        this.userForm.patchValue({
+          name: this.selectedData.name,
+          address: this.selectedData.address,
+          cityCode: this.selectedData.cityCode,
+          email: this.selectedData.email,
+          phone: this.selectedData.phone,
+        })
+      }
+      if (this.selectedDataType === 'trips') {
+        this.tripForm.patchValue({
+          name: this.selectedData.name,
+          address: this.selectedData.address,
+          cityCode: this.selectedData.cityCode,
+          email: this.selectedData.email,
+          phone: this.selectedData.phone,
+        })
+      }
+      if (this.selectedDataType === 'orders') {
+        this.orderForm.patchValue({
+          dateDone: this.selectedData.dateDone,
+          dateIssued: this.selectedData.dateIssued,
+        })
+      }
+      if (this.selectedDataType === 'reviews') {
+        this.reviewForm.patchValue({
+          review: this.selectedData.review,
+          score: this.selectedData.score,
+          type: this.selectedData.type,
+        })
+      }
+    }
   }
 
 }

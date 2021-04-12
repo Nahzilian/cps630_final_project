@@ -7,9 +7,45 @@
       <div>
         <app-create-form [formType]="'cars'"></app-create-form>
       </div>
+      <div *ngIf="selectedDataType === 'cars' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Car</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='carForm' (ngSubmit)="submitCar()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Model" formControlName="model">
+                </mat-form-field>
+              </div>
 
-      <div>
-        <app-update-form [formType]="'cars'"></app-update-form>
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Car Code" formControlName="carCode">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Available" formControlName="available">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </div>
 
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
@@ -38,6 +74,9 @@
             <div>
               <button mat-button (click)="deleteItem(car._id)">Delete</button>
             </div>
+            <div>
+              <button mat-button (click)="setSelectedData(car)">Update</button>
+            </div>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -51,11 +90,52 @@
       <div>
         <app-create-form [formType]="'flowers'"></app-create-form>
       </div>
+      <div *ngIf="selectedDataType === 'flowers' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Flower</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='flowerForm' (ngSubmit)="submitFlower()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Flower name" formControlName="flowerName">
+                </mat-form-field>
+              </div>
 
-      <div>
-        <app-update-form [formType]="'flowers'"></app-update-form>
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Store Code" formControlName="storeCode">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Quantity" formControlName="quantity" min="1">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Price" formControlName="price">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </div>
-
       <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = updateData($event)">
       </mat-paginator>
@@ -83,6 +163,9 @@
           <div>
             <button mat-button (click)="deleteItem(flower._id)">Delete</button>
           </div>
+          <div>
+            <button mat-button (click)="setSelectedData(flower)">Update</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -95,11 +178,49 @@
       <div>
         <app-create-form [formType]="'users'"></app-create-form>
       </div>
+      <div *ngIf="selectedDataType === 'users' && selectedData">
+        <mat-card>
+          <mat-card-title>Update user</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]="userForm" (ngSubmit)="submitUser()">
 
-      <div>
-        <app-update-form [formType]="'flowers'"></app-update-form>
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Full name" formControlName="name">
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row">
+                <mat-form-field>
+                  <input type="phone" matInput placeholder="Phone" formControlName="phone">
+                </mat-form-field>
+                <mat-form-field>
+                  <input type="email" matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+              </div>
+
+
+              <div fxLayout="row">
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="City Code" formControlName="cityCode">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+
+            </form>
+          </mat-card-content>
+        </mat-card>
       </div>
-
       <!-- <mat-paginator
         [length]="length"
         [pageSize]="pageSize"
@@ -129,6 +250,9 @@
           <div>
             <button mat-button (click)="deleteItem(user._id)">Delete</button>
           </div>
+          <div>
+            <button mat-button (click)="setSelectedData(user)">Update</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -137,10 +261,53 @@
 
   <mat-tab label="Trips">
     <div class="generic-arc-wrapper" *ngIf="allTrip">
-      <div>
-        <app-update-form [formType]="'trips'"></app-update-form>
-      </div>
 
+      <div *ngIf="selectedDataType === 'trips' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Trip</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='flowerForm' (ngSubmit)="submitTrip()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Source" formControlName="flowerName">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Destination" formControlName="storeCode">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Distance" formControlName="imageid">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Car ID" formControlName="quantity" min="1">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Price" formControlName="price">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
       <!--
       <mat-paginator
         [length]="length"
@@ -169,6 +336,9 @@
           <div>
             <button mat-button (click)="deleteItem(trip._id)">Delete</button>
           </div>
+          <div>
+            <button mat-button (click)="setSelectedData(trip)">Update</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -177,9 +347,7 @@
 
   <mat-tab label="Orders">
     <div class="generic-arc-wrapper" *ngIf="allOrder">
-      <div>
-        <app-update-form [formType]="'orders'"></app-update-form>
-      </div>
+
       <!--
             <mat-paginator
               [length]="length"
@@ -187,6 +355,34 @@
               [pageSizeOptions]="pageSizeOptions"
               (page)="pageEvent = updateData($event)">
             </mat-paginator> -->
+      <div *ngIf="selectedDataType === 'orders' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Order</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='orderForm' (ngSubmit)="submitOrder()">
+              <div>
+                <mat-form-field>
+                  <input type="date" matInput placeholder="Date Issued" formControlName="dateIssued">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="date" matInput placeholder="Date Done" formControlName="dateDone">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
       <mat-accordion *ngFor="let order of allOrder">
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -208,6 +404,9 @@
           <div>
             <button mat-button (click)="deleteItem(order._id)">Delete</button>
           </div>
+          <div>
+            <button mat-button (click)="setSelectedData(order)">Update</button>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -215,9 +414,41 @@
 
 
   <mat-tab label="Reviews">
-    <div class="generic-arc-wrapper" *ngIf="allOrder">
-      <div>
-        <app-update-form [formType]="'reviews'"></app-update-form>
+    <div class="generic-arc-wrapper" *ngIf="allReview">
+
+      <div *ngIf="selectedDataType === 'reviews' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Reviews</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='reviewForm' (ngSubmit)="submitTrip()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Review" formControlName="review">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Score" formControlName="score">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Type" formControlName="type">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </div>
       <!--
             <mat-paginator
@@ -244,6 +475,9 @@
           </div>
           <div>
             <button mat-button (click)="deleteItem(review._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(review)">Update</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
