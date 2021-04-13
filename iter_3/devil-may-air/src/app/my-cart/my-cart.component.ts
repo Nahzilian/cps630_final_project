@@ -20,6 +20,7 @@ export class MyCartComponent implements OnInit {
   source: string;
   destin: string;
   typeOfService: string;
+  isExpress: boolean = false;
 
   constructor(private cartService: CartService, private route: ActivatedRoute) {
     this.travelingPrice = 12;
@@ -46,6 +47,10 @@ export class MyCartComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  checkoutExpress () {
+    this.isExpress = !this.isExpress;
+  }
+
   updateQuantity(event, id) {
     let index = this.orderedFlower.findIndex(item => item.id === id);
     if(index > -1) {
@@ -67,6 +72,8 @@ export class MyCartComponent implements OnInit {
       availableCar = await getAvailableCar();
     }
 
+    if(this.isExpress) totalPrice += 10;
+
     this.summary = parseFloat(totalPrice.toFixed(2));
 
     const user = JSON.parse(localStorage.getItem('user'))
@@ -81,7 +88,7 @@ export class MyCartComponent implements OnInit {
         customerId: user.id,
         flowers: this.orderedFlower
     }
-    console.log(obj)
+
     checkout(obj);
   }
 

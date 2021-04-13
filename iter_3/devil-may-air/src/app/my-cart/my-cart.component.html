@@ -61,6 +61,13 @@
         </div>
       </div>
 
+      <button mat-button (click)="checkoutExpress()">
+        {{!isExpress ? 'Make it Express!' : 'Cancel Express'}}
+      </button>
+
+      <div *ngIf="isExpress">
+        Express: + 10$
+      </div>
 
       <button (click)="getSummary()">Check Out</button>
       <div *ngIf="summary" class="summary-info">
