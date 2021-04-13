@@ -8,6 +8,7 @@ import { PageEvent } from '@angular/material/paginator';
 import Flower from 'src/models/flower';
 import { Router } from '@angular/router';
 import { CartService } from 'src/utils/services/cart.service';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-green',
@@ -19,6 +20,7 @@ export class GreenComponent implements OnInit {
 
   allCar: Array<Car>;
   allFlower: Array<Flower>;
+  cart: Array<Flower> = [];
 
   error='';
   length = 100;
@@ -41,6 +43,7 @@ export class GreenComponent implements OnInit {
   flowerPin1: Flower;
   flowerPin2: Flower;
   numPins: number = 0;
+  itemCount: number
 
   constructor(private router: Router, private cartService: CartService) {
 
@@ -49,6 +52,42 @@ export class GreenComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    //this.cart.push()
+    console.log('here')
+    setTimeout(() => {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+        this.itemCount = this.cart.length;
+    })
+  }
+
+  checkOut() {
+    if (this.cart.length === 0) {
+      this.error = 'Your cart is empty';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.source) {
+      this.error = 'Please select a source';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.destin) {
+      this.error = 'Please select a destination';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    let obj = { cart: this.cart, source: this.source, destin: this.destin }
+    this.cartService.setData(obj, 'flower');
+    this.router.navigate(['/cart', { type: 'flower' }]);
   }
 
   compareCars(){

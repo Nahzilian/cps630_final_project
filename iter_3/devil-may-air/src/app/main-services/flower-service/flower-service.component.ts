@@ -85,7 +85,7 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     return reviews;
   }
 
-  async checkOut() {
+  checkOut() {
     if (this.cart.length === 0) {
       this.error = 'Your cart is empty';
       setInterval(()=> {this.error = ''}, 6000)

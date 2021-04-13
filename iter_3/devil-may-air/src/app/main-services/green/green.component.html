@@ -70,39 +70,85 @@
         </div>
     </li>
 </ul>
+<div cdkDropListGroup>
 
-<ul class="mdc-image-list my-image-list" *ngIf="toggleControl.value == 'flower'">
-    <li #item (click)="onPinFlower(item, flower)" class="mdc-image-list__item" *ngFor="let flower of allFlower">
-        <mat-icon>
-            push_pin
-        </mat-icon>
-        <div class="mdc-image-list__image-aspect-container">
-            <img class="mdc-image-list__image" [src]="getFlowerImgSrc(flower.imageid)">
+  <div *ngIf="toggleControl.value === 'flower'"  class="shopping-cart" cdkDropList [cdkDropListData]="cart" (cdkDropListDropped)="drop($event)"
+    (click)="checkOut()">
+    <mat-icon>shopping_cart</mat-icon>
+    <div>{{itemCount > 0? itemCount: null}}</div>
+  </div>
+
+
+  <ul class="mdc-image-list my-image-list" *ngIf="toggleControl.value == 'flower'">
+    <li #item (click)="onPinFlower(item, flower)" class="mdc-image-list__item" *ngFor="let flower of cart">
+          <mat-icon>
+              push_pin
+          </mat-icon>
+          <div class="mdc-image-list__image-aspect-container">
+              <img class="mdc-image-list__image" [src]="getFlowerImgSrc(flower.imageid)">
+          </div>
+          <mat-card class="mat-elevation-z4">
+              <mat-card-header>
+                  <mat-card-title>
+                      {{flower.flowerName}} - In cart
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                      {{flower.storeCode}}
+                  </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                  <p *ngIf="flower.usersVoted">
+                      <!-- {{description}} -->
+                      {{flower.score | number: '1.1-1'}}/5
+                  </p>
+                  <p *ngIf="!flower.usersVoted">
+                      no user reviews
+                  </p>
+                  <mat-icon *ngIf="flower.usersVoted">star</mat-icon>
+                  <mat-icon *ngIf="!flower.usersVoted"> sentiment_dissatisfied </mat-icon>
+              </mat-card-content>
+          </mat-card>
+          <div class="mdc-image-list__supporting">
+              <span class="mdc-image-list__label" [id]="flower._id">{{flower.price | number: '1.2-2'}}$</span>
+          </div>
+      </li>
+
+    <li cdkDropList [cdkDropListData]="allFlower" (cdkDropListDropped)="drop($event)"
+      #item (click)="onPinFlower(item, flower)" class="mdc-image-list__item" *ngFor="let flower of allFlower">
+      <div cdkDrag>
+          <mat-icon>
+              push_pin
+          </mat-icon>
+          <div class="mdc-image-list__image-aspect-container">
+              <img class="mdc-image-list__image" [src]="getFlowerImgSrc(flower.imageid)">
+          </div>
+          <mat-card class="mat-elevation-z4">
+              <mat-card-header>
+                  <mat-card-title>
+                      {{flower.flowerName}}
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                      {{flower.storeCode}}
+                  </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                  <p *ngIf="flower.usersVoted">
+                      <!-- {{description}} -->
+                      {{flower.score | number: '1.1-1'}}/5
+                  </p>
+                  <p *ngIf="!flower.usersVoted">
+                      no user reviews
+                  </p>
+                  <mat-icon *ngIf="flower.usersVoted">star</mat-icon>
+                  <mat-icon *ngIf="!flower.usersVoted"> sentiment_dissatisfied </mat-icon>
+              </mat-card-content>
+          </mat-card>
+          <div class="mdc-image-list__supporting">
+              <span class="mdc-image-list__label" [id]="flower._id">{{flower.price | number: '1.2-2'}}$</span>
+          </div>
+          <img *cdkDragPreview [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
         </div>
-        <mat-card class="mat-elevation-z4">
-            <mat-card-header>
-                <mat-card-title>
-                    {{flower.flowerName}}
-                </mat-card-title>
-                <mat-card-subtitle>
-                    {{flower.storeCode}}
-                </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p *ngIf="flower.usersVoted">
-                    <!-- {{description}} -->
-                    {{flower.score | number: '1.1-1'}}/5
-                </p>
-                <p *ngIf="!flower.usersVoted">
-                    no user reviews
-                </p>
-                <mat-icon *ngIf="flower.usersVoted">star</mat-icon>
-                <mat-icon *ngIf="!flower.usersVoted"> sentiment_dissatisfied </mat-icon>
-            </mat-card-content>
-        </mat-card>
-        <div class="mdc-image-list__supporting">
-            <span class="mdc-image-list__label" [id]="flower._id">{{flower.price | number: '1.2-2'}}$</span>
-        </div>
-    </li>
-</ul>
+      </li>
+  </ul>
+</div>
 <app-comparing-table [pin1]="pin1" [pin2]="pin2" [flowerPin1]="flowerPin1" [flowerPin2]="flowerPin2"></app-comparing-table>
