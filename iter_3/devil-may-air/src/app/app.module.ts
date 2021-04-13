@@ -46,6 +46,7 @@ import { BrowserComponent } from './browser/browser.component';
 import { GreenComponent } from './main-services/green/green.component';
 import { DbMaintainComponent } from './db-maintain/db-maintain.component';
 import { CreateFormComponent } from './db-maintain/create-form/create-form.component';
+import { ComparingTableComponent } from './main-services/green/comparing-table/comparing-table.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { CreateFormComponent } from './db-maintain/create-form/create-form.compo
     BrowserComponent,
     GreenComponent,
     DbMaintainComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    ComparingTableComponent
   ],
   imports: [
     BrowserModule,
