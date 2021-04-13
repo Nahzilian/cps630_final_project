@@ -26,21 +26,21 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  
+
   // MatPaginator Output
   pageEvent: PageEvent;
-  
+
   // Google map
   source: string;
   destin: string;
   error: string;
-  
+
   // Drag drop
   itemCount: number
-  
-  //Review Content 
+
+  //Review Content
   allReviews: Array<number>;
-  
+
   constructor(private router: Router, private cartService :CartService) {
     this.getFlowers(0);
     this.cart = [];
@@ -73,15 +73,15 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
         this.allFlower[i].usersVoted = totUsers;
         let tot = (score/totUsers) * 5;
         this.allFlower[i].score = tot < 0? 0:tot;
-        
+
       });
-      
+
     }
   }
   async getReview(id){
 
     let reviews = await findReview(id);
-    
+
     return reviews;
   }
 
@@ -105,10 +105,10 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
     }
 
     let obj = { cart: this.cart, source: this.source, destin: this.destin }
-    this.cartService.setData(obj);
-    this.router.navigate(['/cart']);
+    this.cartService.setData(obj, 'flower');
+    this.router.navigate(['/cart', { type: 'flower' }]);
   }
-  
+
 
   updateData(event?: PageEvent) {
     this.pageSize = event.pageSize;

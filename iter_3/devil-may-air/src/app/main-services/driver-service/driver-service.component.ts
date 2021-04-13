@@ -4,6 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 
 import Car from '../../../models/car';
 import { MapComponent } from '../map/map.component';
+import { Router } from '@angular/router';
+import { CartService } from '../../../utils/services/cart.service'
 
 @Component({
   selector: 'app-driver-service',
@@ -11,7 +13,7 @@ import { MapComponent } from '../map/map.component';
   styleUrls: ['./driver-service.component.sass'],
 })
 export class DriverServiceComponent implements OnInit {
-@ViewChild (MapComponent) map!: MapComponent;
+  @ViewChild(MapComponent) map!: MapComponent;
   allCar: Array<Car>;
   panelOpenState = false;
 
@@ -26,24 +28,24 @@ export class DriverServiceComponent implements OnInit {
   source: string;
   destin: string;
 
-  
-  //Review Content 
+  error: string = '';
+  //Review Content
   allReviews: Array<number>;
-  
-  async getReview(id){
+
+  async getReview(id) {
 
     let reviews = await findReview(id);
-    
+
     return reviews;
   }
 
-  updateReview(){
+  updateReview() {
     // Get Reviews
     for (let i = 0; i < this.allCar.length; i++) {
       const element = this.getReview(this.allCar[i].carCode);
       this.allCar[i].usersVoted = 0;
       this.allCar[i].score = 0;
-      element.then((e)=>{
+      element.then((e) => {
         let score = 0;
         let totUsers = 0;
         e.data.forEach(element => {
@@ -51,45 +53,72 @@ export class DriverServiceComponent implements OnInit {
           totUsers++;
         });
         this.allCar[i].usersVoted = totUsers;
-        let tot = (score/totUsers) * 5;
-        this.allCar[i].score = tot < 0? 0:tot;
-        
+        let tot = (score / totUsers) * 5;
+        this.allCar[i].score = tot < 0 ? 0 : tot;
+
       });
-      
+
     }
   }
 
-  updateData (event?: PageEvent) {
+  updateData(event?: PageEvent) {
     this.pageSize = event.pageSize;
     this.getCars(event.pageIndex);
-
-    
-    
   }
-  
+
+  selectCar (data) {
+    if (!data) {
+      this.error = 'Your cart is empty';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.source) {
+      this.error = 'Please select a source';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.destin) {
+      this.error = 'Please select a destination';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    let carData = {
+      cart: data,
+      source: this.source,
+      destin: this.destin
+    }
+
+    console.log(carData)
+    this.cartService.setData(carData, 'driver');
+    this.router.navigate(['/cart' , { type: 'driver' }])
+  }
+
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
-  
-  constructor() {
+
+  constructor(private router: Router, private cartService: CartService) {
     this.getCars(0);
-    
+
   }
-  
+
   async getCars(page) {
     let tempCar = await getAllCar(page, this.pageSize);
     this.allCar = tempCar.data.data;
     this.length = tempCar.data.row;
-    
+
     this.updateReview();
   }
-  
+
   getSourceAddress(place: object) {
     this.source = place['formatted_address'];
   }
-  
+
   getDestinAddress(place: object) {
     this.destin = place['formatted_address'];
   }
@@ -100,12 +129,12 @@ export class DriverServiceComponent implements OnInit {
     return '../../../assets/img/car/plc.jpeg';
   }
 
-  showMap () {
-    if(this.source && this.destin)
+  showMap() {
+    if (this.source && this.destin)
       this.map.showMap(this.source, this.destin);
     else alert('Please provide your source and destination')
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

@@ -16,7 +16,7 @@
           </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div *ngIf="orderedFlower">
+      <div *ngIf="orderedFlower.length > 0">
         <div class="flower-arc-wrapper">
           <div *ngFor="let flower of orderedFlower">
             <div class="flower-dropdown">
@@ -36,13 +36,32 @@
                     </mat-form-field>
                   </form>
                 </div>
-                <button>Remove</button>
-
+                <button (click)="removeFlower(flower.id)">Remove</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div *ngIf="orderedDriver">
+        <div class="flower-arc-wrapper">
+          <div class="flower-dropdown">
+            <div class="flower-img">
+              <img [src]="getCarImgSrc(orderedDriver.imageid)" alt={{orderedDriver.model}} width="200px">
+            </div>
+            <div class="flower-details">
+              <div><strong>Model</strong> - {{orderedDriver.model}}</div>
+              <div><strong>Car code</strong> - {{orderedDriver.carCode}}</div>
+              <div><strong>Price</strong> - 12$</div>
+              <div>
+              </div>
+              <button (click)="cancelDrive()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <button (click)="getSummary()">Check Out</button>
       <div *ngIf="summary" class="summary-info">
         Total Price: {{summary}} $

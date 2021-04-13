@@ -3,6 +3,7 @@ import Flower from 'src/models/flower';
 import { CartService } from '../../utils/services/cart.service';
 import { checkout } from '../../utils/api/apiController';
 import { getAvailableCar } from '../../utils/api/publicAPI';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-my-cart',
@@ -10,25 +11,31 @@ import { getAvailableCar } from '../../utils/api/publicAPI';
   styleUrls: ['./my-cart.component.sass']
 })
 export class MyCartComponent implements OnInit {
-  orderedFlower: Array<Flower>;
+  orderedFlower: Array<Flower> = [];
+  orderedDriver: any;
   panelOpenState = false;
   distance: number;
   travelingPrice: number;
   summary: number;
   source: string;
   destin: string;
+  typeOfService: string;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private route: ActivatedRoute) {
     this.travelingPrice = 12;
-    if (!this.orderedFlower) {
+    this.typeOfService = this.route.snapshot.paramMap.get('type');
+    if (this.orderedFlower.length === 0 || !this.orderedDriver ) {
       let obj = this.cartService.getData()
+      console.log(obj)
       if(obj) {
-        this.orderedFlower = obj.cart;
+        if (this.typeOfService === 'flower') this.orderedFlower = obj.cart;
+        if (this.typeOfService === 'driver') this.orderedDriver = obj.cart;
         this.source = obj.source;
         this.destin = obj.destin;
         this.calculateDistance();
       }
     }
+    console.log(this.orderedDriver)
   }
 
   calculateDistance () {
@@ -49,23 +56,26 @@ export class MyCartComponent implements OnInit {
 
   async getSummary() {
     let totalPrice = 0;
-    console.log(this.distance)
+
     let tripPrice = this.distance * this.travelingPrice;
     totalPrice += tripPrice;
+    let availableCar;
+    if(this.typeOfService === 'flower') {
+      this.orderedFlower.forEach((elem) => {
+        totalPrice += elem.price * elem.quantity;
+      })
+      availableCar = await getAvailableCar();
+    }
 
-    this.orderedFlower.forEach((elem) => {
-      totalPrice += elem.price * elem.quantity;
-    })
     this.summary = parseFloat(totalPrice.toFixed(2));
 
-    let availableCar = await getAvailableCar();
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(availableCar);
+
     let obj = {
         source: this.source,
         destination: this.destin,
         distance: this.distance,
-        carId: availableCar[0]._id,
+        carId: availableCar? availableCar[0]._id : this.orderedDriver._id,
         price: tripPrice,
         totalPrice: this.summary,
         customerId: user.id,
@@ -80,4 +90,19 @@ export class MyCartComponent implements OnInit {
     if (id <= max) return `../../assets/img/flower/flower${id}.jpeg`;
     return '../../assets/img/flower/plc.jpeg';
   }
+
+  getCarImgSrc(id) {
+    const max = 5
+    if (id <= max) return `../../assets/img/car/car${id}.jpeg`;
+    return '../../assets/img/car/plc.jpeg';
+  }
+
+  cancelDrive() {
+    this.orderedDriver = null;
+  }
+
+  removeFlower (flowerId) {
+    this.orderedFlower = this.orderedFlower.filter(x => x.id !== flowerId)
+  }
+
 }

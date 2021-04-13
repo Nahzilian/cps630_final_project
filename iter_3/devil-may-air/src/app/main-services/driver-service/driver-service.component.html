@@ -8,6 +8,14 @@
 </div>
 <app-map #myMap></app-map>
 
+<div *ngIf="error" class="error-msg-wrapper">
+  <div class="error-msg">
+    <span>
+      <mat-icon>error</mat-icon> {{error}}
+    </span>
+  </div>
+</div>
+
 <div class="drivers-tab-header">
   <span>Our current drivers</span>
 </div>
@@ -37,7 +45,7 @@
           <div><strong>Car code</strong> - {{car.carCode}}</div>
           <div><strong>Availability</strong> - {{car.available? "Yes" : "No"}}</div>
           <div><strong>Price</strong> - 12$ per km</div>
-          <div *ngIf="car.usersVoted">{{car.score | number: '1.1-1'}}/5 
+          <div *ngIf="car.usersVoted">{{car.score | number: '1.1-1'}}/5
             <mat-icon *ngIf="car.score == 5">star</mat-icon>
             <mat-icon *ngIf="car.score < 5 && car.score > 0">star_half</mat-icon>
             <mat-icon *ngIf="car.score == 0">star_outline</mat-icon>
@@ -46,7 +54,7 @@
           <div *ngIf="!car.usersVoted">No Reviews Submitted <mat-icon>sentiment_dissatisfied</mat-icon></div>
         </div>
         <div>
-          <button mat-button color="primary">Select car</button>
+          <button mat-button color="primary" (click)="selectCar(car)">Select car</button>
         </div>
       </div>
     </mat-expansion-panel>

@@ -8,11 +8,18 @@ export class CartService {
   private data: any = undefined;
 
   // constructor() { }
-  setData(data: any) {
+  setData(data: any, type: String) {
     var cart = data.cart;
-    var obj = { ... data, cart: this.flowerFormat(cart)}
-    this.data = obj;
+    if(type === 'flower'){
+      var obj = { ... data, cart: this.flowerFormat(cart)}
+      this.data = obj;
+    }
+
+    if(type === 'driver'){
+      this.data = data;
+    }
   }
+  
   getData() {
     return this.data;
   }
