@@ -60,7 +60,7 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
   updateReview(){
     // Get Reviews
     for (let i = 0; i < this.allFlower.length; i++) {
-      const element = this.getReview(this.allFlower[i].storeCode);
+      const element = this.getReview(this.allFlower[i]);
       this.allFlower[i].usersVoted = 0;
       this.allFlower[i].score = 0;
       element.then((e)=>{
@@ -80,7 +80,7 @@ export class FlowerServiceComponent implements OnInit, OnChanges {
   }
   async getReview(id){
 
-    let reviews = await findReview(id);
+    let reviews = await findReview(id._id);
 
     return reviews;
   }
