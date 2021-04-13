@@ -13,7 +13,7 @@
     </p>
     <mat-form-field appearance="fill">
       <mat-label>{{title}}s</mat-label>
-      <mat-select #select (selectionChange)="getReview(select.value._id)">
+      <mat-select #select (selectionChange)="getReview(select.value)">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let car of allCar" [value]="car">
           <img [width]="select_img_size" [height]="select_img_size" [src]="getCarImgSrc(car.imageid)">

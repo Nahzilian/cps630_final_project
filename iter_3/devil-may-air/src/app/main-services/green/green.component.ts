@@ -257,7 +257,8 @@ export class GreenComponent implements OnInit {
   updateReview(arr){
     // Get Reviews
     for (let i = 0; i < arr.length; i++) {
-      const element = this.getReview(arr[i].carCode);
+      let code = arr[0].hasOwnProperty('carCode')? arr[i].carCode : arr[i]._id;
+      const element = this.getReview(code);
       arr[i].usersVoted = 0;
       arr[i].score = 0;
       element.then((e)=>{

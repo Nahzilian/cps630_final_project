@@ -26,7 +26,7 @@ export class ReviewCardComponent implements OnInit {
   select_img_size: number;
   allCar: Array<Car>;
   allFlower: Array<Flower>;
-  allReviews: Array<any>;
+  allReviews: Array<any> = [];
 
   innerWidth: any;
   widthFactor: number;
@@ -90,8 +90,9 @@ export class ReviewCardComponent implements OnInit {
   }
 
   async getReview(id){
-
-    let reviews = await findReview(id);
+    let code = id.hasOwnProperty('carCode') ? id.carCode: id._id;
+    
+    let reviews = await findReview(code);
     this.allReviews = reviews.data;
     this.numberOfReviews = this.allReviews.length;
     console.log(this.allReviews);
