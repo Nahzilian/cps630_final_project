@@ -4,8 +4,10 @@ import { getAllCar, findReview, getAllFlower } from '../../../utils/api/publicAP
 import Car from '../../../models/car';
 import { MapComponent } from '../map/map.component';
 import { FormControl } from '@angular/forms';
-import { PageEvent } from '@angular/material/paginator'; 
+import { PageEvent } from '@angular/material/paginator';
 import Flower from 'src/models/flower';
+import { Router } from '@angular/router';
+import { CartService } from 'src/utils/services/cart.service';
 
 @Component({
   selector: 'app-green',
@@ -17,7 +19,8 @@ export class GreenComponent implements OnInit {
 
   allCar: Array<Car>;
   allFlower: Array<Flower>;
-  
+
+  error='';
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -39,8 +42,8 @@ export class GreenComponent implements OnInit {
   flowerPin2: Flower;
   numPins: number = 0;
 
-  constructor() {
-    
+  constructor(private router: Router, private cartService: CartService) {
+
     this.getCars(0);
     this.getFlowers(0);
    }
@@ -54,25 +57,25 @@ export class GreenComponent implements OnInit {
     let card = children[2] as HTMLElement;
     let content = card.children[1] as HTMLElement;
     let score = content.children[0] as HTMLElement;
-    
+
     if( (isNaN(this.carPin2.score) || this.carPin1.score === 0)  && (isNaN(this.carPin1.score) || this.carPin2.score === 0) ){
       score.innerHTML = `no user review <i style="color: gold" class="fas fa-minus"></i>`;
     }else if(isNaN(this.carPin2.score)){
       score.innerHTML = `no user review <i style="color: red" class="fas fa-sort-down"></i>`;
     }
     else if(this.carPin1.score > this.carPin2.score){
-      
+
       score.innerHTML = `${this.carPin2.score}/5 <i style="color: red" class="fas fa-sort-down"></i>`;
     }else if(this.carPin1.score < this.carPin2.score){
       score.innerHTML = `${this.carPin2.score.toFixed(1)}/5 <i style="color: green" class="fas fa-sort-up"></i>`;
-      
+
     }else if(this.carPin2.score === this.carPin1.score){
       score.innerHTML = `${this.carPin2.score.toFixed(1)}/5 <i style="color: gold" class="fas fa-minus"></i>`;
     }else if(isNaN(this.carPin1.score) && !isNaN(this.carPin2.score)){
       score.innerHTML = `${this.carPin2.score.toFixed(1)}/5 <i style="color: green" class="fas fa-sort-up"></i>`;
 
     }
-    
+
   }
 
   compareFlowers(pin1, pin2){
@@ -82,19 +85,19 @@ export class GreenComponent implements OnInit {
     let content = card.children[1] as HTMLElement;
     let price = children[3].children[0] as HTMLElement;
     let score = content.children[0] as HTMLElement;
-    
-    
+
+
     if( (isNaN(pin2.score) || pin1.score === 0)  && (isNaN(pin1.score) || pin2.score === 0) ){
       score.innerHTML = `no user review <i style="color: gold" class="fas fa-minus"></i>`;
     }else if(isNaN(pin2.score)){
       score.innerHTML = `no user review <i style="color: red" class="fas fa-sort-down"></i>`;
     }
     else if(pin1.score > pin2.score){
-      
+
       score.innerHTML = `${pin2.score}/5 <i style="color: red" class="fas fa-sort-down"></i>`;
     }else if(pin1.score < pin2.score){
       score.innerHTML = `${pin2.score.toFixed(1)}/5 <i style="color: green" class="fas fa-sort-up"></i>`;
-      
+
     }else if(pin2.score === pin1.score){
       score.innerHTML = `${pin2.score.toFixed(1)}/5 <i style="color: gold" class="fas fa-minus"></i>`;
     }else if(isNaN(pin1.score) && !isNaN(pin2.score)){
@@ -126,7 +129,7 @@ export class GreenComponent implements OnInit {
       var card = this.pin2.children[2] as HTMLElement;
       var content = card.children[1] as HTMLElement;
       var score = content.children[0] as HTMLElement;
-      
+
       if(isNaN(this.carPin2.score)){
         score.innerHTML = "no user reviews";
       }else{
@@ -154,14 +157,14 @@ export class GreenComponent implements OnInit {
       children = elem.children;
       pin = children[0] as HTMLElement;
       pin.style.color = "green";
-      
+
       if(temp){
         let tempPin = temp.children[0] as HTMLElement;
         tempPin.style.color = 'black';
         var card = temp.children[2] as HTMLElement;
         var content = card.children[1] as HTMLElement;
         var score = content.children[0] as HTMLElement;
-        
+
         if(isNaN(this.carPin2.score)){
           score.innerHTML = "no user reviews";
         }else{
@@ -173,7 +176,7 @@ export class GreenComponent implements OnInit {
       this.compareCars();
       this.numPins = 2;
     }
-    
+
   }
 
   onPinFlower(elem: HTMLElement, flower: Flower){
@@ -192,7 +195,7 @@ export class GreenComponent implements OnInit {
       var content = card.children[1] as HTMLElement;
       var score = content.children[0] as HTMLElement;
       var price = this.pin2.children[3].children[0] as HTMLElement;
-      
+
       if(isNaN(this.flowerPin2.score)){
         score.innerHTML = "no user reviews";
       }else{
@@ -222,7 +225,7 @@ export class GreenComponent implements OnInit {
       children = elem.children;
       pin = children[0] as HTMLElement;
       pin.style.color = "green";
-      
+
       if(temp){
         let tempPin = temp.children[0] as HTMLElement;
         tempPin.style.color = 'black';
@@ -230,7 +233,7 @@ export class GreenComponent implements OnInit {
         var content = card.children[1] as HTMLElement;
         var score = content.children[0] as HTMLElement;
         var price = temp.children[3].children[0] as HTMLElement;
-        
+
         if(isNaN(this.flowerPin2.score)){
           score.innerHTML = "no user reviews";
         }else{
@@ -250,8 +253,38 @@ export class GreenComponent implements OnInit {
   async getReview(id){
 
     let reviews = await findReview(id);
-    
+
     return reviews;
+  }
+
+  selectCar (data) {
+    if (!data) {
+      this.error = 'Your cart is empty';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.source) {
+      this.error = 'Please select a source';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    if (!this.destin) {
+      this.error = 'Please select a destination';
+      setInterval(()=> {this.error = ''}, 6000)
+      return;
+    }
+
+    let carData = {
+      cart: data,
+      source: this.source,
+      destin: this.destin
+    }
+
+    console.log(carData)
+    this.cartService.setData(carData, 'driver');
+    this.router.navigate(['/cart' , { type: 'driver' }])
   }
 
   updateReview(arr){
@@ -271,9 +304,9 @@ export class GreenComponent implements OnInit {
         arr[i].usersVoted = totUsers;
         let tot = (score/totUsers) * 5;
         arr[i].score = tot < 0? 0:tot;
-        
+
       });
-      
+
     }
   }
 
@@ -288,7 +321,7 @@ export class GreenComponent implements OnInit {
     let tempCar = await getAllCar(page, this.pageSize);
     this.allCar = tempCar.data.data;
     this.length = tempCar.data.row;
-    
+
     this.updateReview(this.allCar);
     this.reset();
   }
@@ -298,7 +331,7 @@ export class GreenComponent implements OnInit {
     this.allFlower = tempCar.data.data;
     this.length = tempCar.data.row;
     this.updateReview(this.allFlower);
-    this.reset();    
+    this.reset();
   }
 
   reset(){
@@ -311,13 +344,13 @@ export class GreenComponent implements OnInit {
     this.numPins = 0;
 
   }
-  
+
   getCarImgSrc(id) {
     const max = 5
     if (id <= max) return `../../../assets/img/car/car${id}.jpeg`;
     return '../../../assets/img/car/plc.jpeg';
   }
-  
+
   getFlowerImgSrc(id) {
     const max = 5
     if (id <= max) return `../../../assets/img/flower/flower${id}.jpeg`;
@@ -327,11 +360,11 @@ export class GreenComponent implements OnInit {
   getSourceAddress(place: object) {
     this.source = place['formatted_address'];
   }
-  
+
   getDestinAddress(place: object) {
     this.destin = place['formatted_address'];
   }
-  
+
   showMap () {
     if(this.source && this.destin)
       this.map.showMap(this.source, this.destin);

@@ -9,10 +9,19 @@
 </div>
 <app-map #myMap></app-map>
 
+<div *ngIf="error" class="error-msg-wrapper">
+  <div class="error-msg">
+    <span>
+      <mat-icon>error</mat-icon> {{error}}
+    </span>
+  </div>
+</div>
 
 <div class="green-tab-header">
     <span>Our current drivers & products</span>
 </div>
+
+
 
 <div class="green-container">
     <mat-button-toggle-group [formControl]="toggleControl" aria-label="Font Style">
@@ -46,11 +55,12 @@
             <mat-card-content>
                 <p *ngIf="car.usersVoted">
                     <!-- {{description}} -->
-                    {{car.score | number: '1.1-1'}}/5 
+                    {{car.score | number: '1.1-1'}}/5
                 </p>
                 <p *ngIf="!car.usersVoted">
-                    no user review 
+                    no user review
                 </p>
+                <button mat-button (click)="selectCar(car)">Select car</button>
                 <mat-icon *ngIf="car.usersVoted">star</mat-icon>
                 <mat-icon *ngIf="!car.usersVoted"> sentiment_dissatisfied </mat-icon>
             </mat-card-content>
@@ -81,10 +91,10 @@
             <mat-card-content>
                 <p *ngIf="flower.usersVoted">
                     <!-- {{description}} -->
-                    {{flower.score | number: '1.1-1'}}/5 
+                    {{flower.score | number: '1.1-1'}}/5
                 </p>
                 <p *ngIf="!flower.usersVoted">
-                    no user reviews 
+                    no user reviews
                 </p>
                 <mat-icon *ngIf="flower.usersVoted">star</mat-icon>
                 <mat-icon *ngIf="!flower.usersVoted"> sentiment_dissatisfied </mat-icon>
