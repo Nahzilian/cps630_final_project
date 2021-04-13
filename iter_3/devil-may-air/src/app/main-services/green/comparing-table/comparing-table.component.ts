@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, Input } from '@angular/core';
 import {MatExpansionPanel} from '@angular/material/expansion';
 
+import Flower from 'src/models/flower';
+
+
 @Component({
   selector: 'app-comparing-table',
   templateUrl: './comparing-table.component.html',
@@ -11,6 +14,9 @@ export class ComparingTableComponent implements OnInit {
   @Input() pin1: HTMLElement;
   @Input() pin2: HTMLElement;
   @Input() flowerPrice: HTMLElement;
+  
+  @Input() flowerPin1: Flower;
+  @Input() flowerPin2: Flower;
 
   panelOpenState = false;
   constructor() { }
@@ -34,7 +40,7 @@ export class ComparingTableComponent implements OnInit {
     
   }
   
-  read(pin: HTMLElement){
+  read(pin: HTMLElement, flower:Flower){
     let img =`<img width=200 height=100 src=${pin.getElementsByTagName('img')[0].src}>`;
     let card = pin.children[2] as HTMLElement;
     let title = card.children[0].children[0].children[0];
@@ -42,8 +48,8 @@ export class ComparingTableComponent implements OnInit {
     let review = card.children[1].children[0];
     let res = img + `<div>NAME: ${title.innerHTML}</div>
     <div>CODE: ${code.innerHTML}</div><div>REVIEW: ${review.innerHTML}</div>`
-    if(this.flowerPrice){
-      res += `<div>${this.flowerPrice.innerHTML}</div>`;
+    if(flower){
+      res += `<div>${flower.price.toFixed(2)}$</div>`;
     }
     return res;
   }
