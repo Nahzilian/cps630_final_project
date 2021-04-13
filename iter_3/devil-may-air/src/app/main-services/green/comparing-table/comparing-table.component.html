@@ -1,1 +1,17 @@
-<p>comparing-table works!</p>
+<div class="container" #container>
+    <mat-expansion-panel *ngIf="pin1 && pin2" #panel (opened)="open(panel, container)"
+    (closed)="close(panel, container)">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            Compare Products
+            </mat-panel-title>
+            <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+            <div class="fxLayout=row">
+                <p fxFlex=50 [innerHTML]="read(pin1)"></p>
+                <p fxFlex=50 [innerHTML]="read(pin2)"></p>
+            </div>
+    </mat-expansion-panel>
+</div>
