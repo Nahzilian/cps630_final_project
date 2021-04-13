@@ -44,6 +44,8 @@ import { UserReviewComponent } from './user-review/user-review.component';
 import { ReviewCardComponent } from './user-review/review-card/review-card.component';
 import { BrowserComponent } from './browser/browser.component';
 import { GreenComponent } from './main-services/green/green.component';
+import { DbMaintainComponent } from './db-maintain/db-maintain.component';
+import { CreateFormComponent } from './db-maintain/create-form/create-form.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { GreenComponent } from './main-services/green/green.component';
     UserReviewComponent,
     ReviewCardComponent,
     BrowserComponent,
-    GreenComponent
+    GreenComponent,
+    DbMaintainComponent,
+    CreateFormComponent
   ],
   imports: [
     BrowserModule,

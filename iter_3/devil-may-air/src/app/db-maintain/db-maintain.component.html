@@ -1,0 +1,491 @@
+<mat-tab-group mat-align-tabs="start" #tabGroup (selectedTabChange)="tabChanged($event)">
+  <!-- Cars -->
+
+  <mat-tab label="Cars">
+    <!-- Display -->
+    <div class="generic-arc-wrapper" *ngIf="allCar">
+      <div>
+        <app-create-form [formType]="'cars'"></app-create-form>
+      </div>
+      <div *ngIf="selectedDataType === 'cars' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Car</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='carForm' (ngSubmit)="submitCar()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Model" formControlName="model">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Car Code" formControlName="carCode">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Available" formControlName="available">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator>
+      <mat-accordion *ngFor="let car of allCar">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Car model</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{car.model}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="car-img">
+              <img [src]="getCarImgSrc(car.imageid)" alt={{car.model}} width="200px">
+            </div>
+            <div class="generic-details">
+              <div><strong>Car Model</strong> - {{car.model}}</div>
+              <div><strong>Car code</strong> - {{car.carCode}}</div>
+              <div><strong>Availability</strong> - {{car.available? "Yes" : "No"}}</div>
+              <div><strong>Price</strong> - 12$ per km</div>
+            </div>
+            <div>
+              <button mat-button (click)="deleteItem(car._id)">Delete</button>
+            </div>
+            <div>
+              <button mat-button (click)="setSelectedData(car)">Update</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+  <!-- Flowers -->
+
+  <mat-tab label="Flowers">
+    <div class="generic-arc-wrapper" *ngIf="allFlower">
+      <div>
+        <app-create-form [formType]="'flowers'"></app-create-form>
+      </div>
+      <div *ngIf="selectedDataType === 'flowers' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Flower</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='flowerForm' (ngSubmit)="submitFlower()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Flower name" formControlName="flowerName">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Store Code" formControlName="storeCode">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Image ID" formControlName="imageid">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Price" formControlName="price">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator>
+
+      <mat-accordion *ngFor="let flower of allFlower">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Flower name</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              <span>{{flower.flowerName}}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="flower-img">
+              <img [src]="getFlowerImgSrc(flower.imageid)" alt={{flower.flowerName}} width="200px">
+            </div>
+            <div class="generic-details">
+              <div><strong>Flower Name</strong> - {{flower.flowerName}}</div>
+              <div><strong>Flower code</strong> - {{flower.storeCode}}</div>
+              <div><strong>Price</strong> - {{flower.price}}$</div>
+            </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(flower._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(flower)">Update</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+
+
+  <mat-tab label="Users">
+    <div class="generic-arc-wrapper" *ngIf="allUsers">
+      <div>
+        <app-create-form [formType]="'users'"></app-create-form>
+      </div>
+      <div *ngIf="selectedDataType === 'users' && selectedData">
+        <mat-card>
+          <mat-card-title>Update user</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]="userForm" (ngSubmit)="submitUser()">
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Full name" formControlName="name">
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row">
+                <mat-form-field>
+                  <input type="phone" matInput placeholder="Phone" formControlName="phone">
+                </mat-form-field>
+                <mat-form-field>
+                  <input type="email" matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+              </div>
+
+
+              <div fxLayout="row">
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="City Code" formControlName="cityCode">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator> -->
+
+      <mat-accordion *ngFor="let user of allUsers">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>{{user.name}}</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="generic-details">
+              <div><strong>Name</strong> - {{user.name}}</div>
+              <div><strong>Phone</strong> - {{user.phone}}</div>
+              <div><strong>Email</strong> - {{user.email}}</div>
+              <div><strong>Address</strong> - {{user.address}}</div>
+              <div><strong>City code</strong> - {{user.cityCode}}</div>
+              <div><strong>Username</strong> - {{user.username}}</div>
+              <div><strong>Balance</strong> - {{user.balance}}</div>
+              <div><strong>Admin</strong> - {{user.isAdmin}}</div>
+            </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(user._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(user)">Update</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Trips">
+    <div class="generic-arc-wrapper" *ngIf="allTrip">
+
+      <div *ngIf="selectedDataType === 'trips' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Trip</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='tripForm' (ngSubmit)="submitTrip()">
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Source" formControlName="source">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Destination" formControlName="destination">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Distance" formControlName="distance">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="number" matInput placeholder="Price" formControlName="price">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!--
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = updateData($event)">
+      </mat-paginator> -->
+
+      <mat-accordion *ngFor="let trip of allTrip">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Trip</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="generic-details">
+              <div><strong>Trip Source</strong> - {{trip.source}}</div>
+              <div><strong>Trip Destination</strong> - {{trip.destination}}</div>
+              <div><strong>Trip Distance</strong> - {{trip.distance}}</div>
+              <div><strong>Car ID</strong> - {{trip.carId}}</div>
+              <div><strong>Price</strong> - {{trip.price}}</div>
+            </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(trip._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(trip)">Update</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Orders">
+    <div class="generic-arc-wrapper" *ngIf="allOrder">
+
+      <!--
+            <mat-paginator
+              [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = updateData($event)">
+            </mat-paginator> -->
+      <div *ngIf="selectedDataType === 'orders' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Order</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='orderForm' (ngSubmit)="submitOrder()">
+              <div>
+                <mat-form-field>
+                  <input type="date" matInput placeholder="Date Issued" formControlName="dateIssued">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="date" matInput placeholder="Date Done" formControlName="dateDone">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <mat-accordion *ngFor="let order of allOrder">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Order</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="generic-details">
+              <div><strong>Date Issued</strong> - {{order.dateIssued}}</div>
+              <div><strong>Date Done</strong> - {{order.dateDone}}</div>
+              <div><strong>Total Price</strong> - {{order.totalPrice}}</div>
+              <div><strong>Customer ID</strong> - {{order.customerId}}</div>
+              <div><strong>Trip ID</strong> - {{order.tripId}}</div>
+              <div><strong>flowers</strong> - {{order.flowers.length}}</div>
+            </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(order._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(order)">Update</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Reviews">
+    <div class="generic-arc-wrapper" *ngIf="allReview">
+
+      <div *ngIf="selectedDataType === 'reviews' && selectedData">
+        <mat-card>
+          <mat-card-title>Update Reviews</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]='reviewForm' (ngSubmit)="submitReview()">
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Review" formControlName="review">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Score" formControlName="score">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="Type" formControlName="type">
+                </mat-form-field>
+              </div>
+
+              <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
+
+              <div class="button">
+                <button type="submit" mat-button>Update</button>
+              </div>
+              <div class="button">
+                <button (click)="closeUpdateData()" mat-button>Close</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!--
+            <mat-paginator
+              [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = updateData($event)">
+            </mat-paginator> -->
+
+      <mat-accordion *ngFor="let review of allReview">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Review</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="generic-dropdown">
+            <div class="generic-details">
+              <div><strong>Review type</strong> - {{review.type}}</div>
+              <div><strong>Review Context</strong> - {{review.review}}</div>
+              <div><strong>Review Score</strong> - {{review.score}}</div>
+              <div><strong>Review Item ID</strong> - {{review.itemId}}</div>
+            </div>
+          </div>
+          <div>
+            <button mat-button (click)="deleteItem(review._id)">Delete</button>
+          </div>
+          <div>
+            <button mat-button (click)="setSelectedData(review)">Update</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+</mat-tab-group>

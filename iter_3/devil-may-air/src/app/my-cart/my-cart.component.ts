@@ -26,8 +26,6 @@ export class MyCartComponent implements OnInit {
         this.orderedFlower = obj.cart;
         this.source = obj.source;
         this.destin = obj.destin;
-        console.log(this.source);
-        console.log(this.destin);
         this.calculateDistance();
       }
     }

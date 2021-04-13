@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { DbMaintainComponent } from './db-maintain/db-maintain.component';
 import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MainServicesComponent } from './main-services/main-services.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: "me", component: UserInfoComponent},
   {path: "cart", component: MyCartComponent},
   {path: "review", component: UserReviewComponent},
+  {path: "maintain", component: DbMaintainComponent},
   {path: "**", redirectTo: '/' , pathMatch: 'full'},
 ];
 
