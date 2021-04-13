@@ -20,10 +20,16 @@ router.post('/', validateToken, async (req, res, next) => {
 
 router.get('/', async(req, res, next) => {
   const reviewId = req.params.id;
+  const itemId = req.query.id;
 
   if (reviewId) {
     const reviewById = await Review.findById(reviewId);
     return res.send(reviewById);
+  }
+
+  if (itemId) {
+    const reviewByItemId = await Review.find({itemId:itemId});
+    return res.send(reviewByItemId);
   }
 
   const allReview = await Review.find({});
