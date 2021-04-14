@@ -56,6 +56,7 @@ export class GreenComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     //this.cart.push()
+    this.reset()
     console.log('here')
     setTimeout(() => {
       transferArrayItem(event.previousContainer.data,

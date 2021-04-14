@@ -114,8 +114,8 @@
       </li>
 
     <li cdkDropList [cdkDropListData]="allFlower" (cdkDropListDropped)="drop($event)"
-      #item (click)="onPinFlower(item, flower)" class="mdc-image-list__item" *ngFor="let flower of allFlower">
-      <div cdkDrag>
+      (click)="onPinFlower(item, flower)" class="mdc-image-list__item" *ngFor="let flower of allFlower">
+      <div #item cdkDrag>
           <mat-icon>
               push_pin
           </mat-icon>
